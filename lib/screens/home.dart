@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'widgets/placeholder.dart';
+import 'explore.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    PlaceholderWidget(Colors.red),
+    Explore(),
     PlaceholderWidget(Colors.pink),
     PlaceholderWidget(Colors.purple),
     PlaceholderWidget(Colors.orange),
