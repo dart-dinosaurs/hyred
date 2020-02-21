@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import './widgets/card.dart';
+import 'package:main/screens/widgets/jobCard.dart';
 
 class Explore extends StatelessWidget {
   @override
