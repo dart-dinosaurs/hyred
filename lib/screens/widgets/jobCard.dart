@@ -18,9 +18,7 @@ class JobCard extends StatelessWidget {
 }
 
 final card = new Container(
-  
   height: 124.0,
-     margin: new EdgeInsets.only(left: 46.0),
      decoration: new BoxDecoration(
        color: new Color(0xFF333366),
        shape: BoxShape.rectangle,

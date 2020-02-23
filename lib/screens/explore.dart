@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import './widgets/card.dart';
+import './widgets/jobCards.dart';
 
 class Explore extends StatelessWidget {
   @override
   Widget build(BuildContext context){
-    return Column(children: <Widget>[
-      JobCard(),
-      JobCard(),
-    ],);
+    return new Scaffold(
+      body: new Column(children: <Widget>[
+        new JobCards(),
+      ],)
+    );
   }
 }
