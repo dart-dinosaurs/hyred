@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 //import 'package:main/screens/explore.dart';
 import 'package:main/screens/home.dart';
-
+import 'package:main/screens/widgets/details.dart';
+import './screens/widgets/data.dart';
 
 void main() => runApp(App());
 
@@ -11,6 +12,9 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Hyres',
       home: Home(),
+      routes: <String, WidgetBuilder>{
+        './detail': (_) => new DetailPage(jobs[0]),
+      },
     );
   }
 }

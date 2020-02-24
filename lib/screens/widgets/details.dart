@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import '../widgets/data.dart';
 
 class DetailPage extends StatelessWidget {
+
+  final Job job;
+
+  DetailPage(this.job);
 
   @override
   Widget build(BuildContext context){
@@ -8,8 +13,10 @@ class DetailPage extends StatelessWidget {
       body: new Container(
         constraints: new BoxConstraints.expand(),
         color: new Color(0xFF736AB7),
-        child: new Stack (
+        child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            new Text(job.name)
             //_getBackground(),
             //_getGradient(),
             //_getContent(),
