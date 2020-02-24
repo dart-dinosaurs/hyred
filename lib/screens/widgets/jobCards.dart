@@ -5,10 +5,11 @@ class JobCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-      body: new Column(children: <Widget>[
-        new JobCard(),
-        new JobCard(),
-      ],)
+      body: new ListView(
+        children: <Widget>[
+          JobCard()
+        ],
+      )
     );
   }
 }
