@@ -12,9 +12,6 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Hyres',
       home: Home(),
-      routes: <String, WidgetBuilder>{
-        './detail': (_) => new DetailPage(jobs[0]),
-      },
     );
   }
 }

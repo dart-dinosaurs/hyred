@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './data.dart';
+import './details.dart';
 
 class JobCard extends StatelessWidget {
 
@@ -101,7 +102,9 @@ final card = new Container(
 
 
 return new GestureDetector(
-  onTap: () => Navigator.pushNamed(context, './detail'),
+  onTap: () => Navigator.of(context).push(new PageRouteBuilder(
+    pageBuilder: (_, __, ___) => new DetailPage(job),
+  )),
     child: new Container(
       margin: const EdgeInsets.symmetric(
         vertical: 16.0,
@@ -114,8 +117,6 @@ return new GestureDetector(
       ),
     )
     );
-
-
 
   }
 }
