@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import './widgets/jobCards.dart';
-//import 'package:main/screens/widgets/jobCard.dart';
+import './widgets/data.dart';
+import 'package:main/screens/widgets/jobCard.dart';
 
 class Explore extends StatelessWidget {
   @override
@@ -8,12 +9,8 @@ class Explore extends StatelessWidget {
     return new Container(
         child: new ListView(
           children: <Widget>[
-            JobCard(),
-            JobCard(),
-            JobCard(),
-            JobCard(),
-            JobCard(),
-            JobCard(),
+            JobCard(jobs[0]),
+            JobCard(jobs[1]),
           ],
       )
     );
