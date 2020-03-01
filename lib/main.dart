@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:main/screens/login.dart';
-import './screens/home.dart';
-import 'screens/home.dart';
+import 'package:main/screens/wrapper.dart';
 
 void main() => runApp(App());
 
@@ -21,7 +19,7 @@ class App extends StatelessWidget {
         )
       ),
       title: 'Hyred',
-      home: Home(),
+      home: Wrapper(),
     );
   }
 }
