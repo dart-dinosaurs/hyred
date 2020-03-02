@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "849814319200",
+    "firebase_url": "https://hyred-9071a.firebaseio.com",
+    "project_id": "hyred-9071a",
+    "storage_bucket": "hyred-9071a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849814319200:android:7550198f25694d68b8d305",
+        "android_client_info": {
+          "package_name": "com.hyred.hyred"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "849814319200-d303443igeu5b07mpkf6o7sf8h74tqb0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCM080TuSu0sPXFRvayC81LmHajweADC8k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "849814319200-d303443igeu5b07mpkf6o7sf8h74tqb0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
