@@ -6,7 +6,9 @@ class JobCard extends StatelessWidget {
 
   final Job job;
 
-  JobCard(this.job);
+  final bool horizontal;
+
+  JobCard(this.job, {this.horizontal = true});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class JobCard extends StatelessWidget {
       fontFamily: 'Poppins'
     );
     final regularTextStyle = baseTextStyle.copyWith(
-      color: const Color(0xffb6b2df),
+      color: Colors.white,
       fontSize: 9.0,
       fontWeight: FontWeight.w400
     );
@@ -35,7 +37,7 @@ class JobCard extends StatelessWidget {
     Widget _planetValue({String value, String image}) {
       return new Row(
         children: <Widget>[
-          new Image.asset(image, height: 12.0),
+          new Image.asset(job.image, height: 12.0),
           new Container(width: 8.0),
           new Text(job.name, style: regularTextStyle),
         ]
@@ -61,19 +63,19 @@ final jobCardContent = new Container(
             color: new Color(0xff00c6ff)
           ),
           new Row(
-            // children: <Widget>[
-            //   new Expanded(
-            //     child: _planetValue(
-            //       value: planet.distance,
-            //       image: 'assets/img/ic_distance.png')
+            children: <Widget>[
+              new Expanded(
+                child: _planetValue(
+                  value: job.name,
+                  image: 'lib\images\BrickLayer.jpg')
 
-            //   ),
-            //   new Expanded(
-            //     child: _planetValue(
-            //       value: planet.gravity,
-            //       image: 'assets/img/ic_gravity.png')
-            //   )
-            // ],
+              ),
+              new Expanded(
+                child: _planetValue(
+                  value: job.description,
+                  image: 'lib\images\BrickLayer.jpg')
+              )
+            ],
           ),
         ],
       ),
@@ -87,7 +89,7 @@ final card = new Container(
   child: jobCardContent,
   height: 124.0,
      decoration: new BoxDecoration(
-       color: new Color(0xFF333366),
+       color: Colors.blue,
        shape: BoxShape.rectangle,
        borderRadius: new BorderRadius.circular(8.0),
        boxShadow: <BoxShadow>[
