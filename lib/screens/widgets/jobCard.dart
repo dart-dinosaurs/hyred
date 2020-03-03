@@ -33,13 +33,35 @@ class JobCard extends StatelessWidget {
     );
 
 
+    final planetThumbnail = new Container(
+    width: 90,
+    height: 90,
+     margin: new EdgeInsets.symmetric(
+       vertical: 16.0
+     ),
+     decoration: new BoxDecoration(
+       shape: BoxShape.circle,
+       image: new DecorationImage(
+          fit: BoxFit.cover,
+          image: new AssetImage(job.image)),
+     ),
+     alignment: FractionalOffset.centerLeft,
+    //  child: new Image(
+    //    image: new AssetImage(job.image),
+    //    height: 92.0,
+    //    width: 92.0,
+       
+    // ),
+  );
+    
+
 
     Widget _planetValue({String value, String image}) {
       return new Row(
         children: <Widget>[
-          new Image.asset(job.image, height: 12.0),
+          new Image.asset(image, height: 12.0),
           new Container(width: 8.0),
-          new Text(job.name, style: regularTextStyle),
+          new Text(value, style: regularTextStyle),
         ]
       );
     }
@@ -47,15 +69,20 @@ class JobCard extends StatelessWidget {
 
 
 final jobCardContent = new Container(
-      margin: new EdgeInsets.fromLTRB(76.0, 16.0, 16.0, 16.0),
+      margin: new EdgeInsets.fromLTRB(96.0, 16.0, 16.0, 16.0),
       constraints: new BoxConstraints.expand(),
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           new Container(height: 4.0),
-          new Text(job.name, style: headerTextStyle),
+          new Text(job.name,
+            style: headerTextStyle,
+          ),
           new Container(height: 10.0),
-          new Text(job.description, style: subHeaderTextStyle),
+          new Text(job.description,
+            style: subHeaderTextStyle
+
+          ),
           new Container(
             margin: new EdgeInsets.symmetric(vertical: 8.0),
             height: 2.0,
@@ -66,22 +93,20 @@ final jobCardContent = new Container(
             children: <Widget>[
               new Expanded(
                 child: _planetValue(
-                  value: job.name,
-                  image: 'lib\images\BrickLayer.jpg')
+                  value: job.salary,
+                  image: 'assets/images/dollar.png')
 
               ),
               new Expanded(
                 child: _planetValue(
-                  value: job.description,
-                  image: 'lib\images\BrickLayer.jpg')
+                  value: job.location,
+                  image: 'assets/images/location.png')
               )
             ],
-          ),
+          )
         ],
       ),
     );
-
-
 
 
     
@@ -115,6 +140,7 @@ return new GestureDetector(
       child: new Stack(
         children: <Widget>[
           card,
+          planetThumbnail
         ]
       ),
     )
