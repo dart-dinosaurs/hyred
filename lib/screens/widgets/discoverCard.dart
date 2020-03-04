@@ -19,7 +19,7 @@ class DiscoverCard extends StatelessWidget {
               width: 150,
               
               height: 50,
-              child: Text(heading, textAlign: TextAlign.center, style: TextStyle( fontSize: 20)),
+              child: Column(children: <Widget>[Container(height: 10,),Text(heading, textAlign: TextAlign.center, style: TextStyle( fontSize: 20))],),
               
               //margin: EdgeInsets.fromLTRB(70, 20, 70, 10),
         //height: 170,
