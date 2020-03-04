@@ -20,9 +20,18 @@ class NewExplore extends StatelessWidget {
         Container(child: Text("What type of Job are you looking for?", textAlign: TextAlign.center, style: TextStyle(
           fontSize: 25,
           fontWeight: FontWeight.bold,
-          ))),
-        Container(child: DiscoverCard('assets/images/retail.jpg', "Retail"))
-      ]
+          )
+          )
+        ),
+        Container(
+          height: 250,
+          child: ListView(scrollDirection: Axis.horizontal,children: <Widget>[
+            Container(child: DiscoverCard('assets/images/retail.jpg', "Retail"), padding: EdgeInsets.fromLTRB(10, 10, 10, 10),),
+            Container(child: DiscoverCard('assets/images/BrickLayer.jpg', "Construction"), padding: EdgeInsets.fromLTRB(10, 10, 10, 10),),
+            Container(child: DiscoverCard('assets/images/cleaning.jpg', "Janitorial"), padding: EdgeInsets.fromLTRB(10, 10, 10, 10),),
+          ],)
+        )
+        ]
     );
   }
 }
