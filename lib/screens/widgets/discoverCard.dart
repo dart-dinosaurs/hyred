@@ -14,9 +14,9 @@ class DiscoverCard extends StatelessWidget {
       Container(
         child: Column(
           children: <Widget>[
-            ClipRRect(borderRadius: BorderRadius.only( topLeft: Radius.circular(20), topRight: Radius.circular(20) ),child: Image(image: new AssetImage(image), width: 200, height: 150, fit: BoxFit.cover, )),
+            ClipRRect(borderRadius: BorderRadius.only( topLeft: Radius.circular(20), topRight: Radius.circular(20) ),child: Image(image: new AssetImage(image), width: 150, height: 100, fit: BoxFit.cover, )),
             Container(
-              width: 200,
+              width: 150,
               
               height: 50,
               child: Text(heading, textAlign: TextAlign.center, style: TextStyle( fontSize: 20)),
