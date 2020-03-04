@@ -17,7 +17,7 @@ class NewExplore extends StatelessWidget {
     return ListView(
       children: <Widget>[
         Container(child: MySearch(), height: 100,),
-        Container(child: Text("What type of Job are you looking for?", textAlign: TextAlign.center, style: TextStyle(
+        Container(child: Text("Explore Jobs", textAlign: TextAlign.center, style: TextStyle(
           fontSize: 25,
           fontWeight: FontWeight.bold,
           )
@@ -30,7 +30,16 @@ class NewExplore extends StatelessWidget {
             Container(child: DiscoverCard('assets/images/BrickLayer.jpg', "Construction"), padding: EdgeInsets.fromLTRB(10, 10, 10, 10),),
             Container(child: DiscoverCard('assets/images/cleaning.jpg', "Janitorial"), padding: EdgeInsets.fromLTRB(10, 10, 10, 10),),
           ],)
-        )
+        ),
+        Container(child: Text("Top Rated Jobs", textAlign: TextAlign.center, style: TextStyle(
+          fontSize: 25,
+          fontWeight: FontWeight.bold,
+          )
+          )
+        ),
+
+
+
         ]
     );
   }
