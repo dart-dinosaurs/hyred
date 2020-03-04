@@ -1,6 +1,7 @@
 import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flutter/material.dart';
 import '../screens/widgets/search.dart';
+import '../screens/widgets/discoverCard.dart';
 
 class NewExplore extends StatelessWidget {
   @override
@@ -20,7 +21,7 @@ class NewExplore extends StatelessWidget {
           fontSize: 25,
           fontWeight: FontWeight.bold,
           ))),
-        
+        Container(child: DiscoverCard('assets/images/retail.jpg', "Retail"))
       ]
     );
   }
