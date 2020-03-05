@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../explore.dart';
 
 class DiscoverCard extends StatelessWidget {
 
@@ -11,18 +12,18 @@ class DiscoverCard extends StatelessWidget {
   @override
   Widget build(BuildContext context){
     return(
-      Container(
+      GestureDetector(
+          onTap: () => Navigator.of(context).push(new PageRouteBuilder(
+          pageBuilder: (_, __, ___) => Explore(),
+          )),
+      child: Container(
         child: Column(
           children: <Widget>[
             ClipRRect(borderRadius: BorderRadius.only( topLeft: Radius.circular(20), topRight: Radius.circular(20) ),child: Image(image: new AssetImage(image), width: 150, height: 100, fit: BoxFit.cover, )),
             Container(
               width: 150,
-              
               height: 50,
               child: Column(children: <Widget>[Container(height: 10,),Text(heading, textAlign: TextAlign.center, style: TextStyle( fontSize: 20))],),
-              
-              //margin: EdgeInsets.fromLTRB(70, 20, 70, 10),
-        //height: 170,
                 decoration: new BoxDecoration(
                   shape: BoxShape.rectangle,
                   color: Colors.white,
@@ -44,6 +45,7 @@ class DiscoverCard extends StatelessWidget {
         ),
         
       )
+    )
     );
   }
 }

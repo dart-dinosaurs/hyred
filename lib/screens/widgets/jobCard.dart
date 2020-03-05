@@ -56,11 +56,11 @@ class JobCard extends StatelessWidget {
     
 
 
-    Widget _planetValue({String value, String image}) {
+    Widget _planetValue({String value, IconData image}) {
       return new Row(
         children: <Widget>[
-          new Image.asset(image, height: 12.0),
-          new Container(width: 8.0),
+          Icon(image, color: Colors.white,),
+          new Container(width: 5.0),
           new Text(value, style: regularTextStyle),
         ]
       );
@@ -94,13 +94,13 @@ final jobCardContent = new Container(
               new Expanded(
                 child: _planetValue(
                   value: job.salary,
-                  image: 'assets/images/dollar.png')
+                  image: Icons.attach_money)
 
               ),
               new Expanded(
                 child: _planetValue(
                   value: job.location,
-                  image: 'assets/images/location.png')
+                  image: Icons.location_on)
               )
             ],
           )
@@ -113,6 +113,8 @@ final jobCardContent = new Container(
 final card = new Container(
   child: jobCardContent,
   height: 124.0,
+  width: 300,
+  margin: EdgeInsets.fromLTRB(40, 0, 0, 0),
      decoration: new BoxDecoration(
        color: Colors.blue,
        shape: BoxShape.rectangle,
@@ -134,7 +136,7 @@ return new GestureDetector(
   )),
     child: new Container(
       margin: const EdgeInsets.symmetric(
-        vertical: 16.0,
+        vertical: 12.0,
         horizontal: 24.0
       ),
       child: new Stack(
