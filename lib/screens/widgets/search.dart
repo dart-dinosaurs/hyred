@@ -8,7 +8,7 @@ class MySearch extends StatelessWidget {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: SearchBar(),
+          child: SearchBar( hintText: "Try Searching Something Like Retail",),
         ),
       ),
     );

@@ -23,7 +23,7 @@ class TopJob extends StatelessWidget {
               child: Column(children: <Widget>[
                 Container(height: 10,),
                 Container(child: Text(heading, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20,), textAlign: TextAlign.left,), width: MediaQuery.of(context).size.width * 0.40, height: 30,),
-                Container(child: Text(salary, style: TextStyle(fontWeight: FontWeight.w100, color: Colors.grey), textAlign: TextAlign.left,), width: MediaQuery.of(context).size.width * 0.40, height: 40),
+                Container(child: Text(salary.substring(1, salary.length), style: TextStyle(fontWeight: FontWeight.w100, color: Colors.grey), textAlign: TextAlign.left,), width: MediaQuery.of(context).size.width * 0.40, height: 40),
                 Container(child: Text(description, style: TextStyle( color: Colors.black), textAlign: TextAlign.left,), width: MediaQuery.of(context).size.width * 0.40,),
               ],),
                 decoration: new BoxDecoration(

@@ -22,12 +22,12 @@ class DetailPage extends StatelessWidget {
     return new Scaffold(
       body: new Container(
         constraints: new BoxConstraints.expand(),
-        color: new Color(0xFF736AB7),
+        color: Colors.white,
         child: new Stack (
           children: <Widget>[
-            //_getBackground(),
-            _getGradient(),
-            _getContent(),
+            _getBackground(),
+            //_getGradient(),
+            _getContent(context),
             _getToolbar(context),
           ],
         ),
@@ -35,15 +35,15 @@ class DetailPage extends StatelessWidget {
     );
   }
 
-  // Container _getBackground () {
-  //   return new Container(
-  //           child: new Image.network(job.picture,
-  //             fit: BoxFit.cover,
-  //             height: 300.0,
-  //           ),
-  //           constraints: new BoxConstraints.expand(height: 295.0),
-  //         );
-  // }
+  Container _getBackground () {
+    return new Container(
+            child: Image(image: new AssetImage(job.image),
+              fit: BoxFit.cover,
+              height: 150.0,
+            ),
+            constraints: new BoxConstraints.expand(height: 295.0),
+          );
+  }
 
   Container _getGradient() {
     return new Container(
@@ -63,29 +63,48 @@ class DetailPage extends StatelessWidget {
           );
   }
 
-  Container _getContent() {
-    final _overviewTitle = "Overview".toUpperCase();
+  Container _getContent(BuildContext context) {
+    final _overviewTitle = "overview".toUpperCase();
     return new Container(
             child: new ListView(
-              padding: new EdgeInsets.fromLTRB(0.0, 72.0, 0.0, 32.0),
+              padding: new EdgeInsets.fromLTRB(0.0, 310.0, 0.0, 32.0),
               children: <Widget>[
                 // new JobCard(job,
                 //   horizontal: false,
                 // ),
                 new Container(
-                  padding: new EdgeInsets.symmetric(horizontal: 32.0),
+                  padding: new EdgeInsets.symmetric(horizontal: 10.0),
                   child: new Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      Container(
+                        child: Text(job.name, textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),),
+                        width: MediaQuery.of(context).size.width * 0.9,
+                      ),
+                      new Text('DETAILS',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold
+                        ),),
+                      new Separator(),
+                      new Row(children: <Widget>[
+                        Icon(Icons.attach_money),
+                        Text(job.salary.substring(1, job.salary.length)),
+                        Container(width: 23),
+                        Icon(Icons.location_on),
+                        Text(job.location)
+                      ],), 
+                      Container(height: 10,),
                       new Text(_overviewTitle,
                         style: TextStyle(
-                          color: const Color(0xffb6b2df),
-                          fontSize: 9.0,
-                          fontWeight: FontWeight.w400
+                          color: Colors.black,
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold
                         ),),
                       new Separator(),
                       new Text(
-                          job.name
+                          job.description
                       ),
                     ],
                   ),
