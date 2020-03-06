@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:main/services/auth.dart';
 
 class Login extends StatefulWidget{
 
@@ -7,6 +8,12 @@ class Login extends StatefulWidget{
 }
 
 class _LoginScreenState extends State<Login> {
+
+  final AuthService _auth = AuthService();
+
+  String email = '';
+  String password = '';
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -26,15 +33,15 @@ class _LoginScreenState extends State<Login> {
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
                         fontFamily: 'Montserrat',
-                        height: 0.9
+                        height: 0.9,
                       ),
                       children: <TextSpan>[
                         TextSpan(text: 'Get '),
                         TextSpan(text: 'Hyred\n', style: TextStyle(color: Theme.of(context).accentColor)),
                         TextSpan(text: 'Today'),
-                        TextSpan(text: '.', style: TextStyle(color: Theme.of(context).accentColor))
+                        TextSpan(text: '.', style: TextStyle(color: Theme.of(context).accentColor)),
                       ]
-                    )
+                    ),
                   ),
                 )
               ],
@@ -46,18 +53,24 @@ class _LoginScreenState extends State<Login> {
             child: Column(
               children: <Widget>[
                 TextField(
+                  onChanged: (val) {
+                    setState(() => email = val);
+                  },
                   autocorrect: false,
                   decoration: InputDecoration(
                     labelText: 'Email',
                     labelStyle: TextStyle(
                       fontFamily: 'Montserrat',
                       fontWeight: FontWeight.bold,
-                      color: Colors.grey
+                      color: Colors.grey,
                     )
                   ),
                 ),
                 SizedBox(height: 10,),
                 TextField(
+                  onChanged: (val) {
+                    setState(() => password = val);
+                  },
                   autocorrect: false,
                   obscureText: true,
                   decoration: InputDecoration(
@@ -65,8 +78,8 @@ class _LoginScreenState extends State<Login> {
                     labelStyle: TextStyle(
                       fontFamily: 'Montserrat',
                       fontWeight: FontWeight.bold,
-                      color: Colors.grey
-                    )
+                      color: Colors.grey,
+                    ),
                   ),
                 ),
                 SizedBox(height: 10,),
@@ -77,30 +90,37 @@ class _LoginScreenState extends State<Login> {
                       color: Theme.of(context).accentColor,
                       decoration: TextDecoration.underline,
                       fontWeight: FontWeight.bold,
-                      fontSize: 12
+                      fontSize: 12,
                     ),
-                  )
+                  ),
                 ),
                 SizedBox(height: 50,),
                 Container(
                   height: 50,
-                  child: Material(
-                    borderRadius: BorderRadius.circular(25),
-                    shadowColor: Theme.of(context).accentColor,
+                  child: RaisedButton(
+                    shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(25)),
+                    onPressed: () async {
+                        if(email == '' && password == ''){
+                          dynamic res = await _auth.anonSignIn();
+                          if(res == null){
+                            print("shit went wrong!");
+                          } else {
+                            print("Signed in as: ");
+                            print(res);
+                          }
+                        }
+                      },
                     color: Theme.of(context).accentColor,
                     elevation: 5,
-                    child: GestureDetector(
-                      onTap: (){},
-                      child: Center(
+                    child: Center(
                         child: Text('LOGIN',
                           style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold
                           ),
-                        )
-                      )
-                    )
-                  )
+                        ),
+                      ),
+                  ),
                 ),
                 SizedBox(height: 20),
                 Container(
@@ -116,14 +136,14 @@ class _LoginScreenState extends State<Login> {
                           style: TextStyle(
                             color: Theme.of(context).accentColor,
                             decoration: TextDecoration.underline
-                          )
-                        )
-                      ]
+                          ),
+                        ),
+                      ],  
                     ),
-                  )
-                )
-              ]
-            )
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       )
