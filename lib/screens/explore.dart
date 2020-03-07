@@ -16,9 +16,8 @@ class Explore extends StatelessWidget {
           children: <Widget>[
             JobCard(jobs[0]),
             JobCard(jobs[1]),
-            JobCard(jobs[0]),
+            JobCard(jobs[1]),
           ],
-        
       )
     );
   

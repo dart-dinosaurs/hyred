@@ -3,7 +3,6 @@ import '../widgets/data.dart';
 
 //import 'package:flutter_planets_tutorial/model/planets.dart';
 import '../widgets/separator.dart';
-import '../widgets/jobCard.dart';
 
 //import 'package:flutter_planets_tutorial/ui/common/separator.dart';
 
@@ -65,6 +64,12 @@ class DetailPage extends StatelessWidget {
 
   Container _getContent(BuildContext context) {
     final _overviewTitle = "overview".toUpperCase();
+    var myConditions = job.requirements.split('|');
+
+    List<Widget> list = new List<Widget>();
+    for(var i = 0; i < myConditions.length; i++){
+        list.add(new Text(myConditions[i]));
+    }
     return new Container(
             child: new ListView(
               padding: new EdgeInsets.fromLTRB(0.0, 310.0, 0.0, 32.0),
@@ -105,6 +110,12 @@ class DetailPage extends StatelessWidget {
                       new Separator(),
                       new Text(
                           job.description
+                      ),
+                      new Separator(),
+                      Container(
+                        child: Column(children: myConditions.map((item) => new Text(item, textAlign: TextAlign.right)).toList(), mainAxisAlignment: MainAxisAlignment.start,),
+                        width: MediaQuery.of(context).size.width,
+                        
                       ),
                     ],
                   ),
