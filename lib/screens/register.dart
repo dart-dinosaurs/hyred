@@ -13,10 +13,9 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  final _passKey = GlobalKey<FormFieldState>();
 
   String email = "";
-  String password = "";
-  String password2 = "";
 
   @override
   Widget build(BuildContext context) {
@@ -82,11 +81,8 @@ class _RegisterState extends State<Register> {
                         height: 10,
                       ),
                       TextFormField(
-                        key: passKey,
+                        key: _passKey,
                         validator: (val) => val.length < 8 ? 'Passwords must be atleast 8 characters long!' : null,
-                        onChanged: (val) {
-                          setState(() => password = val);
-                        },
                         autocorrect: false,
                         obscureText: true,
                         decoration: InputDecoration(
@@ -102,10 +98,7 @@ class _RegisterState extends State<Register> {
                         height: 10,
                       ),
                       TextFormField(
-                        validator: (val) => val == _formKey.currentState.value ? 'Passwords must match!' : null,
-                        onChanged: (val) {
-                          setState(() => password2 = val);
-                        },
+                        validator: (val) => val == _passKey.currentState.value ? 'Passwords must match!' : null,
                         autocorrect: false,
                         obscureText: true,
                         decoration: InputDecoration(
@@ -143,7 +136,7 @@ class _RegisterState extends State<Register> {
                           onPressed: () async {
                             if(_formKey.currentState.validate()){
                               print(email);
-                              print(password);
+                              print(_passKey.currentState.value);
                             }
                           },
                           color: Theme.of(context).accentColor,
