@@ -13,10 +13,12 @@ class DiscoverCard extends StatelessWidget {
   Widget build(BuildContext context){
     return(
       GestureDetector(
-          onTap: () => Navigator.of(context).push(new PageRouteBuilder(
-          pageBuilder: (_, __, ___) => Explore(),
-          )),
-      child: Container(
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => new Container(child: Explore())),
+                ),
+                child: 
+      Container(
         child: Column(
           children: <Widget>[
             ClipRRect(borderRadius: BorderRadius.only( topLeft: Radius.circular(20), topRight: Radius.circular(20) ),child: Image(image: new AssetImage(image), width: 150, height: 100, fit: BoxFit.cover, )),
@@ -43,9 +45,8 @@ class DiscoverCard extends StatelessWidget {
               )
           ]
         ),
-        
       )
-    )
+      )
     );
   }
 }

@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/data.dart';
-
-//import 'package:flutter_planets_tutorial/model/planets.dart';
 import '../widgets/separator.dart';
-
-//import 'package:flutter_planets_tutorial/ui/common/separator.dart';
 
 
 class DetailPage extends StatelessWidget {
