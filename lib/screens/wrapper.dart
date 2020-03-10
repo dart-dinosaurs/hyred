@@ -15,7 +15,6 @@ class _WrapperState extends State<Wrapper> {
   bool showRegister = false;
 
   void toggleRegister(){
-    print("Toggled!");
     setState(() => showRegister = !showRegister);
   }
 

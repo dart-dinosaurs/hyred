@@ -132,8 +132,8 @@ class _LoginScreenState extends State<Login> {
                             print(res);
                           }
                         } else {
-                          dynamic res =
-                              await _auth.signInWithEmail(email, password);
+                          dynamic res = await _auth.signInWithEmail(email, password);
+                              print(res);
                           if (res == null) {
                             setState(() => error = "Email/Password combination not found!");
                           }

@@ -29,7 +29,7 @@ class _RegisterState extends State<Register> {
                 child: Stack(
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.fromLTRB(30.0, 90.0, 0.0, 0.0),
+                  padding: EdgeInsets.fromLTRB(30.0, 140.0, 0.0, 0.0),
                   child: RichText(
                     text: TextSpan(
                         style: TextStyle(
@@ -187,6 +187,15 @@ class _RegisterState extends State<Register> {
                           ),
                         ),
                       ),
+                      SizedBox(height: 200),
+                      RichText(
+                          text: TextSpan(
+                          style: TextStyle(color: Colors.black, fontSize: 10),
+                            children: <TextSpan>[
+                        TextSpan(text: "By Signing up, you agree with our "),
+                        TextSpan(text: "terms and conditions ", style: TextStyle(color: Theme.of(context).accentColor, decoration: TextDecoration.underline)),
+                        TextSpan(text: "and consent to Hyres' data usage policies.")
+                      ]))
                     ],
                   ),
                 )),
