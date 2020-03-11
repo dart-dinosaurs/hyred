@@ -23,9 +23,6 @@ class App extends StatelessWidget {
             )),
         title: 'Hyred',
         home: Wrapper(),
-        routes: <String, WidgetBuilder>{
-          '/detail': (_) => new Explore(),
-        },
       ),
     );
   }

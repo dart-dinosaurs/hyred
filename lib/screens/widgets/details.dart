@@ -107,12 +107,19 @@ class DetailPage extends StatelessWidget {
                       new Text(
                           job.description
                       ),
-                      new Separator(),
+                      Container(height: 5),
+                       new Text('EMPLOYER REQUIREMENTS',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 15.0,
+                          fontWeight: FontWeight.bold
+                        ),),
+                        Separator(),
                       Container(
-                        child: Column(children: myConditions.map((item) => new Text(item, textAlign: TextAlign.right)).toList(), mainAxisAlignment: MainAxisAlignment.start,),
+                        child: Column(children: myConditions.map((item) => Container(child: new Text("• " + item, textAlign: TextAlign.right), margin: EdgeInsets.fromLTRB(0, 3, 0, 0),)).toList(), mainAxisAlignment: MainAxisAlignment.start, crossAxisAlignment: CrossAxisAlignment.start),
                         width: MediaQuery.of(context).size.width,
-                        
                       ),
+                      
                     ],
                   ),
                 ),

@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import '../explore.dart';
+import './data.dart';
 
 class DiscoverCard extends StatelessWidget {
 
   final String image;
   final String heading;
+  final List job;
 
-  DiscoverCard(this.image, this.heading);
+  DiscoverCard(this.image, this.heading, this.job);
 
 
   @override
@@ -15,7 +17,7 @@ class DiscoverCard extends StatelessWidget {
       GestureDetector(
                 onTap: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => new Container(child: Explore())),
+                  MaterialPageRoute(builder: (context) => new Container(child: Explore(job))),
                 ),
                 child: 
       Container(

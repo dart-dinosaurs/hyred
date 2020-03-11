@@ -12,9 +12,6 @@ import './widgets/data.dart';
 class NewExplore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-    
-
     return ListView(children: <Widget>[
       Container(
         child: MySearch(),
@@ -22,30 +19,40 @@ class NewExplore extends StatelessWidget {
       ),
       Container(
         child: Text("Explore Jobs",
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.left,
             style: TextStyle(
               fontSize: 25,
               fontWeight: FontWeight.bold,
             )),
-        height: 40,
+        height: 30,
+        margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+      ),
+      Container(
+        child: Text("See jobs from different industries!",
+            textAlign: TextAlign.left,
+            style: TextStyle(
+              fontSize: 15,
+              color: Colors.grey,
+            )),
+        height: 20,
+        margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
       ),
       Container(
           height: 200,
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: <Widget>[
-              
-                Container(
-                  child: DiscoverCard('assets/images/retail.jpg', "Retail"),
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                ),
               Container(
-                child: DiscoverCard(
-                    'assets/images/BrickLayer.jpg', "Construction"),
+                child: DiscoverCard('assets/images/retail.jpg', "Retail", retailJobs),
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
               ),
               Container(
-                child: DiscoverCard('assets/images/cleaning.jpg', "Janitorial"),
+                child: DiscoverCard(
+                    'assets/images/BrickLayer.jpg', "Construction", constructionJobs), 
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+              ),
+              Container(
+                child: DiscoverCard('assets/images/cleaning.jpg', "Janitorial", janitorialJobs),
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
               ),
             ],
@@ -53,14 +60,26 @@ class NewExplore extends StatelessWidget {
       Container(
         child: Text(
           "Top Rated Jobs",
-          textAlign: TextAlign.center,
+          textAlign: TextAlign.left,
           style: TextStyle(
             fontSize: 25,
             fontWeight: FontWeight.bold,
           ),
         ),
-        height: 50,
-        
+        height: 30,
+        margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+      ),
+      Container(
+        child: Text(
+          "See highest paying and reviewed jobs!",
+          textAlign: TextAlign.left,
+          style: TextStyle(
+            fontSize: 15,
+            color: Colors.grey,
+          ),
+        ),
+        height: 30,
+        margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
       ),
       Row(
         children: <Widget>[
