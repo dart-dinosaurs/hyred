@@ -124,13 +124,7 @@ class _LoginScreenState extends State<Login> {
                           borderRadius: new BorderRadius.circular(25)),
                       onPressed: () async {
                         if (email == '' && password == '') {
-                          dynamic res = await _auth.anonSignIn();
-                          if (res == null) {
-                            print("shit went wrong!");
-                          } else {
-                            print("Signed in as: ");
-                            print(res);
-                          }
+                          print("anon signin is a thing of the past");
                         } else {
                           dynamic res = await _auth.signInWithEmail(email, password);
                               print(res);

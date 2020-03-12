@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import './screens/home.dart';
+import './screens/settings.dart';
+import './screens/profile.dart';
 import 'package:main/models/user.dart';
 import 'package:main/screens/Newexplore.dart';
 import 'package:main/screens/wrapper.dart';

@@ -30,7 +30,8 @@ class PlaceholderWidget extends StatelessWidget {
               await _auth.signOut();
             }, 
             icon: Icon(Icons.exit_to_app), 
-            label: Text("Logout"))
+            label: Text("Logout"),
+          )
         ],
       ),
     );

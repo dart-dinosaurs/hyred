@@ -21,6 +21,7 @@ class AuthService {
     try {
       AuthResult res = await _auth.signInAnonymously();
       FirebaseUser user = res.user;
+      await FirestoreService(uid: user.uid).onUserRegister();
       return _userCreation(user);
     } catch (err) {
       print(err.toString());
