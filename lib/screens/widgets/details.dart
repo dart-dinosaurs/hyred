@@ -18,8 +18,6 @@ class DetailPage extends StatelessWidget {
         color: Colors.white,
         child: new Stack(
           children: <Widget>[
-            
-            //_getGradient(),
             _getContent(context),
             _getToolbar(context),
           ],
