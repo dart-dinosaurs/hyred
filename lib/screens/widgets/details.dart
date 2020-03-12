@@ -93,7 +93,7 @@ class DetailPage extends StatelessWidget {
                               Container(
                                 height: 10,
                               ),
-                              Text(job.date),
+                              Text(job.date, style: TextStyle(fontSize: 18,),),
                               Container(
                                 height: 30,
                               ),
@@ -105,7 +105,7 @@ class DetailPage extends StatelessWidget {
                               Container(
                                 height: 10,
                               ),
-                              Text(job.activity),
+                              Text(job.activity, style: TextStyle(fontSize: 18),),
                             ],
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -123,7 +123,7 @@ class DetailPage extends StatelessWidget {
                               Container(
                                 height: 10,
                               ),
-                              Text(job.salary),
+                              Text(job.salary, style: TextStyle(fontSize: 18),),
                               Container(
                                 height: 30,
                               ),
@@ -135,7 +135,7 @@ class DetailPage extends StatelessWidget {
                               Container(
                                 height: 10,
                               ),
-                              Text(job.activity),
+                              Text(job.activity, style: TextStyle(fontSize: 18)),
                             ],
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
