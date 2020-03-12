@@ -15,12 +15,17 @@ class App extends StatelessWidget {
       value: AuthService().user,
       child: MaterialApp(
         theme: ThemeData(
-            fontFamily: 'Montserrat',
-            accentColor: Color(0xFF45CFCF),
-            inputDecorationTheme: InputDecorationTheme(
-              focusedBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(width: 2, color: Color(0xFF05A8AA))),
-            )),
+          fontFamily: 'Montserrat',
+          accentColor: Color(0xFF45CFCF),
+          inputDecorationTheme: InputDecorationTheme(
+            focusedBorder: UnderlineInputBorder(
+              borderSide: BorderSide(
+                width: 2,
+                color: Color(0xFF05A8AA),
+              ),
+            ),
+          ),
+        ),
         title: 'Hyred',
         home: Wrapper(),
       ),
