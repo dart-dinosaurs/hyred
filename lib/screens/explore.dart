@@ -13,7 +13,7 @@ class Explore extends StatelessWidget {
     return new Scaffold(
       appBar: AppBar(
         title: Row(children: <Widget>[
-          Text("Explore Jobs!     ")
+          Text("Explore Jobs!      ")
         ],
         mainAxisAlignment: MainAxisAlignment.center,
         ),

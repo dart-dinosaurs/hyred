@@ -38,7 +38,7 @@ class NewExplore extends StatelessWidget {
         margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
       ),
       Container(
-          height: 200,
+          height: 180,
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: <Widget>[
