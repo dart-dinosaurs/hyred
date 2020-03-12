@@ -9,10 +9,21 @@ class FirestoreService {
 
   Future updateUserData(String fname, String lname, String background, String bio) async {
     return await userCollection.document(uid).setData({
+      'registered': true,
       'fname': fname,
       'lname': lname,
       'background': background,
       'bio': bio
     });
+  }
+
+  Future onUserRegister() async {
+    return await userCollection.document(uid).setData({
+      'registered': false,
+    });
+  }
+
+  Stream<DocumentSnapshot> get userData {
+    return userCollection.document(uid).snapshots();
   }
 }
