@@ -77,8 +77,8 @@ class DetailPage extends StatelessWidget {
               children: <Widget>[
                 Container(
                   child: Column(children: <Widget>[
-                    Container(height: 10,),
-                    Text(job.name, style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),),
+                    Container(height: 20,),
+                    Align(child: Text(job.name, style: TextStyle(color: Colors.black, fontSize: 23,), textAlign: TextAlign.left,), alignment: Alignment.centerLeft,),
                     Container(width: MediaQuery.of(context).size.width, height: 2, color: Colors.grey, margin: EdgeInsets.fromLTRB(0, 20, 0, 10),),
                     Row(
                       children: <Widget>[
@@ -143,43 +143,68 @@ class DetailPage extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.3,
                         )
                       ],
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                     ),
                     Container(width: MediaQuery.of(context).size.width, height: 2, color: Colors.grey, margin: EdgeInsets.fromLTRB(0, 20, 0, 20),),
                   ]),
-                  margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width*0.10, 0, MediaQuery.of(context).size.width*0.10, 0),
+                  margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width*0.05, 0, MediaQuery.of(context).size.width*0.05, 0),
                 ),
-                new Text(
-                  _overviewTitle,
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold),
+                Container(
+                  child: Column(children: <Widget>[
+                    Align(child: Text("What You'll Do:", style: TextStyle(fontSize: 20, ),), alignment: Alignment.centerLeft,),
+                    Container(height: 15,),
+                    Align(child: Text(job.description), alignment: Alignment.centerLeft,),
+                    Container(height: 20,),
+                    Align(child: Text("Employee Requirements:", style: TextStyle(fontSize: 20, ),), alignment: Alignment.centerLeft,),
+                    Container(height: 8,),                    
+                  ],),
+                  margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * .05, 0, MediaQuery.of(context).size.width * .05, 0),
                 ),
-                new Separator(),
-                new Text(job.description),
-                Container(height: 5),
-                new Text(
-                  'EMPLOYER REQUIREMENTS',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold),
-                ),
-                Separator(),
                 Container(
                   child: Column(
                       children: myConditions
                           .map((item) => Container(
                                 child: new Text("• " + item,
                                     textAlign: TextAlign.right),
-                                margin: EdgeInsets.fromLTRB(0, 3, 0, 0),
+                                    margin: EdgeInsets.fromLTRB(0, 6, 0, 0),
                               ))
                           .toList(),
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start),
                   width: MediaQuery.of(context).size.width,
+                  margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.05, 0, MediaQuery.of(context).size.width * 0.05, 0),
                 ),
+                // new Text(
+                //   _overviewTitle,
+                //   style: TextStyle(
+                //       color: Colors.black,
+                //       fontSize: 15.0,
+                //       fontWeight: FontWeight.bold),
+                // ),
+                // new Separator(),
+                // new Text(job.description),
+                // Container(height: 5),
+                // new Text(
+                //   'EMPLOYER REQUIREMENTS',
+                //   style: TextStyle(
+                //       color: Colors.black,
+                //       fontSize: 15.0,
+                //       fontWeight: FontWeight.bold),
+                // ),
+                // Separator(),
+                // Container(
+                //   child: Column(
+                //       children: myConditions
+                //           .map((item) => Container(
+                //                 child: new Text("• " + item,
+                //                     textAlign: TextAlign.right),
+                //                 margin: EdgeInsets.fromLTRB(0, 3, 0, 0),
+                //               ))
+                //           .toList(),
+                //       mainAxisAlignment: MainAxisAlignment.start,
+                //       crossAxisAlignment: CrossAxisAlignment.start),
+                //   width: MediaQuery.of(context).size.width,
+                // ),
                 Container(
                   alignment: Alignment(0.0, 0.0),
                   margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
