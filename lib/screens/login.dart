@@ -1,7 +1,11 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:main/services/auth.dart';
 
 class Login extends StatefulWidget{
+
+  final Function toggleRegister;
+  Login({ this.toggleRegister });
 
   @override
   _LoginScreenState createState() => new _LoginScreenState();
@@ -133,6 +137,7 @@ class _LoginScreenState extends State<Login> {
                       children: <TextSpan>[
                         TextSpan(text: 'New to Hyred? '),
                         TextSpan(text: 'Register Today!', 
+                          recognizer: new TapGestureRecognizer()..onTap = () => widget.toggleRegister(),
                           style: TextStyle(
                             color: Theme.of(context).accentColor,
                             decoration: TextDecoration.underline
