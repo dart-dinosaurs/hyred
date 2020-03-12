@@ -23,7 +23,7 @@ class _HomeWrapperState extends State<HomeWrapper> {
 
     final userData = Provider.of<DocumentSnapshot>(context);
     if(!userData.data["registered"]){
-      return Home();
+      return Registration();
     }
     return Home();
   }

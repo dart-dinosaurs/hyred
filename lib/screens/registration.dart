@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:main/screens/widgets/placeholder.dart';
+import 'package:dropdown_formfield/dropdown_formfield.dart';
 
 class Registration extends StatefulWidget {
   @override
@@ -17,7 +18,7 @@ class _RegistrationState extends State<Registration> {
           TextFormField(
               decoration: InputDecoration(labelText: 'Legal Family Name')),
           TextFormField(
-              decoration: InputDecoration(labelText: 'Legal Given Name'))
+              decoration: InputDecoration(labelText: 'Legal Given Name')),
         ],
       ),
     ),
@@ -31,10 +32,7 @@ class _RegistrationState extends State<Registration> {
               decoration: InputDecoration(labelText: 'Street Address')),
           TextFormField(
               decoration: InputDecoration(labelText: 'Apartment, suite, etc')),
-          TextFormField(
-              decoration: InputDecoration(labelText: 'City')),
-          TextFormField(
-              decoration: InputDecoration(labelText: 'Apartment, suite, etc'))
+          TextFormField(decoration: InputDecoration(labelText: 'City')),
         ],
       ),
     ),
@@ -69,14 +67,13 @@ class _RegistrationState extends State<Registration> {
       body: Column(
         children: <Widget>[
           Expanded(
-            child: Stepper(steps: steps,
-            currentStep: currentStep,
-            onStepContinue: next,
-            onStepTapped: (step) => goTo(step),
-            onStepCancel: cancel,
+            child: Stepper(
+              steps: steps,
+              currentStep: currentStep,
+              onStepContinue: next,
+              onStepTapped: (step) => goTo(step),
+              onStepCancel: cancel,
             ),
-            
-
           )
         ],
       ),
