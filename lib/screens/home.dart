@@ -34,9 +34,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Hyres"),
-        ),
         body: getWidget(_currentIndex), 
         bottomNavigationBar: new Theme(
           data: Theme.of(context).copyWith(canvasColor: Colors.blue),
