@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'widgets/placeholder.dart';
 import 'package:main/services/firestore.dart';
 import 'package:provider/provider.dart';
+import 'package:main/screens/Newexplore.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -14,7 +15,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    PlaceholderWidget(Colors.red),
+    NewExplore(),
     PlaceholderWidget(Colors.pink),
     PlaceholderWidget(Colors.purple),
     PlaceholderWidget(Colors.orange),
