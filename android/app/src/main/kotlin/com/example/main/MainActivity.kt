@@ -1,4 +1,4 @@
-package com.example.main
+package com.hyred.hyred
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
