@@ -18,7 +18,7 @@ class DetailPage extends StatelessWidget {
         color: Colors.white,
         child: new Stack(
           children: <Widget>[
-            _getBackground(),
+            
             //_getGradient(),
             _getContent(context),
             _getToolbar(context),
@@ -64,51 +64,90 @@ class DetailPage extends StatelessWidget {
     }
     return new Container(
       child: new ListView(
-        padding: new EdgeInsets.fromLTRB(0.0, 310.0, 0.0, 32.0),
+        padding: new EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 32.0),
         children: <Widget>[
           // new JobCard(job,
           //   horizontal: false,
           // ),
+          _getBackground(),
           new Container(
             padding: new EdgeInsets.symmetric(horizontal: 10.0),
             child: new Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  child: Text(
-                    job.name,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
-                  ),
-                  width: MediaQuery.of(context).size.width * 0.9,
-                ),
-                new Text(
-                  'DETAILS',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold),
-                ),
-                new Separator(),
-                new Row(
-                  children: <Widget>[
-                    Row(children: <Widget>[
-                      Icon(Icons.attach_money),
-                      Text(job.salary.substring(1, job.salary.length)),
-                    ],),
-                    Row(children: <Widget>[
-                      Icon(Icons.location_on),
-                      Text(job.location),
-                    ],),
-                    Row(children: <Widget>[
-                      Icon(Icons.calendar_today),
-                      Text(job.date)
-                    ],)
-                  ],
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                ),
-                Container(
-                  height: 10,
+                  child: Column(children: <Widget>[
+                    Container(height: 10,),
+                    Text(job.name, style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 30),),
+                    Container(width: MediaQuery.of(context).size.width, height: 2, color: Colors.grey, margin: EdgeInsets.fromLTRB(0, 20, 0, 10),),
+                    Row(
+                      children: <Widget>[
+                        Container(
+                          child: Column(
+                            children: <Widget>[
+                              Icon(Icons.timer, color: Colors.grey,),
+                              Container(
+                                height: 10,
+                              ),
+                              Text("Duration", style: TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.bold),),
+                              Container(
+                                height: 10,
+                              ),
+                              Text(job.date),
+                              Container(
+                                height: 30,
+                              ),
+                              Icon(Icons.local_activity, color: Colors.grey,),
+                              Container(
+                                height: 10,
+                              ),
+                              Text("Activity Level", style: TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.bold)),
+                              Container(
+                                height: 10,
+                              ),
+                              Text(job.activity),
+                            ],
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                          ),
+                          width: MediaQuery.of(context).size.width * 0.4,
+                        ),
+                        Container(
+                          child: Column(
+                            children: <Widget>[
+                              Icon(Icons.attach_money, color: Colors.grey),
+                              Container(
+                                height: 10,
+                              ),
+                              Text("Compensation", style: TextStyle(color: Colors.grey, fontSize: 15, fontWeight: FontWeight.bold),),
+                              Container(
+                                height: 10,
+                              ),
+                              Text(job.salary),
+                              Container(
+                                height: 30,
+                              ),
+                              Icon(Icons.chat_bubble_outline, color: Colors.grey,),
+                              Container(
+                                height: 10,
+                              ),
+                              Text("Hosted In", style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 15),),
+                              Container(
+                                height: 10,
+                              ),
+                              Text(job.activity),
+                            ],
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                          ),
+                          width: MediaQuery.of(context).size.width * 0.3,
+                        )
+                      ],
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    ),
+                    Container(width: MediaQuery.of(context).size.width, height: 2, color: Colors.grey, margin: EdgeInsets.fromLTRB(0, 20, 0, 20),),
+                  ]),
+                  margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width*0.10, 0, MediaQuery.of(context).size.width*0.10, 0),
                 ),
                 new Text(
                   _overviewTitle,
@@ -145,7 +184,10 @@ class DetailPage extends StatelessWidget {
                   alignment: Alignment(0.0, 0.0),
                   margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
                   child: RaisedButton(
-                    child: Text("Apply Now", style: TextStyle(color: Colors.white),),
+                    child: Text(
+                      "Apply Now",
+                      style: TextStyle(color: Colors.white),
+                    ),
                     elevation: 6.0,
                     color: Colors.green,
                     onPressed: () {

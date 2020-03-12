@@ -9,8 +9,9 @@ class Job{
   final String requirements;
   final String date;
   final String employer;
+  final String activity;
 
-  const Job({this.name, this.description, this.image, this.salary, this.location, this.requirements, this.date, this.employer });
+  const Job({this.name, this.description, this.image, this.salary, this.location, this.requirements, this.date, this.employer, this.activity });
 }
 
 List<Job> retailJobs = [
@@ -22,7 +23,8 @@ List<Job> retailJobs = [
     location: 'Markham',
     requirements: 'Work 9 am to 5 pm|Be familiar with construction and regulations|Speak english adequately|blah blah',
     date: '3/15 - 3/18',
-    employer: 'ABC Construction'
+    employer: 'ABC Construction',
+    activity: 'Intense'
   ),
   const Job(
     name: "Janitor",
@@ -32,7 +34,8 @@ List<Job> retailJobs = [
     location: 'Missisauga',
     requirements: 'Work 10 am to 7pm|Be available on call during shift to clean up messes|Be familiar with cleaning protocols',
     date: '3/16 - 3/20',
-    employer: 'Cleaners Union'
+    employer: 'Cleaners Union',
+    activity: 'Moderate'
   )
 ];
 
@@ -45,7 +48,8 @@ List<Job> constructionJobs = [
     location: 'Markham',
     requirements: 'Work 9 am to 5 pm|Be familiar with construction and regulations|Speak english adequately|blah blah',
     date: '3/15 - 3/18',
-    employer: 'ABC Construction'
+    employer: 'ABC Construction',
+    activity: 'Moderate'
   ),
   const Job(
     name: "Cash",
@@ -55,7 +59,8 @@ List<Job> constructionJobs = [
     location: 'Missisauga',
     requirements: 'Work 10 am to 7pm|Be available on call during shift to clean up messes|Be familiar with cleaning protocols',
     date: '3/16 - 3/20',
-    employer: 'Dollorama'
+    employer: 'Dollorama',
+    activity: 'Low'
   )
 ];
 
@@ -68,7 +73,8 @@ List<Job> janitorialJobs = [
     location: 'Markham',
     requirements: 'Work 9 am to 5 pm|Be familiar with construction and regulations|Speak english adequately|blah blah',
     date: '3/15 - 3/18',
-    employer: 'Cleaners United'
+    employer: 'Cleaners United',
+    activity: 'Moderate'
   ),
   const Job(
     name: "Janitor",
@@ -78,6 +84,7 @@ List<Job> janitorialJobs = [
     location: 'Missisauga',
     requirements: 'Work 10 am to 7pm|Be available on call during shift to clean up messes|Be familiar with cleaning protocols',
     date: '3/16 - 3/20',
-    employer: 'Markham Banquet'
+    employer: 'Markham Banquet',
+    activity: 'Moderate'
   )
 ];
