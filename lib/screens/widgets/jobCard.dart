@@ -23,36 +23,6 @@ class JobCard extends StatelessWidget {
       onTap: () => Navigator.of(context).push(new PageRouteBuilder(
         pageBuilder: (_, __, ___) => new DetailPage(job),
       )),
-      // child: Column(
-      //       children: <Widget>[
-      //         ClipRRect(borderRadius: BorderRadius.only( topLeft: Radius.circular(20), topRight: Radius.circular(20) ),child: Image(image: new AssetImage(job.image), width: MediaQuery.of(context).size.width * 0.45, height: 150, fit: BoxFit.cover, )),
-      //         Container(
-      //           width: MediaQuery.of(context).size.width * 0.45,
-      //           height: 80,
-      //           child: Column(children: <Widget>[
-      //             Container(height: 10,),
-      //             Container(child: Text(job.name, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20,), textAlign: TextAlign.left,), width: MediaQuery.of(context).size.width * 0.40, height: 30,),
-      //             Container(child: Text(job.salary.substring(1, job.salary.length), style: TextStyle(fontWeight: FontWeight.w100, color: Colors.grey), textAlign: TextAlign.left,), width: MediaQuery.of(context).size.width * 0.40, height: 40),
-      //           ],),
-      //             decoration: new BoxDecoration(
-      //               shape: BoxShape.rectangle,
-      //               color: Colors.white,
-      //               borderRadius: new BorderRadius.only(
-      //                 bottomLeft: Radius.circular(10),
-      //                 bottomRight: Radius.circular(10)
-      //               ),
-      //               boxShadow: [
-      //                 new BoxShadow(
-      //                   color: Colors.grey,
-      //                   offset: new Offset(1.0, 00.0),
-      //                   blurRadius: 5.0,
-      //                   spreadRadius: 1,
-      //                 )
-      //               ]
-      //             ),
-      //           ),
-      //       ]
-      //     ),
       child: Container(
         child: Row(
           children: <Widget>[
@@ -64,20 +34,15 @@ class JobCard extends StatelessWidget {
                   bottomRight: Radius.circular(50)),
               child: Image(
                   image: new AssetImage(job.image),
-                  height: 120,
+                  height: 140,
                   width: 150,
                   fit: BoxFit.cover),
             ),
             Column(children: <Widget>[
               Container(
-                child: Text(job.name),
+                child: Text(job.name, style: TextStyle(fontSize: 20),),
                 margin: EdgeInsets.fromLTRB(10, 10, 0, 0),
               ),
-              Container(
-                  height: 2,
-                  width: 20,
-                  color: Colors.white,
-                  margin: EdgeInsets.fromLTRB(10, 10, 0, 0)),
               Container(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -120,10 +85,14 @@ class JobCard extends StatelessWidget {
                 margin: EdgeInsets.fromLTRB(10, 0, 10, 10),
                 width: MediaQuery.of(context).size.width * 0.5,
               ),
+              Container(
+                child: Text("Posted By: " + job.employer),
+                margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
+              )
             ], crossAxisAlignment: CrossAxisAlignment.start)
           ],
         ),
-        height: 120,
+        height: 140,
         margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
         decoration: BoxDecoration(
             color: Color.fromRGBO(191, 241, 255, 1),

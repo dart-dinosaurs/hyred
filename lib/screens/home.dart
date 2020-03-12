@@ -37,7 +37,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
         body: getWidget(_currentIndex), 
         bottomNavigationBar: new Theme(
-          data: Theme.of(context).copyWith(canvasColor: Colors.blue),
+          data: Theme.of(context).copyWith(canvasColor: Theme.of(context).accentColor),
           child: BottomNavigationBar(
               onTap: onTabTapped,
               currentIndex: _currentIndex, 

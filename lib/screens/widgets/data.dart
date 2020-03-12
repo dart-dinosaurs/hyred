@@ -8,8 +8,9 @@ class Job{
   final String location;
   final String requirements;
   final String date;
+  final String employer;
 
-  const Job({this.name, this.description, this.image, this.salary, this.location, this.requirements, this.date });
+  const Job({this.name, this.description, this.image, this.salary, this.location, this.requirements, this.date, this.employer });
 }
 
 List<Job> retailJobs = [
@@ -20,7 +21,8 @@ List<Job> retailJobs = [
     salary: '\$15/hr',
     location: 'Markham',
     requirements: 'Work 9 am to 5 pm|Be familiar with construction and regulations|Speak english adequately|blah blah',
-    date: '3/15 - 3/18'
+    date: '3/15 - 3/18',
+    employer: 'ABC Construction'
   ),
   const Job(
     name: "Janitor",
@@ -29,7 +31,8 @@ List<Job> retailJobs = [
     salary: '\$18/hr',
     location: 'Missisauga',
     requirements: 'Work 10 am to 7pm|Be available on call during shift to clean up messes|Be familiar with cleaning protocols',
-    date: '3/16 - 3/20'
+    date: '3/16 - 3/20',
+    employer: 'Cleaners Union'
   )
 ];
 
@@ -41,7 +44,8 @@ List<Job> constructionJobs = [
     salary: '\$15/hr',
     location: 'Markham',
     requirements: 'Work 9 am to 5 pm|Be familiar with construction and regulations|Speak english adequately|blah blah',
-    date: '3/15 - 3/18'
+    date: '3/15 - 3/18',
+    employer: 'ABC Construction'
   ),
   const Job(
     name: "Cash",
@@ -50,19 +54,21 @@ List<Job> constructionJobs = [
     salary: '\$18/hr',
     location: 'Missisauga',
     requirements: 'Work 10 am to 7pm|Be available on call during shift to clean up messes|Be familiar with cleaning protocols',
-    date: '3/16 - 3/20'
+    date: '3/16 - 3/20',
+    employer: 'Dollorama'
   )
 ];
 
 List<Job> janitorialJobs = [
   const Job(
-    name: "ur mom gay",
+    name: "ur mom fat",
     description: "Plaster and Lay down bricks",
     image: 'assets/images/BrickLayer.jpg',
     salary: '\$15/hr',
     location: 'Markham',
     requirements: 'Work 9 am to 5 pm|Be familiar with construction and regulations|Speak english adequately|blah blah',
-    date: '3/15 - 3/18'
+    date: '3/15 - 3/18',
+    employer: 'Cleaners United'
   ),
   const Job(
     name: "Janitor",
@@ -71,6 +77,7 @@ List<Job> janitorialJobs = [
     salary: '\$18/hr',
     location: 'Missisauga',
     requirements: 'Work 10 am to 7pm|Be available on call during shift to clean up messes|Be familiar with cleaning protocols',
-    date: '3/16 - 3/20'
+    date: '3/16 - 3/20',
+    employer: 'Markham Banquet'
   )
 ];
