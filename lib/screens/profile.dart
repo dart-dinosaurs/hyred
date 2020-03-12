@@ -10,7 +10,6 @@ class Profile extends StatefulWidget {
   }
 }
 
-
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
@@ -234,19 +233,7 @@ class _ProfileState extends State<Profile> {
                     )
               )
             ],),
-          SizedBox(height: 30.0,),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: FlatButton(
-              child: Text('Logout'),
-              textColor: Colors.white,
-              color: Theme.of(context).accentColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: new BorderRadius.circular(18.0),
-              ),
-              onPressed: () {},
-            )
-          ),
+          SizedBox(height: 30.0,)
         ],
       )
     );

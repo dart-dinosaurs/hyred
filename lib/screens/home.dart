@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'profile.dart';
 import 'widgets/placeholder.dart';
 
 class Home extends StatefulWidget {
@@ -15,7 +16,7 @@ class _HomeState extends State<Home> {
     PlaceholderWidget(Colors.pink),
     PlaceholderWidget(Colors.purple),
     PlaceholderWidget(Colors.orange),
-    PlaceholderWidget(Colors.yellowAccent),
+    Profile(),
   ];
 
   Widget getWidget(int index) {
