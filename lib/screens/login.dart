@@ -11,6 +11,9 @@ class _LoginScreenState extends State<Login> {
 
   final AuthService _auth = AuthService();
 
+  String email = '';
+  String password = '';
+
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
@@ -50,6 +53,9 @@ class _LoginScreenState extends State<Login> {
             child: Column(
               children: <Widget>[
                 TextField(
+                  onChanged: (val) {
+                    setState(() => email = val);
+                  },
                   autocorrect: false,
                   decoration: InputDecoration(
                     labelText: 'Email',
@@ -62,6 +68,9 @@ class _LoginScreenState extends State<Login> {
                 ),
                 SizedBox(height: 10,),
                 TextField(
+                  onChanged: (val) {
+                    setState(() => password = val);
+                  },
                   autocorrect: false,
                   obscureText: true,
                   decoration: InputDecoration(
@@ -91,12 +100,14 @@ class _LoginScreenState extends State<Login> {
                   child: RaisedButton(
                     shape: RoundedRectangleBorder(borderRadius: new BorderRadius.circular(25)),
                     onPressed: () async {
-                        dynamic res = await _auth.anonSignIn();
-                        if(res == null){
-                          print("shit went wrong!");
-                        } else {
-                          print("Signed in as: ");
-                          print(res);
+                        if(email == '' && password == ''){
+                          dynamic res = await _auth.anonSignIn();
+                          if(res == null){
+                            print("shit went wrong!");
+                          } else {
+                            print("Signed in as: ");
+                            print(res);
+                          }
                         }
                       },
                     color: Theme.of(context).accentColor,
@@ -127,7 +138,7 @@ class _LoginScreenState extends State<Login> {
                             decoration: TextDecoration.underline
                           ),
                         ),
-                      ],
+                      ],  
                     ),
                   ),
                 ),
