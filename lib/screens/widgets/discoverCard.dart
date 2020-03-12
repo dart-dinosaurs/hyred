@@ -17,19 +17,10 @@ class DiscoverCard extends StatelessWidget {
         MaterialPageRoute(
             builder: (context) => new Container(child: Explore(job))),
       ),
-      child: Container(
-        
-        decoration: new BoxDecoration(boxShadow: [
-          new BoxShadow(
-            color: Colors.grey,
-            offset: new Offset(1.0, 1.0),
-            blurRadius: 10,
-            spreadRadius: 1,
-            
-          )
-        ],
       
-        ),
+      child: Card(
+        elevation: 10,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: Column(children: <Widget>[
           ClipRRect(
               borderRadius: BorderRadius.only(
@@ -56,8 +47,8 @@ class DiscoverCard extends StatelessWidget {
               shape: BoxShape.rectangle,
               color: Colors.white,
               borderRadius: new BorderRadius.only(
-                  bottomLeft: Radius.circular(10),
-                  bottomRight: Radius.circular(10)),
+                  bottomLeft: Radius.circular(20),
+                  bottomRight: Radius.circular(20)),
             ),
           )
         ]),
