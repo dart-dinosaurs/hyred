@@ -88,3 +88,50 @@ List<Job> janitorialJobs = [
     activity: 'Moderate'
   )
 ];
+
+List<Job> topJobs = [
+  const Job(
+    name: "Waiter",
+    description: "Wait on table at Mandarin",
+    image: 'assets/images/waiter.jpg',
+    salary: '\$16/hr',
+    location: 'Missisauga',
+    requirements: 'Work 10 am to 7pm|Be available during shift to clean up messes|Provide excellent service to customers',
+    date: '3/16 - 3/20',
+    employer: 'Mandarin',
+    activity: 'Moderate'
+  ),
+  const Job(
+    name: "Mover",
+    description: "Move furniture and other items to location",
+    image: 'assets/images/mover.jpg',
+    salary: '\$16/hr',
+    location: 'Markham',
+    requirements: 'Work 10 am to 7pm|Be able to lift items over 10 lbs',
+    date: '3/17 - 3/21',
+    employer: 'UHaul',
+    activity: 'Intense'
+  ),
+  const Job(
+    name: "Packer",
+    description: "Package items into given boxes with correct protocols",
+    image: 'assets/images/assembly.jpg',
+    salary: '\$15/hr',
+    location: 'Downtown',
+    requirements: 'Work 10 am to 7pm|Be able to lift items over 10 lbs',
+    date: '3/17 - 3/21',
+    employer: 'NewTech',
+    activity: 'Low'
+  ),
+  const Job(
+    name: "Cashier",
+    description: "Check out customers with their desired goods",
+    image: 'assets/images/cashier.jpg',
+    salary: '\$17/hr',
+    location: 'Oshawa',
+    requirements: 'Work 10 am to 7pm|Be able to serve customers at all times',
+    date: '3/17 - 3/21',
+    employer: 'Dollarama',
+    activity: 'Moderate'
+  ),
+];
