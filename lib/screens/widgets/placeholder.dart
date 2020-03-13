@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:main/models/user.dart';
 import 'package:main/services/auth.dart';
@@ -12,11 +13,16 @@ class PlaceholderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
     final AuthService _auth = AuthService();
-
     return Scaffold(
       backgroundColor: color,
-      body: Text(user.uid),
+      body: Column(
+        children: [
+          Text(user.uid),
+          Text(user.registered.toString()),
+          ]
+      ),
       appBar: AppBar(
+        backgroundColor: Theme.of(context).accentColor,
         title: Text("Placeholder"),
         actions: <Widget>[
           FlatButton.icon(
@@ -24,7 +30,8 @@ class PlaceholderWidget extends StatelessWidget {
               await _auth.signOut();
             }, 
             icon: Icon(Icons.exit_to_app), 
-            label: Text("Logout"))
+            label: Text("Logout"),
+          )
         ],
       ),
     );

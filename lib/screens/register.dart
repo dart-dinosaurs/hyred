@@ -16,6 +16,7 @@ class _RegisterState extends State<Register> {
   final _passKey = GlobalKey<FormFieldState>();
 
   String email = "";
+  String error = "";
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +29,7 @@ class _RegisterState extends State<Register> {
                 child: Stack(
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.fromLTRB(30.0, 90.0, 0.0, 0.0),
+                  padding: EdgeInsets.fromLTRB(30.0, 140.0, 0.0, 0.0),
                   child: RichText(
                     text: TextSpan(
                         style: TextStyle(
@@ -39,12 +40,11 @@ class _RegisterState extends State<Register> {
                           height: 0.9,
                         ),
                         children: <TextSpan>[
-                          TextSpan(text: 'Register '),
                           TextSpan(
                               text: 'Hyred\n',
                               style: TextStyle(
                                   color: Theme.of(context).accentColor)),
-                          TextSpan(text: 'Today'),
+                          TextSpan(text: 'Registration'),
                           TextSpan(
                               text: '.',
                               style: TextStyle(
@@ -64,7 +64,8 @@ class _RegisterState extends State<Register> {
                   child: Column(
                     children: <Widget>[
                       TextFormField(
-                        validator: (val) => val.isEmpty ? 'Please enter your email!' : null,
+                        validator: (val) =>
+                            val.isEmpty ? 'Please enter your email!' : null,
                         onChanged: (val) {
                           setState(() => email = val);
                         },
@@ -82,7 +83,9 @@ class _RegisterState extends State<Register> {
                       ),
                       TextFormField(
                         key: _passKey,
-                        validator: (val) => val.length < 8 ? 'Passwords must be atleast 8 characters long!' : null,
+                        validator: (val) => val.length < 8
+                            ? 'Passwords must be atleast 8 characters long!'
+                            : null,
                         autocorrect: false,
                         obscureText: true,
                         decoration: InputDecoration(
@@ -98,7 +101,9 @@ class _RegisterState extends State<Register> {
                         height: 10,
                       ),
                       TextFormField(
-                        validator: (val) => val == _passKey.currentState.value ? 'Passwords must match!' : null,
+                        validator: (val) => val != _passKey.currentState.value
+                            ? 'Passwords must match!'
+                            : null,
                         autocorrect: false,
                         obscureText: true,
                         decoration: InputDecoration(
@@ -126,7 +131,14 @@ class _RegisterState extends State<Register> {
                         ),
                       ),
                       SizedBox(
-                        height: 50,
+                        height: 30,
+                      ),
+                      Text(
+                        error,
+                        style: TextStyle(color: Colors.red, fontSize: 12),
+                      ),
+                      SizedBox(
+                        height: 20,
                       ),
                       Container(
                         height: 50,
@@ -134,9 +146,13 @@ class _RegisterState extends State<Register> {
                           shape: RoundedRectangleBorder(
                               borderRadius: new BorderRadius.circular(25)),
                           onPressed: () async {
-                            if(_formKey.currentState.validate()){
-                              print(email);
-                              print(_passKey.currentState.value);
+                            if (_formKey.currentState.validate()) {
+                              dynamic res = await _auth.registerWithEmail(
+                                  email, _passKey.currentState.value);
+                              if (res == null) {
+                                setState(() =>
+                                    error = "Please supply a valid email!");
+                              }
                             }
                           },
                           color: Theme.of(context).accentColor,
@@ -171,6 +187,15 @@ class _RegisterState extends State<Register> {
                           ),
                         ),
                       ),
+                      SizedBox(height: 200),
+                      RichText(
+                          text: TextSpan(
+                          style: TextStyle(color: Colors.black, fontSize: 10),
+                            children: <TextSpan>[
+                        TextSpan(text: "By Signing up, you agree with our "),
+                        TextSpan(text: "terms and conditions ", style: TextStyle(color: Theme.of(context).accentColor, decoration: TextDecoration.underline)),
+                        TextSpan(text: "and consent to Hyres' data usage policies.")
+                      ]))
                     ],
                   ),
                 )),
