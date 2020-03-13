@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:main/screens/widgets/image_capture.dart';
 import 'package:main/screens/widgets/placeholder.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
 
@@ -29,13 +30,22 @@ class _RegistrationState extends State<Registration> {
       content: Column(
         children: <Widget>[
           TextFormField(
-              decoration: InputDecoration(labelText: 'Street Address')),
+            decoration: InputDecoration(labelText: 'Street Address'),
+          ),
           TextFormField(
-              decoration: InputDecoration(labelText: 'Apartment, suite, etc')),
-          TextFormField(decoration: InputDecoration(labelText: 'City')),
+            decoration: InputDecoration(labelText: 'Apartment, suite, etc'),
+          ),
+          TextFormField(
+            decoration: InputDecoration(labelText: 'City'),
+          ),
         ],
       ),
     ),
+    Step(
+      title: Text("Upload your ID"),
+      content: ImageCapture(),
+      state: StepState.indexed,
+      isActive: true),
   ];
 
   int currentStep = 0;

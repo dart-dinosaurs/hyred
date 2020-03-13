@@ -23,7 +23,7 @@ class _WrapperState extends State<Wrapper> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
-
+    final _firestore = user == null ? null : FirestoreService(uid: user.uid);
     switch (user) {
       case null:
         if (showRegister) {
@@ -32,7 +32,7 @@ class _WrapperState extends State<Wrapper> {
         return Login(toggleRegister: toggleRegister);
       default:
         return StreamProvider<DocumentSnapshot>.value(
-            value: FirestoreService(uid: user.uid).userData, 
+            value: user == null ? false : _firestore.userData, 
             child: HomeWrapper(),
           );
     }
