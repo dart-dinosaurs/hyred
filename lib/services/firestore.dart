@@ -23,6 +23,12 @@ class FirestoreService {
     });
   }
 
+  Future onUserFinishRegister() async {
+    return await userCollection.document(uid).setData({
+      'registered': true,
+    });
+  }
+
   Stream<DocumentSnapshot> get userData {
     return userCollection.document(uid).snapshots();
   }

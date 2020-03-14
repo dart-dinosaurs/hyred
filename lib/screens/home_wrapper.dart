@@ -11,26 +11,32 @@ import 'package:provider/provider.dart';
 
 class HomeWrapper extends StatefulWidget {
   @override
-  _HomeWrapperState createState() => _HomeWrapperState();
+  HomeWrapperState createState() => HomeWrapperState();
 }
 
-class _HomeWrapperState extends State<HomeWrapper> {
+class HomeWrapperState extends State<HomeWrapper> {
 
   
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
 
-    final userData = Provider.of<DocumentSnapshot>(context);
+    bool registered = Provider.of<DocumentSnapshot>(context).data["registered"];
+
+    void changeRegistered = () => {
+      setState((){
+        registered = false;
+      })
+    };
+
     try{
-      if(!userData.data["registered"]){
+      if(!registered){
         return Registration();
       }
-      return Home();
+      return Registration();
     } catch (err){
       print(err.toString());
       return Registration();
     }
-    
   }
 }

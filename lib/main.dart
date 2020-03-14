@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:main/screens/widgets/image_capture.dart';
 import './screens/home.dart';
 import './screens/settings.dart';
 import './screens/profile.dart';
@@ -31,7 +30,7 @@ class App extends StatelessWidget {
           ),
         ),
         title: 'Hyred',
-        home:ImageCapture(),
+        home: Wrapper(),
       ),
     );
   }

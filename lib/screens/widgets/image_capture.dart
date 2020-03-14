@@ -43,36 +43,38 @@ class _ImageCaptureState extends State<ImageCapture> {
   Widget build(BuildContext context) {
     return Scaffold(
         bottomNavigationBar: BottomAppBar(
-      child: Row(
-        children: <Widget>[
-          IconButton(
-            icon: Icon(Icons.photo_camera),
-            onPressed: () => _pickImage(ImageSource.camera),
+          child: Row(
+            children: <Widget>[
+              IconButton(
+                icon: Icon(Icons.photo_camera),
+                onPressed: () => _pickImage(ImageSource.camera),
+              ),
+              IconButton(
+                icon: Icon(Icons.photo),
+                onPressed: () => _pickImage(ImageSource.gallery),
+              )
+            ],
           ),
-          IconButton(
-            icon: Icon(Icons.photo),
-            onPressed: () => _pickImage(ImageSource.gallery),
-          )
-        ],
-      ),
-    ),
-    body: ListView(
-      children: <Widget>[
-        if(_imageFile != null) ...[
-          Image.file(_imageFile),
-          Row(children: <Widget>[
-            FlatButton(
-              onPressed: _cropImage,
-              child: Icon(Icons.crop),
-            ),
-            FlatButton(
-              onPressed: _clear,
-              child: Icon(Icons.refresh),
-            ),
-            // Uploader(file: _imageFile)
-          ],)
-        ]
-      ],
-    ));
+        ),
+        body: ListView(
+          children: <Widget>[
+            if (_imageFile != null) ...[
+              Image.file(_imageFile),
+              Row(
+                children: <Widget>[
+                  FlatButton(
+                    onPressed: _cropImage,
+                    child: Icon(Icons.crop),
+                  ),
+                  FlatButton(
+                    onPressed: _clear,
+                    child: Icon(Icons.refresh),
+                  ),
+                  // Uploader(file: _imageFile)
+                ],
+              )
+            ]
+          ],
+        ));
   }
 }

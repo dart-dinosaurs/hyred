@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:main/screens/widgets/image_capture.dart';
 import 'package:main/screens/widgets/placeholder.dart';
 import 'package:dropdown_formfield/dropdown_formfield.dart';
+import 'package:main/services/auth.dart';
+import 'package:main/services/firestore.dart';
 
 class Registration extends StatefulWidget {
+  void changeRegistered;
+  Registration({this.changeRegistered});
   @override
   _RegistrationState createState() => _RegistrationState();
 }
@@ -43,10 +47,17 @@ class _RegistrationState extends State<Registration> {
     ),
     Step(
       title: Text("Upload your ID"),
-      content: ImageCapture(),
+      content: Column(
+        children: <Widget>[
+          Text("Select your ID"),
+        ]
+      ),
       state: StepState.indexed,
-      isActive: true),
+      isActive: true,
+      ),
   ];
+
+  final _firestore = FirestoreService();
 
   int currentStep = 0;
   bool complete = false;
@@ -54,7 +65,7 @@ class _RegistrationState extends State<Registration> {
   next() {
     currentStep + 1 != steps.length
         ? goTo(currentStep + 1)
-        : setState(() => complete = true);
+        : () => print("HELLO");
   }
 
   cancel() {
