@@ -20,6 +20,10 @@ class _WrapperState extends State<Wrapper> {
     setState(() => showRegister = !showRegister);
   }
 
+  void setRegister() {
+    setState(() => showRegister = false);
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
@@ -33,7 +37,7 @@ class _WrapperState extends State<Wrapper> {
       default:
         return StreamProvider<DocumentSnapshot>.value(
             value: user == null ? false : _firestore.userData, 
-            child: HomeWrapper(),
+            child: HomeWrapper(setRegister: setRegister),
           );
     }
   }

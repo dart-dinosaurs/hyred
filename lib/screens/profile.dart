@@ -1,6 +1,8 @@
 import 'dart:ffi';
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:main/models/user.dart';
+import 'package:provider/provider.dart';
 // import 'package:main/services/auth.dart';
 
 class Profile extends StatefulWidget {
@@ -13,6 +15,7 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
     return new Scaffold(
       backgroundColor: Colors.white,
       body: ListView(

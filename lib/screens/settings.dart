@@ -1,7 +1,9 @@
+import 'package:main/models/user.dart';
 import 'package:main/screens/profile.dart';
 
 import 'package:main/services/auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 // import 'package:main/services/auth.dart';
 
 class Settings extends StatefulWidget {
@@ -17,6 +19,7 @@ class _SettingsState extends State<Settings> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
     if (_showProfile) {
       return Profile();
     }
@@ -45,11 +48,11 @@ class _SettingsState extends State<Settings> {
                 SizedBox(width: 22.0),
                 Column(children: <Widget>[
                   Text(
-                    'Richard Hong',
+                    user.fname + " " + user.lname,
                     style: TextStyle(
                         fontFamily: 'Montserrat',
                         fontWeight: FontWeight.bold,
-                        fontSize: 30.0,
+                        fontSize: 23.0,
                         color: Colors.grey.shade900),
                   ),
                   Text(

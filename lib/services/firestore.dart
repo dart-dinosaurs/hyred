@@ -17,6 +17,17 @@ class FirestoreService {
     });
   }
 
+  Future registerName(String fname, String lname) async {
+    return await userCollection.document(uid).updateData({
+      'fname': fname,
+      'lname': lname
+    });
+  }
+
+  Future getData() async {
+    return await userCollection.document(uid).get();
+  }
+
   Future onUserRegister() async {
     return await userCollection.document(uid).setData({
       'registered': false,
@@ -24,7 +35,7 @@ class FirestoreService {
   }
 
   Future onUserFinishRegister() async {
-    return await userCollection.document(uid).setData({
+    return await userCollection.document(uid).updateData({
       'registered': true,
     });
   }

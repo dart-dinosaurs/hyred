@@ -151,7 +151,7 @@ class _RegisterState extends State<Register> {
                                   email, _passKey.currentState.value);
                               if (res == null) {
                                 setState(() =>
-                                    error = "Please supply a valid email!");
+                                    error = "Email has already been registered!");
                               }
                             }
                           },
