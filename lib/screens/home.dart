@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     Explore(),
-    SearchPage(),
+    PlaceholderWidget(Colors.purple),
     PlaceholderWidget(Colors.purple),
     PlaceholderWidget(Colors.orange),
     Settings(),

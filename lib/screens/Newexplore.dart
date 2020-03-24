@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:main/screens/newSearch.dart';
 import 'package:main/screens/searchPage.dart';
 import 'package:main/screens/widgets/topJob.dart';
 import '../screens/widgets/discoverCard.dart';
 import './widgets/data.dart';
+import './widgets/jobCard.dart';
 
 class Explore extends StatefulWidget {
   @override
@@ -39,7 +41,7 @@ class _ExploreState extends State<Explore> {
         ),
         searchValue != ""
         //TODO: REPLACE SEARCH HERE!!! 
-            ? Text("HELLO")
+            ? MySearch(searchValue)
             : Column(
                 children: <Widget>[
                   Container(
@@ -159,4 +161,18 @@ class _ExploreState extends State<Explore> {
       ],
     );
   }
+}
+
+Container _showSearch(String value){
+  List<Job> allJobs = topJobs;
+  List matchingJobs = [];
+
+  for (int i = 0; i < allJobs.length; i++){
+    if (allJobs[i].name.contains(value)){
+      matchingJobs.add(allJobs[i]);
+    }
+  }
+  return(
+    Container(child: Text("hi"))
+  );
 }

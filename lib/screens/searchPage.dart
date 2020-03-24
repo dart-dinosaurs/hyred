@@ -4,6 +4,11 @@ import '../screens/widgets/data.dart';
 
 class SearchPage extends StatelessWidget {
   @override
+
+  final String value;
+
+  SearchPage(this.value);
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
