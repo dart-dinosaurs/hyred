@@ -8,6 +8,7 @@ import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:main/services/auth.dart';
 import 'package:main/services/firestore.dart';
 import 'package:provider/provider.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class Registration extends StatefulWidget {
   final VoidCallback setRegister;
@@ -19,6 +20,14 @@ class Registration extends StatefulWidget {
 class _RegistrationState extends State<Registration> {
   int currentStep = 0;
   bool complete = false;
+  int currentIndex = 0;
+
+  changeIndex(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+    print(currentIndex);
+  }
 
   cancel() {
     if (currentStep > 0) {
@@ -40,11 +49,22 @@ class _RegistrationState extends State<Registration> {
     final fnameController = TextEditingController();
     final lnameController = TextEditingController();
 
+    final addressStreetController = TextEditingController();
+    final addressApartmentController = TextEditingController();
+    final addressCityController = TextEditingController();
+    final addressProvinceController = TextEditingController();
+    final addressPostalCodeController = TextEditingController();
+
     @override
     void dispose() {
-      // Clean up the controller when the widget is disposed.
       fnameController.dispose();
       lnameController.dispose();
+
+      addressStreetController.dispose();
+      addressApartmentController.dispose();
+      addressCityController.dispose();
+      addressProvinceController.dispose();
+      addressPostalCodeController.dispose();
       super.dispose();
     }
 
@@ -55,6 +75,27 @@ class _RegistrationState extends State<Registration> {
         state: StepState.complete,
         content: Column(
           children: <Widget>[
+            Container(
+              alignment: Alignment.topLeft,
+              child: Text(
+                "I am a:",
+                style: TextStyle(fontSize: 18),
+              ),
+            ),
+            SizedBox(height: 10),
+            ToggleSwitch(
+              minWidth: 150.0,
+              initialLabelIndex: 0,
+              activeBgColor: Colors.blue,
+              activeTextColor: Colors.white,
+              inactiveBgColor: Colors.grey,
+              inactiveTextColor: Colors.grey[900],
+              labels: ['Job-seeker', 'Employer'],
+              onToggle: (index) {
+                changeIndex(index);
+              },
+            ),
+            SizedBox(height: 15),
             TextFormField(
                 controller: fnameController,
                 decoration: InputDecoration(labelText: 'Legal Family Name')),
@@ -65,11 +106,16 @@ class _RegistrationState extends State<Registration> {
         ),
       ),
       Step(
-        title: Text("Address"),
+        title: currentIndex == 0 ? Text("Address") : Text("Business Address"),
         isActive: true,
         state: StepState.editing,
         content: Column(
           children: <Widget>[
+            currentIndex == 1
+                ? TextFormField(
+                    decoration: InputDecoration(labelText: 'Business Name'),
+                  )
+                : SizedBox(),
             TextFormField(
               decoration: InputDecoration(labelText: 'Street Address'),
             ),
@@ -78,6 +124,23 @@ class _RegistrationState extends State<Registration> {
             ),
             TextFormField(
               decoration: InputDecoration(labelText: 'City'),
+            ),
+            SizedBox(
+              child: Row(children: <Widget>[
+                Expanded(
+                  child: TextFormField(
+                    decoration: InputDecoration(labelText: 'Province'),
+                  ),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: TextFormField(
+                    decoration: InputDecoration(labelText: 'Postal Code'),
+                  ),
+                ),
+              ]),
             ),
           ],
         ),
@@ -92,16 +155,43 @@ class _RegistrationState extends State<Registration> {
       ),
     ];
 
+    void _showDialog() {
+      // flutter defined function
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          // return object of type Dialog
+          return AlertDialog(
+            title: new Text("Error"),
+            content: new Text("Form fields musn't be empty!"),
+            actions: <Widget>[
+              // usually buttons at the bottom of the dialog
+              new FlatButton(
+                child: new Text("Close"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    }
+
     next() {
       switch (currentStep) {
         case 0:
-          _firestore.registerName(fnameController.text, lnameController.text);
+          if (fnameController.text == "" || lnameController.text == "") {
+            _showDialog();
+            return;
+          }
+          _firestore.registerBasicInformation(
+              fnameController.text, lnameController.text, currentIndex == 1);
           break;
-        default:
       }
       currentStep + 1 != steps.length
           ? goTo(currentStep + 1)
-          : (){
+          : () {
               _firestore.onUserFinishRegister();
               widget.setRegister();
               _auth.signOut();

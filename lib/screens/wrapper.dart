@@ -36,9 +36,9 @@ class _WrapperState extends State<Wrapper> {
         return Login(toggleRegister: toggleRegister);
       default:
         return StreamProvider<DocumentSnapshot>.value(
-            value: user == null ? false : _firestore.userData, 
-            child: HomeWrapper(setRegister: setRegister),
-          );
+          value: user == null ? false : _firestore.userData,
+          child: HomeWrapper(setRegister: setRegister),
+        );
     }
   }
 }

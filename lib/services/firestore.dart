@@ -17,10 +17,27 @@ class FirestoreService {
     });
   }
 
-  Future registerName(String fname, String lname) async {
+  Future registerBasicInformation(String fname, String lname, bool employer) async {
     return await userCollection.document(uid).updateData({
       'fname': fname,
-      'lname': lname
+      'lname': lname,
+      'employer': employer,
+    });
+  }
+
+  Future registerAddress(String street, String apartment, String city, String province, String postal) async {
+    return await userCollection.document(uid).updateData({
+      'street': street,
+      'apartment': apartment,
+      'city': city,
+      'province': province,
+      'postal': postal
+    });
+  }
+
+  Future registerBusinessName(String businessName) async {
+    return await userCollection.document(uid).updateData({
+      'businessName': businessName,
     });
   }
 
