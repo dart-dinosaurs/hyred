@@ -113,6 +113,17 @@ List<Job> topJobs = [
     activity: 'Intense'
   ),
   const Job(
+    name: "Movver",
+    description: "Move furniture and other items to location",
+    image: 'assets/images/mover.jpg',
+    salary: '\$16/hr',
+    location: 'Markham',
+    requirements: 'Work 10 am to 7pm|Be able to lift items over 10 lbs',
+    date: '3/17 - 3/21',
+    employer: 'UHaul',
+    activity: 'Intense'
+  ),
+  const Job(
     name: "Packer",
     description: "Package items into given boxes with correct protocols",
     image: 'assets/images/assembly.jpg',

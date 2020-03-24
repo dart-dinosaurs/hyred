@@ -1,22 +1,37 @@
-import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:main/screens/widgets/details.dart';
 import 'package:main/screens/widgets/jobCard.dart';
 import 'package:main/screens/widgets/topJob.dart';
-import '../screens/widgets/search.dart';
 import '../screens/widgets/discoverCard.dart';
 import './explore.dart';
 import './widgets/jobCard.dart';
 import './widgets/data.dart';
+import 'package:flappy_search_bar/flappy_search_bar.dart';
 
 class NewExplore extends StatelessWidget {
+
+
   @override
   Widget build(BuildContext context) {
+
+    final _controller = new TextEditingController();
+    print(_controller.text);
     return ListView(children: <Widget>[
       Container(
-        child: MySearch(),
-        height: 100,
+        child: TextFormField(
+          decoration: InputDecoration(
+              border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+              contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+              prefixIcon: Icon(Icons.search)),
+              controller: _controller,
+        ),
+        margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
       ),
+      Container(
+        height: 10,
+      ),
+      _controller.text == "" ? Text("hi") : Text("hell"),
       Container(
         child: Text("Explore Jobs",
             textAlign: TextAlign.left,
@@ -43,16 +58,18 @@ class NewExplore extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             children: <Widget>[
               Container(
-                child: DiscoverCard('assets/images/retail.jpg', "Retail", retailJobs),
+                child: DiscoverCard(
+                    'assets/images/retail.jpg', "Retail", retailJobs),
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+              ),
+              Container(
+                child: DiscoverCard('assets/images/BrickLayer.jpg',
+                    "Construction", constructionJobs),
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
               ),
               Container(
                 child: DiscoverCard(
-                    'assets/images/BrickLayer.jpg', "Construction", constructionJobs), 
-                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-              ),
-              Container(
-                child: DiscoverCard('assets/images/cleaning.jpg', "Janitorial", janitorialJobs),
+                    'assets/images/cleaning.jpg', "Janitorial", janitorialJobs),
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
               ),
             ],
@@ -108,8 +125,12 @@ class NewExplore extends StatelessWidget {
             padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
           ),
           Container(
-            child: TopJob('assets/images/cashier.jpg', 'Cashier', '\$16/hr',
-                'Serve as a cashier and help customers with their purchases', topJobs[3]),
+            child: TopJob(
+                'assets/images/cashier.jpg',
+                'Cashier',
+                '\$16/hr',
+                'Serve as a cashier and help customers with their purchases',
+                topJobs[3]),
             padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
           )
         ],

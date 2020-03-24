@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:main/screens/searchPage.dart';
 import 'profile.dart';
 import 'widgets/placeholder.dart';
 import 'package:main/services/firestore.dart';
@@ -18,7 +19,7 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     NewExplore(),
-    PlaceholderWidget(Colors.pink),
+    SearchPage(),
     PlaceholderWidget(Colors.purple),
     PlaceholderWidget(Colors.orange),
     Settings(),

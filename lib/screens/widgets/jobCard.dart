@@ -95,7 +95,8 @@ class JobCard extends StatelessWidget {
         height: 140,
         margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
         decoration: BoxDecoration(
-            color: Color.fromRGBO(191, 241, 255, 1),
+            //color: Color.fromRGBO(191, 241, 255, 1),
+            color: Theme.of(context).accentColor.withOpacity(0.4),
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(20),
                 bottomLeft: Radius.circular(20),
