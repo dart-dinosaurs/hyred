@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import './widgets/data.dart';
 import 'package:main/screens/widgets/jobCard.dart';
 
-class Explore extends StatelessWidget {
+class Listings extends StatelessWidget {
 
   final List job;
 
-  Explore(this.job);
+  Listings(this.job);
 
   @override
   Widget build(BuildContext context){

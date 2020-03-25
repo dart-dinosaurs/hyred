@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../explore.dart';
+import '../jobListings.dart';
 import './data.dart';
 
 class DiscoverCard extends StatelessWidget {
@@ -15,7 +15,7 @@ class DiscoverCard extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => new Container(child: Explore(job))),
+            builder: (context) => new Container(child: Listings(job))),
       ),
       
       child: Card(
