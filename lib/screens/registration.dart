@@ -1,10 +1,5 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:main/models/user.dart';
-import 'package:main/screens/widgets/image_capture.dart';
-import 'package:main/screens/widgets/placeholder.dart';
-import 'package:dropdown_formfield/dropdown_formfield.dart';
 import 'package:main/services/auth.dart';
 import 'package:main/services/firestore.dart';
 import 'package:provider/provider.dart';
@@ -49,6 +44,7 @@ class _RegistrationState extends State<Registration> {
     final fnameController = TextEditingController();
     final lnameController = TextEditingController();
 
+    final businessNameController = TextEditingController();
     final addressStreetController = TextEditingController();
     final addressApartmentController = TextEditingController();
     final addressCityController = TextEditingController();
@@ -60,6 +56,7 @@ class _RegistrationState extends State<Registration> {
       fnameController.dispose();
       lnameController.dispose();
 
+      businessNameController.dispose();
       addressStreetController.dispose();
       addressApartmentController.dispose();
       addressCityController.dispose();
@@ -113,22 +110,27 @@ class _RegistrationState extends State<Registration> {
           children: <Widget>[
             currentIndex == 1
                 ? TextFormField(
+                    controller: businessNameController,
                     decoration: InputDecoration(labelText: 'Business Name'),
                   )
                 : SizedBox(),
             TextFormField(
+              controller: addressStreetController,
               decoration: InputDecoration(labelText: 'Street Address'),
             ),
             TextFormField(
+              controller: addressApartmentController,
               decoration: InputDecoration(labelText: 'Apartment, suite, etc'),
             ),
             TextFormField(
+              controller: addressCityController,
               decoration: InputDecoration(labelText: 'City'),
             ),
             SizedBox(
               child: Row(children: <Widget>[
                 Expanded(
                   child: TextFormField(
+                    controller: addressProvinceController,
                     decoration: InputDecoration(labelText: 'Province'),
                   ),
                 ),
@@ -137,6 +139,7 @@ class _RegistrationState extends State<Registration> {
                 ),
                 Expanded(
                   child: TextFormField(
+                    controller: addressPostalCodeController,
                     decoration: InputDecoration(labelText: 'Postal Code'),
                   ),
                 ),
@@ -187,6 +190,24 @@ class _RegistrationState extends State<Registration> {
           }
           _firestore.registerBasicInformation(
               fnameController.text, lnameController.text, currentIndex == 1);
+          break;
+        case 1:
+          if (currentIndex == 1 && businessNameController.text == "") {
+            _showDialog();
+            return;
+          }
+          if (addressPostalCodeController.text == "" ||
+              addressCityController.text == "" ||
+              addressStreetController.text == "" ||
+              addressProvinceController.text == "") {
+            _showDialog();
+            return;
+          }
+          _firestore.registerAddress(addressStreetController.text, 
+                                    addressApartmentController.text, 
+                                    addressCityController.text, 
+                                    addressProvinceController.text, 
+                                    addressPostalCodeController.text);
           break;
       }
       currentStep + 1 != steps.length
