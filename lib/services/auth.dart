@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:main/models/user.dart';
+import 'package:main/services/firestore.dart';
 
 class AuthService {
 
@@ -20,6 +21,7 @@ class AuthService {
     try {
       AuthResult res = await _auth.signInAnonymously();
       FirebaseUser user = res.user;
+      await FirestoreService(uid: user.uid).onUserRegister();
       return _userCreation(user);
     } catch (err) {
       print(err.toString());
@@ -28,8 +30,30 @@ class AuthService {
   }
 
   // email sign-in
+  Future signInWithEmail(String email, String password) async {
+    try{
+      AuthResult res = await _auth.signInWithEmailAndPassword(email: email, password: password);
+      print("We signed in");
+      FirebaseUser user = res.user;
+      return _userCreation(user);
+    } catch (err) {
+      print(err.toString());
+      return null;
+    }
+  }
 
   // email register
+  Future registerWithEmail(String email, String password) async {
+    try{
+      AuthResult res = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+      FirebaseUser user = res.user;
+      await FirestoreService(uid: user.uid).onUserRegister();
+      return _userCreation(user);
+    } catch (err){
+      print(err.toString());
+      return null;
+    }
+  }
 
   // sign out
   Future signOut() async {
