@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:main/screens/widgets/data.dart';
 import 'package:main/screens/widgets/jobCard.dart';
 
-class MySearch extends StatelessWidget {
+class Search extends StatelessWidget {
   final String searchValue;
 
-  MySearch(this.searchValue);
+  Search(this.searchValue);
 
   List<Job> allJobs = topJobs;
   List<Job> hits = [];
