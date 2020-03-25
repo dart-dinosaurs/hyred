@@ -13,6 +13,7 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
+  final _auth = AuthService();
   int currentStep = 0;
   bool complete = false;
   int currentIndex = 0;
@@ -28,6 +29,8 @@ class _RegistrationState extends State<Registration> {
     if (currentStep > 0) {
       goTo(currentStep - 1);
     }
+    widget.setRegister();
+    _auth.signOut();
   }
 
   goTo(int step) {
