@@ -37,7 +37,7 @@ class Explore extends StatelessWidget {
               if (doc['categories'].contains(category)){
                 return JobCard(doc);
               } else {
-                return Text("hi");
+                return Container(height: 0,);
               }
             },
             itemCount: 2,

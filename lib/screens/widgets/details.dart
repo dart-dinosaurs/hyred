@@ -55,12 +55,12 @@ class DetailPage extends StatelessWidget {
 
   Container _getContent(BuildContext context) {
     final _overviewTitle = "overview".toUpperCase();
-    // var myConditions = job.requirements.split('|');
+    List myConditions = job['jobDetails']['requirements'];
 
-    // List<Widget> list = new List<Widget>();
-    // for (var i = 0; i < myConditions.length; i++) {
-    //   list.add(new Text(myConditions[i]));
-    // }
+    List<Widget> list = new List<Widget>();
+    for (var i = 0; i < myConditions.length; i++) {
+      list.add(new Text(myConditions[i]));
+    }
     return new Container(
       child: new ListView(
         padding: new EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 32.0),
@@ -159,20 +159,20 @@ class DetailPage extends StatelessWidget {
                   ],),
                   margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * .05, 0, MediaQuery.of(context).size.width * .05, 0),
                 ),
-                // Container(
-                //   child: Column(
-                //       children: myConditions
-                //           .map((item) => Container(
-                //                 child: new Text("• " + item,
-                //                     textAlign: TextAlign.right),
-                //                     margin: EdgeInsets.fromLTRB(0, 6, 0, 0),
-                //               ))
-                //           .toList(),
-                //       mainAxisAlignment: MainAxisAlignment.start,
-                //       crossAxisAlignment: CrossAxisAlignment.start),
-                //   width: MediaQuery.of(context).size.width,
-                //   margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.05, 0, MediaQuery.of(context).size.width * 0.05, 0),
-                // ),
+                Container(
+                  child: Column(
+                      children: myConditions
+                          .map((item) => Container(
+                                child: new Text("• " + item,
+                                    textAlign: TextAlign.right),
+                                    margin: EdgeInsets.fromLTRB(0, 6, 0, 0),
+                              ))
+                          .toList(),
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start),
+                  width: MediaQuery.of(context).size.width,
+                  margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.05, 0, MediaQuery.of(context).size.width * 0.05, 0),
+                ),
                 Container(
                   alignment: Alignment(0.0, 0.0),
                   margin: EdgeInsets.fromLTRB(0, 20, 0, 0),

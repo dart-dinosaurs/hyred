@@ -53,9 +53,9 @@ class JobCard extends StatelessWidget {
                       children: <Widget>[
                         Icon(
                           Icons.attach_money,
-                          size: 20,
+                          size: 18,
                         ),
-                        Text(job['jobDetails']['salary'].toString().substring(1)),
+                        Text(job['jobDetails']['salary'].toString() + "/hr"),
                       ],
                     ),
                     Row(
