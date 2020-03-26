@@ -1,4 +1,3 @@
-import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:main/screens/widgets/details.dart';
 import 'package:main/screens/widgets/jobCard.dart';
