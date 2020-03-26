@@ -15,7 +15,7 @@ class DiscoverCard extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => new Container(child: Explore(job))),
+            builder: (context) => new Container(child: Explore(heading))),
       ),
       
       child: Card(
