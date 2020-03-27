@@ -150,8 +150,8 @@ class _RegisterState extends State<Register> {
                               dynamic res = await _auth.registerWithEmail(
                                   email, _passKey.currentState.value);
                               if (res == null) {
-                                setState(() =>
-                                    error = "Please supply a valid email!");
+                                setState(() => error =
+                                    "Email has already been registered!");
                               }
                             }
                           },
@@ -190,12 +190,20 @@ class _RegisterState extends State<Register> {
                       SizedBox(height: 200),
                       RichText(
                           text: TextSpan(
-                          style: TextStyle(color: Colors.black, fontSize: 10),
-                            children: <TextSpan>[
-                        TextSpan(text: "By Signing up, you agree with our "),
-                        TextSpan(text: "terms and conditions ", style: TextStyle(color: Theme.of(context).accentColor, decoration: TextDecoration.underline)),
-                        TextSpan(text: "and consent to Hyres' data usage policies.")
-                      ]))
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 10),
+                              children: <TextSpan>[
+                            TextSpan(
+                                text: "By Signing up, you agree with our "),
+                            TextSpan(
+                                text: "terms and conditions ",
+                                style: TextStyle(
+                                    color: Theme.of(context).accentColor,
+                                    decoration: TextDecoration.underline)),
+                            TextSpan(
+                                text:
+                                    "and consent to Hyres' data usage policies.")
+                          ]))
                     ],
                   ),
                 )),

@@ -10,18 +10,30 @@ import 'package:main/services/firestore.dart';
 import 'package:provider/provider.dart';
 
 class HomeWrapper extends StatefulWidget {
+  final Function setRegister;
+  HomeWrapper({this.setRegister});
+
   @override
-  _HomeWrapperState createState() => _HomeWrapperState();
+  HomeWrapperState createState() => HomeWrapperState();
 }
 
-class _HomeWrapperState extends State<HomeWrapper> {
-
-  
+class HomeWrapperState extends State<HomeWrapper> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
+    print(user.uid);
 
-    final userData = Provider.of<DocumentSnapshot>(context);
-    return Home();
+    try {
+      if ((Provider.of<DocumentSnapshot>(context) == null)
+          ? false
+          : Provider.of<DocumentSnapshot>(context).data["registered"]) {
+        return Home();
+      }
+      return Registration(setRegister: widget.setRegister);
+    } catch (err) {
+      print(err.toString());
+    }
+
+    return Registration();
   }
 }

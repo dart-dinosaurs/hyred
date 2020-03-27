@@ -14,7 +14,7 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.2.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -30,6 +30,10 @@ dependencies:
   provider: ^4.0.4
   flutter_spinkit: "^4.1.2"
   dropdown_formfield: ^0.1.1
+  image_picker: ^0.6.3+4
+  image_cropper: ^1.2.1
+  toggle_switch: "^0.1.4"
+
 
 dependency_overrides:
   firebase_core: 0.4.4
