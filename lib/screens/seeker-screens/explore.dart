@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import './widgets/data.dart';
 import 'package:main/screens/widgets/jobCard.dart';
 
 class Explore extends StatelessWidget {

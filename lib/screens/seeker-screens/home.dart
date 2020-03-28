@@ -1,11 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'profile.dart';
-import 'widgets/placeholder.dart';
-import 'package:main/services/firestore.dart';
-import 'package:provider/provider.dart';
-import 'package:main/screens/Newexplore.dart';
-import 'package:main/screens/settings.dart';
+import 'package:main/screens/widgets/placeholder.dart';
+import 'package:main/screens/seeker-screens/Newexplore.dart';
+import 'package:main/screens/seeker-screens/settings.dart';
 
 class Home extends StatefulWidget {
   @override

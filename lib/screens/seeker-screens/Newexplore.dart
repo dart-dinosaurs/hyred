@@ -1,13 +1,8 @@
-import 'package:flappy_search_bar/flappy_search_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:main/screens/widgets/details.dart';
-import 'package:main/screens/widgets/jobCard.dart';
 import 'package:main/screens/widgets/topJob.dart';
-import '../screens/widgets/search.dart';
-import '../screens/widgets/discoverCard.dart';
-import './explore.dart';
-import './widgets/jobCard.dart';
-import './widgets/data.dart';
+import 'package:main/screens/widgets/search.dart';
+import 'package:main/screens/widgets/discoverCard.dart';
+import 'package:main/screens/widgets/data.dart';
 
 class NewExplore extends StatelessWidget {
   @override

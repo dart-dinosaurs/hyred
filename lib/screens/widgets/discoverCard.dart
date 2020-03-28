@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../explore.dart';
-import './data.dart';
+import 'package:main/screens/seeker-screens/explore.dart';
 
 class DiscoverCard extends StatelessWidget {
   final String image;
