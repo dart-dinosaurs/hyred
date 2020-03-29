@@ -1,12 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:main/models/user.dart';
-import 'package:main/screens/home.dart';
-import 'package:main/screens/login.dart';
-import 'package:main/screens/register.dart';
-import 'package:main/screens/registration.dart';
-import 'package:provider/provider.dart';
-import 'package:main/services/firestore.dart';
+import 'package:main/screens/seeker-screens/home.dart';
+import 'package:main/screens/seeker-screens/registration.dart';
 import 'package:provider/provider.dart';
 
 class HomeWrapper extends StatefulWidget {

@@ -1,10 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:main/models/user.dart';
-import 'package:main/screens/home.dart';
-import 'package:main/screens/home_wrapper.dart';
-import 'package:main/screens/login.dart';
-import 'package:main/screens/register.dart';
+import 'package:main/screens/seeker-screens/home_wrapper.dart';
+import 'package:main/screens/seeker-screens/login.dart';
+import 'package:main/screens/seeker-screens/register.dart';
 import 'package:main/services/firestore.dart';
 import 'package:provider/provider.dart';
 

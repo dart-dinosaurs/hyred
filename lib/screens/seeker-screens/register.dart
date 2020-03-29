@@ -21,43 +21,41 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-        resizeToAvoidBottomPadding: false,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Container(
+        body: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
                 child: Stack(
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.fromLTRB(30.0, 140.0, 0.0, 0.0),
-                  child: RichText(
-                    text: TextSpan(
-                        style: TextStyle(
-                          fontSize: 45.0,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                          fontFamily: 'Montserrat',
-                          height: 0.9,
-                        ),
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: 'Hyred\n',
-                              style: TextStyle(
-                                  color: Theme.of(context).accentColor)),
-                          TextSpan(text: 'Registration'),
-                          TextSpan(
-                              text: '.',
-                              style: TextStyle(
-                                  color: Theme.of(context).accentColor)),
-                        ]),
-                  ),
-                )
-              ],
-            )),
-            SizedBox(
-              height: 20,
-            ),
-            Container(
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.fromLTRB(30.0, 140.0, 0.0, 0.0),
+                      child: RichText(
+                        text: TextSpan(
+                            style: TextStyle(
+                              fontSize: 45.0,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                              fontFamily: 'Montserrat',
+                              height: 0.9,
+                            ),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: 'Hyred\n',
+                                  style: TextStyle(
+                                      color: Theme.of(context).accentColor)),
+                              TextSpan(text: 'Registration'),
+                              TextSpan(
+                                  text: '.',
+                                  style: TextStyle(
+                                      color: Theme.of(context).accentColor)),
+                            ]),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Container(
                 padding: EdgeInsets.symmetric(horizontal: 40.0),
                 child: Form(
                   key: _formKey,
@@ -187,12 +185,13 @@ class _RegisterState extends State<Register> {
                           ),
                         ),
                       ),
-                      SizedBox(height: 200),
+                      SizedBox(
+                        height: 40,
+                      ),
                       RichText(
-                          text: TextSpan(
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 10),
-                              children: <TextSpan>[
+                        text: TextSpan(
+                          style: TextStyle(color: Colors.black, fontSize: 10),
+                          children: <TextSpan>[
                             TextSpan(
                                 text: "By Signing up, you agree with our "),
                             TextSpan(
@@ -203,11 +202,15 @@ class _RegisterState extends State<Register> {
                             TextSpan(
                                 text:
                                     "and consent to Hyres' data usage policies.")
-                          ]))
+                          ],
+                        ),
+                      )
                     ],
                   ),
-                )),
-          ],
+                ),
+              ),
+            ],
+          ),
         ));
   }
 }

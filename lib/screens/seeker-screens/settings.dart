@@ -1,5 +1,5 @@
 import 'package:main/models/user.dart';
-import 'package:main/screens/profile.dart';
+import 'package:main/screens/seeker-screens/profile.dart';
 
 import 'package:main/services/auth.dart';
 import 'package:flutter/material.dart';
