@@ -3,17 +3,27 @@ import 'package:main/models/user.dart';
 import 'package:main/services/firestore.dart';
 
 class AuthService {
-
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  User _userCreation(FirebaseUser user){
-    return user != null ? User(uid: user.uid) : null;
+  User _userCreation(FirebaseUser user) {
+    if (user == null) {
+      return null;
+    }
+    FirestoreService service = new FirestoreService(uid: user.uid);
+    User u = User(uid: user.uid);
+    service
+        .getData()
+        .then((snapshot) => {
+              if(snapshot.data["registered"]) {u.setName(snapshot.data["fname"], snapshot.data["lname"])}
+            })
+        .catchError((err) => print(err.toString()));
+    return u;
   }
 
   // Auth onChange user stream
   Stream<User> get user {
     return _auth.onAuthStateChanged
-      .map((FirebaseUser user) => _userCreation(user));
+        .map((FirebaseUser user) => _userCreation(user));
   }
 
   
@@ -33,8 +43,9 @@ class AuthService {
 
   // email sign-in
   Future signInWithEmail(String email, String password) async {
-    try{
-      AuthResult res = await _auth.signInWithEmailAndPassword(email: email, password: password);
+    try {
+      AuthResult res = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
       print("We signed in");
       FirebaseUser user = res.user;
       return _userCreation(user);
@@ -46,12 +57,13 @@ class AuthService {
 
   // email register
   Future registerWithEmail(String email, String password) async {
-    try{
-      AuthResult res = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+    try {
+      AuthResult res = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
       FirebaseUser user = res.user;
       await FirestoreService(uid: user.uid).onUserRegister();
       return _userCreation(user);
-    } catch (err){
+    } catch (err) {
       print(err.toString());
       return null;
     }

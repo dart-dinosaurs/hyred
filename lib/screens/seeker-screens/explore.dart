@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import './widgets/data.dart';
-import 'dart:async';
+import 'package:flutter/material.dart';
 import 'package:main/screens/widgets/jobCard.dart';
 
 class Explore extends StatelessWidget {
