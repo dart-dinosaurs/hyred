@@ -205,6 +205,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.4"
+<<<<<<< HEAD
   image_cropper:
     dependency: "direct main"
     description:
@@ -219,6 +220,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.3+4"
+=======
+  intl:
+    dependency: "direct main"
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.16.1"
+>>>>>>> 667e9e781f20e5aad787170184cb02e2a70bdcec
   js:
     dependency: transitive
     description:

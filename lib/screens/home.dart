@@ -1,11 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'profile.dart';
+import 'package:main/models/user.dart';
+import 'package:main/screens/history.dart';
 import 'widgets/placeholder.dart';
 import 'package:main/services/firestore.dart';
 import 'package:provider/provider.dart';
 import 'package:main/screens/Newexplore.dart';
 import 'package:main/screens/settings.dart';
+import 'package:main/models/user.dart';
+
+class ExploreWrapper extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
+    return StreamProvider<QuerySnapshot>.value(
+      value: FirestoreService(uid: user.uid).jobData,
+      child: NewExplore(),
+    );
+  }
+}
+
 
 class Home extends StatefulWidget {
   @override
@@ -14,11 +28,12 @@ class Home extends StatefulWidget {
   }
 }
 
+
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    NewExplore(),
-    PlaceholderWidget(Colors.pink),
+    ExploreWrapper(),
+    History(),
     PlaceholderWidget(Colors.purple),
     PlaceholderWidget(Colors.orange),
     Settings(),

@@ -1,8 +1,9 @@
-import 'package:flappy_search_bar/flappy_search_bar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:main/screens/widgets/details.dart';
 import 'package:main/screens/widgets/jobCard.dart';
 import 'package:main/screens/widgets/topJob.dart';
+import 'package:provider/provider.dart';
 import '../screens/widgets/search.dart';
 import '../screens/widgets/discoverCard.dart';
 import './explore.dart';
@@ -12,6 +13,7 @@ import './widgets/data.dart';
 class NewExplore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var jobs = Provider.of<QuerySnapshot>(context);
     return ListView(children: <Widget>[
       Container(
         child: MySearch(),
@@ -43,23 +45,23 @@ class NewExplore extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             children: <Widget>[
               Container(
-                child: DiscoverCard('assets/images/retail.jpg', "Retail", retailJobs),
+                child: DiscoverCard('assets/images/retail.jpg', "Retail", jobs),
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
               ),
               Container(
                 child: DiscoverCard(
-                    'assets/images/BrickLayer.jpg', "Construction", constructionJobs), 
+                    'assets/images/BrickLayer.jpg', "Construction", jobs), 
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
               ),
               Container(
-                child: DiscoverCard('assets/images/cleaning.jpg', "Janitorial", janitorialJobs),
+                child: DiscoverCard('assets/images/cleaning.jpg', "Janitorial", jobs),
                 padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
               ),
             ],
           )),
       Container(
         child: Text(
-          "Top Rated Jobs",
+          "Most Popular Jobs",
           textAlign: TextAlign.left,
           style: TextStyle(
             fontSize: 25,
@@ -71,7 +73,7 @@ class NewExplore extends StatelessWidget {
       ),
       Container(
         child: Text(
-          "See highest paying and reviewed jobs!",
+          "See the most applied to jobs!",
           textAlign: TextAlign.left,
           style: TextStyle(
             fontSize: 15,

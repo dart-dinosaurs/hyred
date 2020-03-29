@@ -1,10 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:main/screens/widgets/separator.dart';
 import './data.dart';
 import './details.dart';
 
 class JobCard extends StatelessWidget {
-  final Job job;
+
+  final DocumentSnapshot job;
 
   final bool horizontal;
 
@@ -33,14 +35,14 @@ class JobCard extends StatelessWidget {
                   topRight: Radius.circular(50),
                   bottomRight: Radius.circular(50)),
               child: Image(
-                  image: new AssetImage(job.image),
+                  image: new NetworkImage(job['jobDetails']['image']),
                   height: 140,
                   width: 150,
                   fit: BoxFit.cover),
             ),
             Column(children: <Widget>[
               Container(
-                child: Text(job.name, style: TextStyle(fontSize: 20),),
+                child: Text(job['jobDetails']['name'], style: TextStyle(fontSize: 20),),
                 margin: EdgeInsets.fromLTRB(10, 10, 0, 0),
               ),
               Container(
@@ -51,15 +53,15 @@ class JobCard extends StatelessWidget {
                       children: <Widget>[
                         Icon(
                           Icons.attach_money,
-                          size: 20,
+                          size: 18,
                         ),
-                        Text(job.salary.substring(1)),
+                        Text(job['jobDetails']['salary'].toString() + "/hr"),
                       ],
                     ),
                     Row(
                       children: <Widget>[
                         Icon(Icons.location_on, size: 20),
-                        Text(job.location)
+                        Text(job['jobDetails']['location'])
                       ],
                     ),
                   ],
@@ -77,7 +79,7 @@ class JobCard extends StatelessWidget {
                           Icons.calendar_today,
                           size: 20,
                         ),
-                        Text(" " + job.date),
+                        //Text(" " + job.date),
                       ],
                     ),
                   ],
@@ -86,7 +88,7 @@ class JobCard extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 0.5,
               ),
               Container(
-                child: Text("Posted By: " + job.employer),
+                child: Text("Posted By: " + job['jobDetails']['employer']),
                 margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
               )
             ], crossAxisAlignment: CrossAxisAlignment.start)

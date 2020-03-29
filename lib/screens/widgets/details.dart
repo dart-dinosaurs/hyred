@@ -1,9 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../widgets/data.dart';
 import '../widgets/separator.dart';
 
 class DetailPage extends StatelessWidget {
-  final Job job;
+  final DocumentSnapshot job;
   final bool horizontal;
 
   DetailPage(this.job, {this.horizontal = true});
@@ -29,7 +30,7 @@ class DetailPage extends StatelessWidget {
   Container _getBackground() {
     return new Container(
       child: Image(
-        image: new AssetImage(job.image),
+        image: new NetworkImage(job['jobDetails']['image']),
         fit: BoxFit.cover,
         height: 150.0,
       ),
@@ -54,7 +55,7 @@ class DetailPage extends StatelessWidget {
 
   Container _getContent(BuildContext context) {
     final _overviewTitle = "overview".toUpperCase();
-    var myConditions = job.requirements.split('|');
+    List myConditions = job['jobDetails']['requirements'];
 
     List<Widget> list = new List<Widget>();
     for (var i = 0; i < myConditions.length; i++) {
@@ -76,7 +77,7 @@ class DetailPage extends StatelessWidget {
                 Container(
                   child: Column(children: <Widget>[
                     Container(height: 20,),
-                    Align(child: Text(job.name, style: TextStyle(color: Colors.black, fontSize: 23,), textAlign: TextAlign.left,), alignment: Alignment.centerLeft,),
+                    Align(child: Text(job['jobDetails']['name'].toString(), style: TextStyle(color: Colors.black, fontSize: 23,), textAlign: TextAlign.left,), alignment: Alignment.centerLeft,),
                     Container(width: MediaQuery.of(context).size.width, height: 2, color: Colors.grey, margin: EdgeInsets.fromLTRB(0, 20, 0, 10),),
                     Row(
                       children: <Widget>[
@@ -91,7 +92,7 @@ class DetailPage extends StatelessWidget {
                               Container(
                                 height: 10,
                               ),
-                              Text(job.date, style: TextStyle(fontSize: 18,),),
+                              //Text(job.date, style: TextStyle(fontSize: 18,),),
                               Container(
                                 height: 30,
                               ),
@@ -103,7 +104,7 @@ class DetailPage extends StatelessWidget {
                               Container(
                                 height: 10,
                               ),
-                              Text(job.activity, style: TextStyle(fontSize: 18),),
+                              Text(job['jobDetails']['activity'].toString(), style: TextStyle(fontSize: 18),),
                             ],
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -121,7 +122,7 @@ class DetailPage extends StatelessWidget {
                               Container(
                                 height: 10,
                               ),
-                              Text(job.salary, style: TextStyle(fontSize: 18),),
+                              Text(job['jobDetails']['salary'].toString(), style: TextStyle(fontSize: 18),),
                               Container(
                                 height: 30,
                               ),
@@ -133,7 +134,7 @@ class DetailPage extends StatelessWidget {
                               Container(
                                 height: 10,
                               ),
-                              Text(job.activity, style: TextStyle(fontSize: 18)),
+                              Text(job['jobDetails']['language'].toString(), style: TextStyle(fontSize: 18)),
                             ],
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,7 +152,7 @@ class DetailPage extends StatelessWidget {
                   child: Column(children: <Widget>[
                     Align(child: Text("What You'll Do:", style: TextStyle(fontSize: 20, ),), alignment: Alignment.centerLeft,),
                     Container(height: 15,),
-                    Align(child: Text(job.description), alignment: Alignment.centerLeft,),
+                    Align(child: Text(job['jobDetails']['description'].toString()), alignment: Alignment.centerLeft,),
                     Container(height: 20,),
                     Align(child: Text("Employee Requirements:", style: TextStyle(fontSize: 20, ),), alignment: Alignment.centerLeft,),
                     Container(height: 8,),                    
@@ -172,37 +173,6 @@ class DetailPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width,
                   margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.05, 0, MediaQuery.of(context).size.width * 0.05, 0),
                 ),
-                // new Text(
-                //   _overviewTitle,
-                //   style: TextStyle(
-                //       color: Colors.black,
-                //       fontSize: 15.0,
-                //       fontWeight: FontWeight.bold),
-                // ),
-                // new Separator(),
-                // new Text(job.description),
-                // Container(height: 5),
-                // new Text(
-                //   'EMPLOYER REQUIREMENTS',
-                //   style: TextStyle(
-                //       color: Colors.black,
-                //       fontSize: 15.0,
-                //       fontWeight: FontWeight.bold),
-                // ),
-                // Separator(),
-                // Container(
-                //   child: Column(
-                //       children: myConditions
-                //           .map((item) => Container(
-                //                 child: new Text("• " + item,
-                //                     textAlign: TextAlign.right),
-                //                 margin: EdgeInsets.fromLTRB(0, 3, 0, 0),
-                //               ))
-                //           .toList(),
-                //       mainAxisAlignment: MainAxisAlignment.start,
-                //       crossAxisAlignment: CrossAxisAlignment.start),
-                //   width: MediaQuery.of(context).size.width,
-                // ),
                 Container(
                   alignment: Alignment(0.0, 0.0),
                   margin: EdgeInsets.fromLTRB(0, 20, 0, 0),

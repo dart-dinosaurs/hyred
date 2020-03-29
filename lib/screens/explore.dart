@@ -1,15 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import './widgets/data.dart';
+import 'dart:async';
 import 'package:main/screens/widgets/jobCard.dart';
 
 class Explore extends StatelessWidget {
 
-  final List job;
+  final String category;
+  final QuerySnapshot jobs;
 
-  Explore(this.job);
+  Explore(this.category, this.jobs);
 
   @override
   Widget build(BuildContext context){
+
+    //List<Widget> _widgets = jobs.documents.map((doc) => Text(doc.data['test']),).toList();
+
+
+    List<DocumentSnapshot> _widgets = jobs.documents.where((doc) => doc.data['categories'].contains(category)).toList();
+    List<Widget> _actual = _widgets.map((doc) => JobCard(doc)).toList();
+
     return new Scaffold(
       appBar: AppBar(
         title: Row(children: <Widget>[
@@ -19,10 +29,29 @@ class Explore extends StatelessWidget {
         ),
         backgroundColor: Theme.of(context).accentColor,
       ),
-      body: new ListView.builder(
-        itemBuilder: (context, index) => new JobCard(job[index]),
-        itemCount: job.length,
-      ),
+      // body: StreamBuilder(
+      //   stream: Firestore.instance.collection('jobs').snapshots(),
+      //   builder: (context, snapshot){
+      //     if (!snapshot.hasData){
+      //       return (Text("Loading..."));
+      //     }
+      //     return ListView.builder(
+      //       itemBuilder: (context, index){
+      //         DocumentSnapshot doc = snapshot.data.documents[index];
+      //         if (doc['categories'].contains(category)){
+      //           return JobCard(doc);
+      //         } else {
+      //           return Container(height: 0,);
+      //         }
+      //       },
+      //       itemCount: 2,
+      //     );
+      //   },
+      // )
+      
+      body: ListView(children: _actual)
     );
   }
 }
+
+  

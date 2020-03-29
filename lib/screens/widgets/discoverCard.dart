@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../explore.dart';
 import './data.dart';
@@ -5,9 +6,9 @@ import './data.dart';
 class DiscoverCard extends StatelessWidget {
   final String image;
   final String heading;
-  final List job;
+  final QuerySnapshot jobs;
 
-  DiscoverCard(this.image, this.heading, this.job);
+  DiscoverCard(this.image, this.heading, this.jobs);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class DiscoverCard extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => new Container(child: Explore(job))),
+            builder: (context) => new Container(child: Explore(heading, jobs))),
       ),
       
       child: Card(
