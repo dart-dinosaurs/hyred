@@ -63,7 +63,7 @@ class FirestoreService {
   }
 
   Stream<QuerySnapshot> get jobData{
-    return jobCollection.snapshots();
+    return jobCollection.orderBy("applicants").snapshots();
   }
 
 }

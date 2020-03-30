@@ -10,8 +10,13 @@ class NewExplore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var jobs = Provider.of<QuerySnapshot>(context);
-
-    List<DocumentSnapshot> _sorted = jobs.documents.where((f) => f.data['jobDetails']['applicants'].length > 0).toList();
+    var jobDocs = jobs.documents;
+    
+     List<Widget> _createChildren() {
+        return new List<Widget>.generate(2, (int index) {
+          return TopJob(jobDocs[index]);
+        });
+      }
 
     return ListView(children: <Widget>[
       Container(
@@ -82,7 +87,11 @@ class NewExplore extends StatelessWidget {
         height: 30,
         margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
       ),
-
+      Wrap(
+        children: _createChildren(),
+        direction: Axis.horizontal,
+        alignment: WrapAlignment.spaceEvenly,
+      )
     ]);
   }
 }
