@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:main/screens/history.dart';
+import 'package:main/screens/seeker-screens/history.dart';
+import 'package:main/screens/seeker-screens/historyDetails.dart';
 import 'package:main/screens/widgets/placeholder.dart';
 import 'package:main/screens/seeker-screens/Newexplore.dart';
 import 'package:main/screens/seeker-screens/settings.dart';
@@ -27,14 +28,26 @@ class ExploreWrapper extends StatelessWidget {
   }
 }
 
+class HistoryWrapper extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final user = Provider.of<User>(context);
+    return StreamProvider<QuerySnapshot>.value(
+      value: FirestoreService(uid: user.uid).jobData,
+      child: History(),
+    );
+  }
+}
+
+
 
 class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     ExploreWrapper(),
-    History(),
     PlaceholderWidget(Colors.purple),
-    PlaceholderWidget(Colors.orange),
+    PlaceholderWidget(Colors.purple),
+    HistoryWrapper(),
     Settings(),
   ];
 
