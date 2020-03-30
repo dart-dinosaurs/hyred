@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class HistoryDetails extends StatelessWidget {
@@ -77,4 +78,5 @@ Container _column(
       width: MediaQuery.of(context).size.width *0.4,
   ));
 }
+
 

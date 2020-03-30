@@ -15,6 +15,7 @@ class History extends StatelessWidget {
     List<DocumentSnapshot> _widgets = jobs.documents.where((doc) => doc.data['jobDetails']['name'].contains('Cashier')).toList();
     List<Widget> _actual = _widgets.map((doc) => HistoryCard(doc)).toList();
 
+    
     return(
       ListView(children: _actual)
     );
