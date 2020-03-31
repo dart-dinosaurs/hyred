@@ -65,7 +65,9 @@ class HistoryDetails extends StatelessWidget {
           child: new BackButton(color: Colors.white),
         ),
       ],
-    )));
+    ),
+    )
+    );
   }
 }
 

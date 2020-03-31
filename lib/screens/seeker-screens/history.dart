@@ -10,9 +10,9 @@ class History extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    var jobs = Provider.of<QuerySnapshot>(context);
+    var _jobs = Provider.of<QuerySnapshot>(context);
 
-    List<DocumentSnapshot> _widgets = jobs.documents.where((doc) => doc.data['jobDetails']['name'].contains('Cashier')).toList();
+    List<DocumentSnapshot> _widgets = _jobs.documents.where((doc) => doc.data['jobDetails']['name'].contains('Cashier')).toList();
     List<Widget> _actual = _widgets.map((doc) => HistoryCard(doc)).toList();
 
     
