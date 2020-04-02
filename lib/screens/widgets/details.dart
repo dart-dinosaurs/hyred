@@ -13,13 +13,30 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    Timestamp _startDate = job.data['jobDetails']['startDate'];
+    Timestamp _endDate = job.data['jobDetails']['endDate'];
+
+    String _startDay = _startDate.toDate().day.toString();
+    String _startMonth = _startDate.toDate().month.toString();
+    String _startYear = _startDate.toDate().year.toString();
+
+    String _endDay = _endDate.toDate().day.toString();
+    String _endMonth = _endDate.toDate().month.toString();
+    String _endYear = _endDate.toDate().year.toString();
+
+    String _strStart = _startDay + "/" + _startMonth + "/" + _startYear;
+    String _strEnd = _endDay + "/" + _endMonth + "/" + _endYear;
+
+    String _date = _strStart + " - " + _strEnd;
+
     return new Scaffold(
       body: new Container(
         constraints: new BoxConstraints.expand(),
         color: Colors.white,
         child: new Stack(
           children: <Widget>[
-            _getContent(context),
+            _getContent(context, _date),
             _getToolbar(context),
           ],
         ),
@@ -53,7 +70,7 @@ class DetailPage extends StatelessWidget {
     );
   }
 
-  Container _getContent(BuildContext context) {
+  Container _getContent(BuildContext context, String _date) {
     final _overviewTitle = "overview".toUpperCase();
     List myConditions = job['jobDetails']['requirements'];
 
@@ -92,9 +109,9 @@ class DetailPage extends StatelessWidget {
                               Container(
                                 height: 10,
                               ),
-                              //Text(job.date, style: TextStyle(fontSize: 18,),),
+                              Text(_date, style: TextStyle(fontSize: 18,),),
                               Container(
-                                height: 30,
+                                height: 10,
                               ),
                               Icon(Icons.local_activity, color: Colors.grey,),
                               Container(

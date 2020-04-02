@@ -6,9 +6,9 @@ import './details.dart';
 
 class JobCard extends StatelessWidget {
 
-  final DocumentSnapshot job;
+  DocumentSnapshot job;
 
-  final bool horizontal;
+  bool horizontal;
 
   JobCard(this.job, {this.horizontal = true});
 
@@ -17,9 +17,22 @@ class JobCard extends StatelessWidget {
     final baseTextStyle = const TextStyle(fontFamily: 'Poppins');
     final regularTextStyle = baseTextStyle.copyWith(
         color: Colors.white, fontSize: 9.0, fontWeight: FontWeight.w400);
-    final subHeaderTextStyle = regularTextStyle.copyWith(fontSize: 12.0);
-    final headerTextStyle = baseTextStyle.copyWith(
-        color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.w600);
+
+    Timestamp _startDate = job.data['jobDetails']['startDate'];
+    Timestamp _endDate = job.data['jobDetails']['endDate'];
+
+    String _startDay = _startDate.toDate().day.toString();
+    String _startMonth = _startDate.toDate().month.toString();
+    String _startYear = _startDate.toDate().year.toString();
+
+    String _endDay = _endDate.toDate().day.toString();
+    String _endMonth = _endDate.toDate().month.toString();
+    String _endYear = _endDate.toDate().year.toString();
+
+    String _strStart = _startDay + "/" + _startMonth + "/" + _startYear;
+    String _strEnd = _endDay + "/" + _endMonth + "/" + _endYear;
+
+    String _date = _strStart + " - " + _strEnd;
 
     return new GestureDetector(
       onTap: () => Navigator.of(context).push(new PageRouteBuilder(
@@ -79,7 +92,7 @@ class JobCard extends StatelessWidget {
                           Icons.calendar_today,
                           size: 20,
                         ),
-                        //Text(" " + job.date),
+                        Text(_date),
                       ],
                     ),
                   ],
