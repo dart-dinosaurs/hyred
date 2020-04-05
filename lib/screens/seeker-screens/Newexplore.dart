@@ -18,6 +18,12 @@ class NewExplore extends StatelessWidget {
         });
       }
 
+     List<Widget> _topJobs = new List<Widget>();
+
+     for (int i = 0; i < industries.length; i++){
+       _topJobs.add(DiscoverCard(industries[i], jobs));
+     }
+
     return ListView(children: <Widget>[
       Container(
         child: MySearch(),
@@ -44,25 +50,13 @@ class NewExplore extends StatelessWidget {
         margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
       ),
       Container(
-          height: 180,
+          height: 160,
+          margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
           child: ListView(
             scrollDirection: Axis.horizontal,
-            children: <Widget>[
-              Container(
-                child: DiscoverCard('assets/images/retail.jpg', "Retail", jobs),
-                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-              ),
-              Container(
-                child: DiscoverCard(
-                    'assets/images/BrickLayer.jpg', "Construction", jobs), 
-                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-              ),
-              Container(
-                child: DiscoverCard('assets/images/cleaning.jpg', "Janitorial", jobs),
-                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-              ),
-            ],
-          )),
+            children: _topJobs
+          )
+      ),
       Container(
         child: Text(
           "Most Popular Jobs",
