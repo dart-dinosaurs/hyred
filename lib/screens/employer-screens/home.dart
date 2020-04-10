@@ -1,23 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:main/screens/widgets/placeholder.dart';
-import 'package:main/screens/seeker-screens/Newexplore.dart';
-import 'package:main/screens/seeker-screens/settings.dart';
 
-class SeekerHome extends StatefulWidget {
+class EmployerHome extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _SeekerHomeState();
+    return _EmployerHomeState();
   }
 }
 
-class _SeekerHomeState extends State<SeekerHome> {
+class _EmployerHomeState extends State<EmployerHome> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    NewExplore(),
+    PlaceholderWidget(Colors.blue),
     PlaceholderWidget(Colors.pink),
     PlaceholderWidget(Colors.purple),
     PlaceholderWidget(Colors.orange),
-    Settings(),
+    PlaceholderWidget(Colors.red),
   ];
 
   Widget getWidget(int index) {
