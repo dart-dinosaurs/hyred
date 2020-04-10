@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:main/screens/seeker-screens/wrapper.dart';
+import 'package:main/screens/wrapper.dart';
 import 'package:main/services/auth.dart';
 import 'package:provider/provider.dart';
 
