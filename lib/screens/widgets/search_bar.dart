@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class SearchBar extends StatefulWidget {
   final TextEditingController controller;
-  SearchBar({@required this.controller });
+  final Function onChange;
+  SearchBar({@required this.controller, @required this.onChange});
 
   @override
   _SearchBarState createState() => _SearchBarState();
@@ -38,7 +39,7 @@ class _SearchBarState extends State<SearchBar> {
             controller: widget.controller,
             focusNode: _searchFocus,
             onTap: _requestFocus,
-            onChanged: (value) {},
+            onChanged: (value){widget.onChange(value);},
             decoration: InputDecoration(
               labelText: "Search",
               labelStyle: TextStyle(
