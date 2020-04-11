@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:main/screens/employer-screens/listings.dart';
 import 'package:main/screens/widgets/placeholder.dart';
 
 class EmployerHome extends StatefulWidget {
@@ -11,7 +12,7 @@ class EmployerHome extends StatefulWidget {
 class _EmployerHomeState extends State<EmployerHome> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    PlaceholderWidget(Colors.blue),
+    ListingsScreen(),
     PlaceholderWidget(Colors.pink),
     PlaceholderWidget(Colors.purple),
     PlaceholderWidget(Colors.orange),
@@ -44,7 +45,7 @@ class _EmployerHomeState extends State<EmployerHome> {
               items: [
                 BottomNavigationBarItem(
                     icon: new Icon(Icons.assignment),
-                    title: new Text("Explore")),
+                    title: new Text("Listings")),
                 BottomNavigationBarItem(
                     icon: new Icon(Icons.search), title: new Text("Search")),
                 BottomNavigationBarItem(
