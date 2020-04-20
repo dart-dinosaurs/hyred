@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:main/screens/seeker-screens/wrapper.dart';
+import 'package:main/router.dart';
+import 'package:main/screens/wrapper.dart';
 import 'package:main/services/auth.dart';
 import 'package:provider/provider.dart';
+import 'package:sailor/sailor.dart';
 
 import 'models/user.dart';
 
-void main() => runApp(App());
+void main(){
+  Router.createRoutes();
+  runApp(App());
+}
 
 class App extends StatelessWidget {
   @override
@@ -27,6 +32,8 @@ class App extends StatelessWidget {
         ),
         title: 'Hyred',
         home: Wrapper(),
+        onGenerateRoute: Router.sailor.generator(),
+        navigatorKey: Router.sailor.navigatorKey,
       ),
     );
   }

@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:main/screens/widgets/loading.dart';
+import 'package:main/screens/employer-screens/listings.dart';
+import 'package:main/screens/employer-screens/profile.dart';
 import 'package:main/screens/widgets/placeholder.dart';
-import 'package:main/screens/seeker-screens/Newexplore.dart';
-import 'package:main/screens/seeker-screens/settings.dart';
 
-class SeekerHome extends StatefulWidget {
+class EmployerHome extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _SeekerHomeState();
+    return _EmployerHomeState();
   }
 }
 
-class _SeekerHomeState extends State<SeekerHome> {
+class _EmployerHomeState extends State<EmployerHome> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    NewExplore(),
-    Loading(),
+    ListingsScreen(),
+    PlaceholderWidget(Colors.pink),
     PlaceholderWidget(Colors.purple),
     PlaceholderWidget(Colors.orange),
-    Settings(),
+    Profile(),
   ];
 
   Widget getWidget(int index) {
@@ -47,7 +46,7 @@ class _SeekerHomeState extends State<SeekerHome> {
               items: [
                 BottomNavigationBarItem(
                     icon: new Icon(Icons.assignment),
-                    title: new Text("Explore")),
+                    title: new Text("Listings")),
                 BottomNavigationBarItem(
                     icon: new Icon(Icons.search), title: new Text("Search")),
                 BottomNavigationBarItem(
