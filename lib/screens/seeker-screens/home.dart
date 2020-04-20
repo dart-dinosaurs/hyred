@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:main/screens/widgets/loading.dart';
 import 'package:main/screens/widgets/placeholder.dart';
 import 'package:main/screens/seeker-screens/Newexplore.dart';
 import 'package:main/screens/seeker-screens/settings.dart';
@@ -14,7 +15,7 @@ class _HomeState extends State<Home> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     NewExplore(),
-    PlaceholderWidget(Colors.pink),
+    Loading(),
     PlaceholderWidget(Colors.purple),
     PlaceholderWidget(Colors.orange),
     Settings(),
