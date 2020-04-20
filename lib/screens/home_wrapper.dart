@@ -18,16 +18,15 @@ class HomeWrapperState extends State<HomeWrapper> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
-    print(user.uid);
 
     try {
       if ((Provider.of<DocumentSnapshot>(context) == null)
           ? false //TODO: Replace with Loading!
           : Provider.of<DocumentSnapshot>(context).data["registered"]) {
             if(Provider.of<DocumentSnapshot>(context).data["employer"]){
-              return SeekerHome();
+              return EmployerHome();
             } 
-            return EmployerHome();
+            return SeekerHome();
       }
       return Registration(setRegister: widget.setRegister);
     } catch (err) {
