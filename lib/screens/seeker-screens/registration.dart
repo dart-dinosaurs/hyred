@@ -12,6 +12,7 @@ class Registration extends StatefulWidget {
   _RegistrationState createState() => _RegistrationState();
 }
 
+
 class _RegistrationState extends State<Registration> {
   final _auth = AuthService();
   int currentStep = 0;
@@ -42,7 +43,7 @@ class _RegistrationState extends State<Registration> {
     final user = Provider.of<User>(context);
     var uid = user.uid;
     final _firestore = FirestoreService(uid: uid);
-    final _auth = AuthService();
+    
 
     final fnameController = TextEditingController();
     final lnameController = TextEditingController();

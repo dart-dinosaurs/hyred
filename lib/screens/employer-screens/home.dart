@@ -1,55 +1,23 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:main/screens/seeker-screens/history.dart';
-import 'package:main/screens/seeker-screens/historyDetails.dart';
+import 'package:main/screens/employer-screens/listings.dart';
+import 'package:main/screens/employer-screens/profile.dart';
 import 'package:main/screens/widgets/placeholder.dart';
-import 'package:main/screens/seeker-screens/Newexplore.dart';
-import 'package:main/screens/seeker-screens/settings.dart';
-import 'package:provider/provider.dart';
-import 'package:main/models/user.dart';
-import 'package:main/services/firestore.dart';
 
-
-class SeekerHome extends StatefulWidget {
+class EmployerHome extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _SeekerHomeState();
+    return _EmployerHomeState();
   }
 }
 
-class ExploreWrapper extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
-    return StreamProvider<QuerySnapshot>.value(
-      value: FirestoreService(uid: user.uid).jobData,
-      child: NewExplore(),
-    );
-  }
-}
-
-class HistoryWrapper extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
-    return StreamProvider<QuerySnapshot>.value(
-      value: FirestoreService(uid: user.uid).jobData,
-      child: History(),
-    );
-  }
-}
-
-
-
-
-class _SeekerHomeState extends State<SeekerHome> {
+class _EmployerHomeState extends State<EmployerHome> {
   int _currentIndex = 0;
   final List<Widget> _children = [
-    ExploreWrapper(),
+    ListingsScreen(),
+    PlaceholderWidget(Colors.pink),
     PlaceholderWidget(Colors.purple),
-    PlaceholderWidget(Colors.purple),
-    HistoryWrapper(),
-    Settings(),
+    PlaceholderWidget(Colors.orange),
+    Profile(),
   ];
 
   Widget getWidget(int index) {
@@ -78,7 +46,7 @@ class _SeekerHomeState extends State<SeekerHome> {
               items: [
                 BottomNavigationBarItem(
                     icon: new Icon(Icons.assignment),
-                    title: new Text("Explore")),
+                    title: new Text("Listings")),
                 BottomNavigationBarItem(
                     icon: new Icon(Icons.search), title: new Text("Search")),
                 BottomNavigationBarItem(

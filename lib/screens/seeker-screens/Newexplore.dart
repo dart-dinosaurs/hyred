@@ -14,7 +14,7 @@ class NewExplore extends StatelessWidget {
     
      List<Widget> _createChildren() {
         return new List<Widget>.generate(2, (int index) {
-          return TopJob(jobDocs[index]);
+          return TopJob(jobDocs[index]); 
         });
       }
 
