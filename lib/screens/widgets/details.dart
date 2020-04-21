@@ -201,10 +201,12 @@ class DetailPage extends StatelessWidget {
                     elevation: 6.0,
                     color: Colors.green,
                     onPressed: () {
-                      //applyNow(context);
+                      applyNow(context);
                       Firestore.instance.collection("jobs").document(job.documentID).updateData({
                         "applicants": job.data['jobDetails']['applicants'].length + 1
                       });
+                      dynamic applicants = job.data['jobDetails']['applicants'];
+                      //applicants.add()
                     },
                   ),
                 )
