@@ -116,11 +116,15 @@ class _ExploreState extends State<Explore> {
                   width: MediaQuery.of(context).size.width,
                   margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
                 ),
-                Wrap(
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.95,
+                  child: Wrap(
                   children: _createChildren(),
                   direction: Axis.horizontal,
-                  alignment: WrapAlignment.spaceBetween,
-                )
+                  alignment: WrapAlignment.spaceAround,
+                  runAlignment: WrapAlignment.spaceAround,
+                ),
+                ),
               ],
             )
     ]);
