@@ -3,6 +3,7 @@ import 'package:main/screens/widgets/loading.dart';
 import 'package:main/screens/widgets/placeholder.dart';
 import 'package:main/screens/seeker-screens/Newexplore.dart';
 import 'package:main/screens/seeker-screens/settings.dart';
+import 'package:main/screens/widgets/under_construction.dart';
 
 class SeekerHome extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class _SeekerHomeState extends State<SeekerHome> {
   final List<Widget> _children = [
     NewExplore(),
     Loading(),
-    PlaceholderWidget(Colors.purple),
+    Construction(),
     PlaceholderWidget(Colors.orange),
     Settings(),
   ];
