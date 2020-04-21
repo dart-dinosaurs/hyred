@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:main/screens/widgets/jobCard.dart';
+import 'package:main/screens/widgets/loading.dart';
 
 class Explore extends StatelessWidget {
 
@@ -13,7 +14,11 @@ class Explore extends StatelessWidget {
   Widget build(BuildContext context){
 
     //List<Widget> _widgets = jobs.documents.map((doc) => Text(doc.data['test']),).toList();
-
+    if (jobs == null){
+      return(
+        Loading()
+      );
+    }
 
     List<DocumentSnapshot> _widgets = jobs.documents.where((doc) => doc.data['categories'].contains(category)).toList();
     List<Widget> _actual = _widgets.map((doc) => JobCard(doc)).toList();

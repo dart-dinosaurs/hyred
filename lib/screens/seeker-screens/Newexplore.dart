@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:main/screens/widgets/loading.dart';
 import 'package:main/screens/widgets/topJob.dart';
 import 'package:main/screens/widgets/search.dart';
 import 'package:main/screens/widgets/discoverCard.dart';
@@ -10,7 +11,15 @@ class NewExplore extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var jobs = Provider.of<QuerySnapshot>(context);
-    var jobDocs = jobs.documents;
+    var jobDocs = null;
+    if (jobs == null){
+      return Scaffold(
+        body: Loading()
+      );
+    } else{
+      jobDocs = jobs.documents;
+    }
+    
     
      List<Widget> _createChildren() {
         return new List<Widget>.generate(2, (int index) {
