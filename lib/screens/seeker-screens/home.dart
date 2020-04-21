@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:main/screens/seeker-screens/history.dart';
 import 'package:main/screens/widgets/placeholder.dart';
-import 'package:main/screens/seeker-screens/Newexplore.dart';
+import 'package:main/screens/seeker-screens/explore.dart';
 import 'package:main/screens/seeker-screens/settings.dart';
 import 'package:provider/provider.dart';
 import 'package:main/models/user.dart';
@@ -23,7 +23,7 @@ class ExploreWrapper extends StatelessWidget {
     final user = Provider.of<User>(context);
     return StreamProvider<QuerySnapshot>.value(
       value: FirestoreService(uid: user.uid).jobData,
-      child: NewExplore(),
+      child: Explore(),
     );
   }
 }

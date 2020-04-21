@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:main/screens/seeker-screens/explore.dart';
+import 'package:main/screens/seeker-screens/jobListings.dart';
 
 import 'package:main/screens/widgets/data.dart';
 
@@ -17,7 +18,7 @@ class DiscoverCard extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => new Container(child: Explore(industry.heading, jobs))),
+            builder: (context) => new Container(child: JobListings(industry.heading, jobs))),
       ),
       
       child: Card(
