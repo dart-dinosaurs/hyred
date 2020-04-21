@@ -32,8 +32,8 @@ class HistoryWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
-    return StreamProvider<QuerySnapshot>.value(
-      value: FirestoreService(uid: user.uid).jobData,
+    return StreamProvider<DocumentSnapshot>.value(
+      value: FirestoreService(uid: user.uid).userData,
       child: History(),
     );
   }
