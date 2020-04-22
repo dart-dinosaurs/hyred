@@ -5,36 +5,41 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:main/screens/widgets/loading.dart';
 import 'package:provider/provider.dart';
 
+class History extends StatefulWidget {
+  @override
+  _HistoryState createState() => _HistoryState();
+}
 
-class History extends StatelessWidget {
-  
+class _HistoryState extends State<History> {
+
+  List<DocumentSnapshot> _jobs;
+
+  void setData(List<DocumentSnapshot> newData){
+    print(newData);
+    this.setState(
+      (){
+        _jobs = newData;
+      }
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-
-    // var jobs = Provider.of<QuerySnapshot>(context);
-
     List<DocumentSnapshot> _widgets;
-  
 
-    if (Provider.of<DocumentSnapshot>(context) == null){
-      return(
-        Loading()
-      );
+    if (Provider.of<DocumentSnapshot>(context) == null) {
+      return (Loading());
     }
-    dynamic user_data = Provider.of<DocumentSnapshot>(context).data;
+    
+    void setup() {
+      dynamic user_data = Provider.of<DocumentSnapshot>(context).data;
+      user_data['listings'].forEach((ref) => {
+            ref.get().then((value) => {setData([..._jobs, value])})
+          });
+    }
 
-    DocumentSnapshot ac;
-    user_data['listings'].forEach((ref) => {
-      ref.get().then((value) => {
-        print(value.data),
-        _widgets.add(value.data)
-      })
-    });
-    List<Widget> _actual = _widgets.map((doc) => HistoryCard(doc)).toList();
-     print(_widgets);
-
-    return(
-      ListView(children: _actual)
-    );
+    return (
+        //ListView(children: _actual)
+        Text("hi"));
   }
 }

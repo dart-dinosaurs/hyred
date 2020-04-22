@@ -19,9 +19,6 @@ class Search extends StatelessWidget {
       }
     }
 
-    if (hits.length == 0){
-      hits = allJobs;
-    }
 
     return (
         // ListView.builder(
