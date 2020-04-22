@@ -13,33 +13,46 @@ class History extends StatefulWidget {
 class _HistoryState extends State<History> {
 
   List<DocumentSnapshot> _jobs;
+  bool _loading;
+
+  @override
+  void initState(){
+    _loading = true;
+    super.initState();
+  }
 
   void setData(List<DocumentSnapshot> newData){
     print(newData);
     this.setState(
       (){
         _jobs = newData;
+        _loading = false;
       }
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    List<DocumentSnapshot> _widgets;
+    Future<List<DocumentSnapshot>> setup() async {
+      List<Future<DocumentSnapshot>> list = [];
+      Provider.of<DocumentSnapshot>(context).data["listings"].forEach((ref) async {
+        list.add(ref.get());
+      });
+      return await Future.wait(list);
+    }
+    
 
     if (Provider.of<DocumentSnapshot>(context) == null) {
       return (Loading());
+    } else {
+      if(_loading){
+        setup().then((list){
+        setData(list);
+      });
+        return Loading();
+      } else {
+        return Text(_jobs.toString());
+      }
     }
-    
-    void setup() {
-      dynamic user_data = Provider.of<DocumentSnapshot>(context).data;
-      user_data['listings'].forEach((ref) => {
-            ref.get().then((value) => {setData([..._jobs, value])})
-          });
-    }
-
-    return (
-        //ListView(children: _actual)
-        Text("hi"));
   }
 }
