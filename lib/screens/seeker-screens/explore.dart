@@ -58,6 +58,7 @@ class _ExploreState extends State<Explore> {
         ),
         margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
       ),
+      Container(height: 10,),
       searchValue != ""
           ? Search(searchValue, jobDocs)
           : Column(
