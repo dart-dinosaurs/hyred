@@ -71,7 +71,6 @@ class DetailPage extends StatelessWidget {
   }
 
   Container _getContent(BuildContext context, String _date) {
-    final _overviewTitle = "overview".toUpperCase();
     List myConditions = job['jobDetails']['requirements'];
 
     List<Widget> list = new List<Widget>();
@@ -307,19 +306,7 @@ class DetailPage extends StatelessWidget {
                     color: Colors.green,
                     onPressed: () {
                       applyNow(context);
-                      Firestore.instance
-                          .collection("jobs")
-                          .document(job.documentID)
-                          .updateData({
-                        "applicants":
-                            job.data['jobDetails']['applicants'].length + 1
-                      });
-                      dynamic applicants = job.data['jobDetails']['applicants'];
-                      String user;
-                      FirebaseAuth.instance.currentUser().then((uid) => {
-                            applicants.add("/users/" + uid.uid),
-                            user = uid.uid.toString()
-                          });
+
                       inputData(job);
                       //applicants.add()
                     },
@@ -372,34 +359,37 @@ void inputData(DocumentSnapshot job) async {
   final FirebaseUser user = await FirebaseAuth.instance.currentUser();
   final uid = user.uid;
 
-  DocumentReference userReference = await Firestore.instance.collection("users").document(uid);
+  DocumentReference userReference =
+      await Firestore.instance.collection("users").document(uid);
 
   dynamic applicants = job.data['jobDetails']['applicants'];
   if (applicants.contains(userReference) == false) {
-
     applicants.add(userReference);
     Firestore.instance
         .collection('jobs')
         .document(job.documentID)
         .updateData({"jobDetails.applicants": applicants});
 
+    DocumentSnapshot currentUser = await Firestore.instance
+        .collection("users")
+        .document(uid.toString())
+        .get();
 
+    dynamic currentJobs = currentUser.data['listings'];
 
-    DocumentSnapshot currentUser = await Firestore.instance.collection("users").document(uid.toString()).get();
+    DocumentReference newJob =
+        await Firestore.instance.collection("jobs").document(job.documentID);
 
-  dynamic currentJobs = currentUser.data['listings'];
+    currentJobs.add(newJob);
 
-  DocumentReference newJob = await Firestore.instance.collection("jobs").document(job.documentID);
+    Firestore.instance
+        .collection("users")
+        .document(uid.toString())
+        .updateData({'listings': currentJobs});
 
-  currentJobs.add(newJob);
+    Firestore.instance.collection("jobs").document(job.documentID).updateData(
+        {"applicants": job.data['jobDetails']['applicants'].length + 1});
 
-  Firestore.instance
-    .collection("users")
-    .document(uid.toString())
-    .updateData({
-      'listings': currentJobs
-    });
+      showDialog();
   }
-
-  
 }
