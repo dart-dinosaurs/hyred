@@ -51,7 +51,15 @@ class _HistoryState extends State<History> {
       });
         return Loading();
       } else {
-        return Text(_jobs.toString());
+        List<Widget> _cards = [];
+        _jobs.forEach((doc) => {
+          _cards.add(HistoryCard(doc))
+        });
+        return(
+          ListView(
+            children: _cards
+          )
+        );
       }
     }
   }
