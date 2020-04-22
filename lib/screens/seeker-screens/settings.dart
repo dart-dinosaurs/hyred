@@ -43,7 +43,7 @@ class _SettingsState extends State<Settings> {
                         borderRadius: BorderRadius.circular(35.0),
                         image: DecorationImage(
                           image: NetworkImage(
-                              'https://source.unsplash.com/random/500x500'),
+                              'https://source.unsplash.com/random/100x100'),
                         )),
                   ),
                 ),
