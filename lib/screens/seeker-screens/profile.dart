@@ -66,9 +66,6 @@ class _ProfileState extends State<Profile> {
                 SizedBox(width: 30.0),
                 Column(
                   children: <Widget>[
-
-
-
                     SizedBox(
                     width: 160.0,
                       child: FittedBox(fit:BoxFit.fitWidth, 
