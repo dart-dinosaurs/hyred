@@ -29,7 +29,6 @@ dependencies:
   cloud_firestore: ^0.13.4
   provider: ^4.0.4
   flutter_spinkit: "^4.1.2"
-  dropdown_formfield: ^0.1.1
   image_picker: ^0.6.3+4
   image_cropper: ^1.2.1
   toggle_switch: "^0.1.4"

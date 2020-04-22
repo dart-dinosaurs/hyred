@@ -4,6 +4,7 @@ import 'package:main/models/user.dart';
 import 'package:main/screens/employer-screens/home.dart';
 import 'package:main/screens/seeker-screens/home.dart';
 import 'package:main/screens/seeker-screens/registration.dart';
+import 'package:main/screens/widgets/loading.dart';
 import 'package:provider/provider.dart';
 
 class HomeWrapper extends StatefulWidget {
@@ -20,10 +21,11 @@ class HomeWrapperState extends State<HomeWrapper> {
     final user = Provider.of<User>(context);
 
     try {
-      if ((Provider.of<DocumentSnapshot>(context) == null)
-          ? false //TODO: Replace with Loading!
-          : Provider.of<DocumentSnapshot>(context).data["registered"]) {
-            if(Provider.of<DocumentSnapshot>(context).data["employer"]){
+      if(Provider.of<DocumentSnapshot>(context) == null){
+        return Loading();
+      }
+      else if (Provider.of<DocumentSnapshot>(context).data["registered"]){
+        if(Provider.of<DocumentSnapshot>(context).data["employer"]){
               return EmployerHome();
             } 
             return SeekerHome();
@@ -32,7 +34,6 @@ class HomeWrapperState extends State<HomeWrapper> {
     } catch (err) {
       print(err.toString());
     }
-
     return Registration();
   }
 }
