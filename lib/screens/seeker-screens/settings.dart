@@ -4,6 +4,8 @@ import 'package:main/screens/seeker-screens/profile.dart';
 import 'package:main/services/auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../router.dart';
 // import 'package:main/services/auth.dart';
 
 class Settings extends StatefulWidget {
@@ -48,10 +50,10 @@ class _SettingsState extends State<Settings> {
                 SizedBox(width: 22.0),
                 Spacer(),
                 Column(children: <Widget>[
-
                   SizedBox(
                     width: 140.0,
-                      child: FittedBox(fit:BoxFit.fitWidth, 
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
                       child: Text(
                         user.fname + " " + user.lname,
                         style: TextStyle(
@@ -60,21 +62,21 @@ class _SettingsState extends State<Settings> {
                             fontSize: 23.0,
                             color: Colors.grey.shade900),
                       ),
-                      ),
                     ),
+                  ),
                   SizedBox(
                     width: 105.0,
-                      child: FittedBox(fit:BoxFit.fitWidth, 
-                      child: Text(
-                        user.city + ", " + user.province,
-                        style: TextStyle(
-                            fontFamily: 'Montserrat',
-                            fontStyle: FontStyle.italic,
-                            fontSize: 22.0,
-                            color: Colors.grey.shade800),
-                      )
-                      ),
-                    ),
+                    child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: Text(
+                          user.city + ", " + user.province,
+                          style: TextStyle(
+                              fontFamily: 'Montserrat',
+                              fontStyle: FontStyle.italic,
+                              fontSize: 22.0,
+                              color: Colors.grey.shade800),
+                        )),
+                  ),
                 ]),
                 Spacer(flex: 2),
                 IconButton(
@@ -113,7 +115,12 @@ class _SettingsState extends State<Settings> {
                   _showProfile = true;
                 });
               }),
-          infoCard("Payment Information", Icons.attach_money),
+          GestureDetector(
+            child: infoCard("Payment Information", Icons.attach_money),
+            onTap: () {
+              Router.sailor.navigate("/construction");
+            },
+          ),
           infoCard("Notifications", Icons.notifications),
           Padding(
               padding: const EdgeInsets.all(17.0),
@@ -148,7 +155,10 @@ class _SettingsState extends State<Settings> {
                     ),
                   ])),
           infoCard("Terms and Conditions", Icons.assignment),
-          GestureDetector(child: infoCard("Log out", Icons.exit_to_app), onTap: () => _auth.signOut(),),
+          GestureDetector(
+            child: infoCard("Log out", Icons.exit_to_app),
+            onTap: () => _auth.signOut(),
+          ),
           Padding(
             padding: EdgeInsets.fromLTRB(25.0, 7.0, 25.0, 14.0),
             child: Row(

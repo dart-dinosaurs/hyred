@@ -10,7 +10,7 @@ class User {
   String province;
   String postal;
 
-  User({ this.uid });
+  User({ this.uid, this.fname, this.lname, this.street, this.city, this.registered, this.apartment, this.postal, this.province});
 
   void setRegistration(bool registered){
     this.registered = registered;
