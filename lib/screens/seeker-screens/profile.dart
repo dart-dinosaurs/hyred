@@ -2,6 +2,7 @@ import 'dart:ffi';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:main/models/user.dart';
+import 'package:main/screens/seeker-screens/settings.dart';
 import 'package:provider/provider.dart';
 // import 'package:main/services/auth.dart';
 
@@ -13,9 +14,14 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  bool _showProfile = true;
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
+    if (!_showProfile) {
+      return Settings();
+    }
     return new Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
@@ -23,30 +29,58 @@ class _ProfileState extends State<Profile> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 12.0, right: 12.0),
-                child: IconButton(
-                  iconSize: 33.0,
-                  icon: Icon(Icons.edit),
-                  onPressed: () {}
+            Row(
+              children: <Widget>[
+                SizedBox(width: 15.0,),
+                Container(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 12.0, right: 12.0),
+                    child: IconButton(
+                      iconSize: 33.0,
+                      icon: Icon(Icons.arrow_back),
+                      onPressed: () {setState(() {
+                          _showProfile = false;
+                        });
+                      }
+                    ),
+                  ),
                 ),
-              ),
-            ),
+                Spacer(),
+                Container(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 12.0, left: 12.0),
+                      child: IconButton(
+                        iconSize: 33.0,
+                        icon: Icon(Icons.edit),
+                        onPressed: () {}
+                      ),
+                  ),
+                ),
+                SizedBox(width: 12.0,),
+            ],),
             SizedBox(height: 20.0),
             Row(
               children: <Widget>[
                 SizedBox(width: 30.0),
                 Column(
                   children: <Widget>[
-                  Text(
-                    'Richard Hong',
-                    style: TextStyle(
-                      fontSize: 32.0,
-                      color: Colors.black,
-                    )
-                  ),
+
+
+
+                    SizedBox(
+                    width: 160.0,
+                      child: FittedBox(fit:BoxFit.fitWidth, 
+                      child: Text(
+                        user.fname + " " + user.lname,
+                        style: TextStyle(
+                          fontSize: 32.0,
+                          color: Colors.black,
+                        )
+                      ),
+                      ),
+                    ),
                   SizedBox(height: 8.0),
                   Text(
                     'Joined March 2020',
@@ -64,7 +98,7 @@ class _ProfileState extends State<Profile> {
                       borderRadius: BorderRadius.circular(45.0),
                       image: DecorationImage(
                         image: NetworkImage(
-                      'https://avatars2.githubusercontent.com/u/44233784?s=400&v=4'
+                      'https://source.unsplash.com/random/500x500'
                         ),
                       )
                     ),

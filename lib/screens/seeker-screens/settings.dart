@@ -35,36 +35,48 @@ class _SettingsState extends State<Settings> {
                 SizedBox(width: 15.0),
                 InkWell(
                   child: Container(
-                    height: 55.0,
-                    width: 55.0,
+                    height: 60.0,
+                    width: 60.0,
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25.0),
+                        borderRadius: BorderRadius.circular(35.0),
                         image: DecorationImage(
                           image: NetworkImage(
-                              'https://avatars2.githubusercontent.com/u/44233784?s=400&v=4'),
+                              'https://source.unsplash.com/random/500x500'),
                         )),
                   ),
                 ),
                 SizedBox(width: 22.0),
-                Column(children: <Widget>[
-                  Text(
-                    user.fname + " " + user.lname,
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 23.0,
-                        color: Colors.grey.shade900),
-                  ),
-                  Text(
-                    'Scarborough, ON',
-                    style: TextStyle(
-                        fontFamily: 'Montserrat',
-                        fontStyle: FontStyle.italic,
-                        fontSize: 22.0,
-                        color: Colors.grey.shade800),
-                  )
-                ]),
                 Spacer(),
+                Column(children: <Widget>[
+
+                  SizedBox(
+                    width: 140.0,
+                      child: FittedBox(fit:BoxFit.fitWidth, 
+                      child: Text(
+                        user.fname + " " + user.lname,
+                        style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 23.0,
+                            color: Colors.grey.shade900),
+                      ),
+                      ),
+                    ),
+                  SizedBox(
+                    width: 105.0,
+                      child: FittedBox(fit:BoxFit.fitWidth, 
+                      child: Text(
+                        user.city + ", " + user.province,
+                        style: TextStyle(
+                            fontFamily: 'Montserrat',
+                            fontStyle: FontStyle.italic,
+                            fontSize: 22.0,
+                            color: Colors.grey.shade800),
+                      )
+                      ),
+                    ),
+                ]),
+                Spacer(flex: 2),
                 IconButton(
                   icon: Icon(Icons.settings),
                   color: Colors.grey.shade700,
@@ -86,18 +98,11 @@ class _SettingsState extends State<Settings> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: <Widget>[
                     Text(
-                      'A 20 year old male from Scarborough, Ontario. Has mad clout and looking for a job in Cali.',
-                      style: TextStyle(
-                          fontFamily: 'Montserrat',
-                          fontSize: 18.0,
-                          color: Colors.grey.shade900),
-                    ),
-                    SizedBox(height: 26.0),
-                    Text(
                       'Account Settings',
                       style: TextStyle(
                           fontFamily: 'Montserrat',
                           fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
                           color: Colors.grey.shade800),
                     ),
                   ])),
@@ -121,6 +126,7 @@ class _SettingsState extends State<Settings> {
                       style: TextStyle(
                           fontFamily: 'Montserrat',
                           fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
                           color: Colors.grey.shade800),
                     ),
                   ])),
@@ -137,6 +143,7 @@ class _SettingsState extends State<Settings> {
                       style: TextStyle(
                           fontFamily: 'Montserrat',
                           fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
                           color: Colors.grey.shade800),
                     ),
                   ])),
