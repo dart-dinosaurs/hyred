@@ -32,26 +32,6 @@ class JobListings extends StatelessWidget {
         ),
         backgroundColor: Theme.of(context).accentColor,
       ),
-      // body: StreamBuilder(
-      //   stream: Firestore.instance.collection('jobs').snapshots(),
-      //   builder: (context, snapshot){
-      //     if (!snapshot.hasData){
-      //       return (Text("Loading..."));
-      //     }
-      //     return ListView.builder(
-      //       itemBuilder: (context, index){
-      //         DocumentSnapshot doc = snapshot.data.documents[index];
-      //         if (doc['categories'].contains(category)){
-      //           return JobCard(doc);
-      //         } else {
-      //           return Container(height: 0,);
-      //         }
-      //       },
-      //       itemCount: 2,
-      //     );
-      //   },
-      // )
-      
       body: ListView(children: _actual)
     );
   }
