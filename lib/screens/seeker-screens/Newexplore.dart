@@ -39,16 +39,16 @@ class NewExplore extends StatelessWidget {
             children: <Widget>[
               Container(
                 child: DiscoverCard('assets/images/retail.jpg', "Retail", retailJobs),
-                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                padding: EdgeInsets.fromLTRB(2.5, 10, 2.5, 10),
               ),
               Container(
                 child: DiscoverCard(
                     'assets/images/BrickLayer.jpg', "Construction", constructionJobs), 
-                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                padding: EdgeInsets.fromLTRB(2.5, 10, 2.5, 10),
               ),
               Container(
                 child: DiscoverCard('assets/images/cleaning.jpg', "Janitorial", janitorialJobs),
-                padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+                padding: EdgeInsets.fromLTRB(2.5, 10, 2.5, 10),
               ),
             ],
           )),
