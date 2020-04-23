@@ -35,19 +35,6 @@ class Construction extends StatelessWidget {
                       'assets/images/hammer.png',
                       color: Theme.of(context).accentColor,
                       height: 90.0,)
-                  // Transform.rotate(
-                  //   angle: 45.0,
-                  //   child: Container(
-                  //     alignment: Alignment.center,
-                  //     padding: EdgeInsets.all(30),
-                  //     child: Image.asset(
-                  //       'assets/images/hammer.png',
-                  //     ),
-                  //   ),
-                  // ),
-
-
-
                 ],
             ),
           ),
