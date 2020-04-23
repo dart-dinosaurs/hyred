@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:main/screens/widgets/data.dart';
 import 'package:main/screens/widgets/jobCard.dart';
 
 class Search extends StatelessWidget {
@@ -21,12 +20,6 @@ class Search extends StatelessWidget {
 
 
     return (
-        // ListView.builder(
-        //   itemBuilder: (BuildContext context, int index){
-        //     return new JobCard(hits[index]);
-        //   },
-        //   itemCount: hits.length,
-        // )
         Column(
       children: hits
           .map((item) => Container(

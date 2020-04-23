@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:main/screens/employer-screens/listings.dart';
 import 'package:main/screens/employer-screens/profile.dart';
 import 'package:main/screens/widgets/placeholder.dart';
+import 'profile.dart';
 
 class EmployerHome extends StatefulWidget {
   @override

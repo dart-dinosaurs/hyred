@@ -141,13 +141,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.1.1+2"
-  flappy_search_bar:
-    dependency: "direct main"
-    description:
-      name: flappy_search_bar
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.4.1"
   flutter:
     dependency: "direct main"
     description: flutter
@@ -166,14 +159,7 @@ packages:
       name: flutter_spinkit
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.1.2+1"
-  flutter_staggered_grid_view:
-    dependency: transitive
-    description:
-      name: flutter_staggered_grid_view
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.3.0"
+    version: "4.1.2"
   flutter_test:
     dependency: "direct dev"
     description: flutter

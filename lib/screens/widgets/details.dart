@@ -71,6 +71,7 @@ class DetailPage extends StatelessWidget {
   }
 
   Container _getContent(BuildContext context, String _date) {
+    final _overviewTitle = "overview".toUpperCase();
     List myConditions = job['jobDetails']['requirements'];
 
     List<Widget> list = new List<Widget>();
@@ -306,9 +307,7 @@ class DetailPage extends StatelessWidget {
                     color: Colors.green,
                     onPressed: () {
                       applyNow(context);
-
                       inputData(job);
-                      //applicants.add()
                     },
                   ),
                 )
@@ -359,11 +358,17 @@ void inputData(DocumentSnapshot job) async {
   final FirebaseUser user = await FirebaseAuth.instance.currentUser();
   final uid = user.uid;
 
-  DocumentReference userReference =
-      await Firestore.instance.collection("users").document(uid);
+  DocumentReference userReference = Firestore.instance.collection("users").document(uid);
 
-  dynamic applicants = job.data['jobDetails']['applicants'];
-  if (applicants.contains(userReference) == false) {
+  List<dynamic> applicants = job.data['jobDetails']['applicants'];
+  bool doesContain = false;
+  applicants.forEach((applicant) {
+    if (applicant.path == userReference.path){
+      doesContain = true;
+    }
+  });
+
+  if (!doesContain) {
     applicants.add(userReference);
     Firestore.instance
         .collection('jobs')
@@ -390,6 +395,7 @@ void inputData(DocumentSnapshot job) async {
     Firestore.instance.collection("jobs").document(job.documentID).updateData(
         {"applicants": job.data['jobDetails']['applicants'].length + 1});
 
-      showDialog();
   }
+
+
 }

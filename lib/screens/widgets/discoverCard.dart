@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:main/screens/seeker-screens/explore.dart';
 import 'package:main/screens/seeker-screens/jobListings.dart';
-
 import 'package:main/screens/widgets/data.dart';
+import './data.dart';
 
 class DiscoverCard extends StatelessWidget {
   

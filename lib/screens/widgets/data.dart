@@ -10,7 +10,7 @@ class Category{
 List<Category> industries = [
   const Category(
     heading: "Retail",
-    image: "https://coda.newjobs.com/api/imagesproxy/ms/niche/images/articles/cashier.jpg"
+    image: "https://source.unsplash.com/featured/?Retail"
   ),
   const Category(
     heading: "Construction",
