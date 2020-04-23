@@ -13,7 +13,7 @@ class Search extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     for (int i = 0; i < allJobs.length; i++) {
-      if (allJobs[i].data['jobDetails']['name'].contains(searchValue) || allJobs[i].data['jobDetails']['name'].contains(searchValue)) {
+      if (allJobs[i].data['name'].contains(searchValue) || allJobs[i].data['categories'].contains(searchValue)) {
         hits.add(allJobs[i]);
       }
     }
