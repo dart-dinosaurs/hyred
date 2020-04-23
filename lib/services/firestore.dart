@@ -4,8 +4,23 @@ class FirestoreService {
 
   final String uid;
   final CollectionReference userCollection = Firestore.instance.collection('users');
+  final CollectionReference listingCollection = Firestore.instance.collection('listings');
 
   FirestoreService({ this.uid });
+
+  Future addListing(Map listing) async {
+    listing["applicants"] = List<DocumentReference>();
+    listing["user"] = userCollection.document(uid);
+    listing["filledBy"] = "";
+    listing["numberOfApplicants"] = 0;
+    DocumentReference listingReference = await listingCollection.add(listing);
+    DocumentSnapshot listingsSnapshot = await userCollection.document(uid).get();
+    List<dynamic> listings = listingsSnapshot.data["listings"];
+    print([listingReference, ...listings]);
+    await userCollection.document(uid).updateData({
+      "listings": [listingReference, ...listings]
+    });
+  }
 
   Future updateUserData(String fname, String lname, String background, String bio) async {
     return await userCollection.document(uid).setData({

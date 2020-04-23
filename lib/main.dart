@@ -3,11 +3,10 @@ import 'package:main/router.dart';
 import 'package:main/screens/wrapper.dart';
 import 'package:main/services/auth.dart';
 import 'package:provider/provider.dart';
-import 'package:sailor/sailor.dart';
 
 import 'models/user.dart';
 
-void main(){
+void main() {
   Router.createRoutes();
   runApp(App());
 }
@@ -21,6 +20,12 @@ class App extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'Montserrat',
           accentColor: Color(0xFF45CFCF),
+          primaryColor: Color(0xFF45CFCF),
+          buttonTheme: ButtonTheme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: Theme.of(context).accentColor,
+            ),
+          ),
           inputDecorationTheme: InputDecorationTheme(
             focusedBorder: UnderlineInputBorder(
               borderSide: BorderSide(

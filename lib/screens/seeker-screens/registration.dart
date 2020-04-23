@@ -38,36 +38,36 @@ class _RegistrationState extends State<Registration> {
     setState(() => currentStep = step);
   }
 
+  final fnameController = TextEditingController();
+  final lnameController = TextEditingController();
+
+  final businessNameController = TextEditingController();
+  final addressStreetController = TextEditingController();
+  final addressApartmentController = TextEditingController();
+  final addressCityController = TextEditingController();
+  final addressProvinceController = TextEditingController();
+  final addressPostalCodeController = TextEditingController();
+
+  @override
+  void dispose() {
+    fnameController.dispose();
+    lnameController.dispose();
+
+    businessNameController.dispose();
+    addressStreetController.dispose();
+    addressApartmentController.dispose();
+    addressCityController.dispose();
+    addressProvinceController.dispose();
+    addressPostalCodeController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
     var uid = user.uid;
     final _firestore = FirestoreService(uid: uid);
     final _auth = AuthService();
-
-    final fnameController = TextEditingController();
-    final lnameController = TextEditingController();
-
-    final businessNameController = TextEditingController();
-    final addressStreetController = TextEditingController();
-    final addressApartmentController = TextEditingController();
-    final addressCityController = TextEditingController();
-    final addressProvinceController = TextEditingController();
-    final addressPostalCodeController = TextEditingController();
-
-    @override
-    void dispose() {
-      fnameController.dispose();
-      lnameController.dispose();
-
-      businessNameController.dispose();
-      addressStreetController.dispose();
-      addressApartmentController.dispose();
-      addressCityController.dispose();
-      addressProvinceController.dispose();
-      addressPostalCodeController.dispose();
-      super.dispose();
-    }
 
     List<Step> steps = [
       Step(

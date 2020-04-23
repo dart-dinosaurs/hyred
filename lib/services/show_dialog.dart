@@ -11,7 +11,10 @@ class ShowDialog {
               "Thank you for registering, once we have reviewed your identification details, your account will be active."),
           actions: <Widget>[
             new FlatButton(
-              child: new Text("Close"),
+              child: new Text(
+                "Close",
+                style: TextStyle(color: Theme.of(context).accentColor),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
@@ -31,7 +34,33 @@ class ShowDialog {
           content: new Text("Form fields musn't be empty!"),
           actions: <Widget>[
             new FlatButton(
-              child: new Text("Close"),
+              child: Text(
+                "Close",
+                style: TextStyle(color: Theme.of(context).accentColor),
+              ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  static void custom(BuildContext context, String title, String error) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: new Text(title),
+          content: new Text(error),
+          actions: <Widget>[
+            new FlatButton(
+              child: Text(
+                "Close",
+                style: TextStyle(color: Theme.of(context).accentColor),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
