@@ -18,7 +18,7 @@ class DiscoverCard extends StatelessWidget {
       ),
       
       child: Card(
-        elevation: 10,
+        elevation: 5,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: Column(children: <Widget>[
           ClipRRect(
