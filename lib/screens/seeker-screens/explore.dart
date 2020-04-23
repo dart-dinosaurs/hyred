@@ -22,6 +22,8 @@ class _ExploreState extends State<Explore> {
     });
   }
 
+  final myController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     var jobs = Provider.of<QuerySnapshot>(context);
@@ -45,19 +47,7 @@ class _ExploreState extends State<Explore> {
     }
 
     return ListView(children: <Widget>[
-      Container(
-        child: TextFormField(
-          initialValue: searchValue,
-          onChanged: (value) => {setSearch(value)},
-          decoration: InputDecoration(
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-              contentPadding: EdgeInsets.fromLTRB(10, 8, 0, 0),
-              prefixIcon: Icon(Icons.search)),
-          style: TextStyle(height: 1.5),
-        ),
-        margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-      ),
+      SearchBar(controller: myController, onChange: (value) => {setSearch(value)}),
       Container(height: 10,),
       searchValue != ""
           ? Search(searchValue, jobDocs)
