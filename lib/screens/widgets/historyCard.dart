@@ -31,7 +31,7 @@ class HistoryCard extends StatelessWidget {
                           topRight: Radius.circular(0),
                           bottomRight: Radius.circular(0)),
                       child: Image(
-                          image: new NetworkImage(job['jobDetails']['image']),
+                          image: new NetworkImage("https://source.unsplash.com/featured/?" + job['jobDetails']['name']),
                           height: 120,
                           width: 150,
                           fit: BoxFit.cover),

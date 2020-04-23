@@ -9,19 +9,32 @@ class Category{
 
 List<Category> industries = [
   const Category(
+    heading: "Caregiving",
+    image: "caregiving"
+  ),
+  const Category(
+    heading: "Janitorial",
+    image: "cleaning"
+  ),
+  const Category(
     heading: "Retail",
-    image: "https://source.unsplash.com/featured/?Retail"
+    image: "retail"
+  ),
+  const Category(
+    heading: "Labour",
+    image: "labour"
   ),
   const Category(
     heading: "Construction",
-    image: "https://dynamicmedia.zuza.com/zz/m/original_/5/1/51489095-e8ea-42b3-a042-425f3dd69ddc/B88649082Z.1_20190402135445_000_GVJHSGJ5.2-0_Super_Portrait.jpg"
+    image: "construction"
   ),
   const Category(
-    heading: "Service",
-    image: "https://www.planitplus.net/JobProfileImages/264.jpg"
+    heading: "Handyman",
+    image: "handyman"
   ),
   const Category(
-    heading: "Custodial",
-    image: "https://s10721.pcdn.co/wp-content/uploads/2015/05/janitor-pic.jpg"
-  )
+    heading: "Freelance",
+    image: "freelance"
+  ),
+
 ];

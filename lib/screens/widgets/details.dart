@@ -47,7 +47,7 @@ class DetailPage extends StatelessWidget {
   Container _getBackground() {
     return new Container(
       child: Image(
-        image: new NetworkImage(job['jobDetails']['image']),
+        image: new NetworkImage("https://source.unsplash.com/featured/?" +  job['jobDetails']['name']),
         fit: BoxFit.cover,
         height: 150.0,
       ),

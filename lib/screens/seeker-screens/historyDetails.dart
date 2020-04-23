@@ -31,7 +31,7 @@ class HistoryDetails extends StatelessWidget {
         ListView(
           children: <Widget>[
             Image(
-              image: NetworkImage(job.data['jobDetails']['image']),
+              image: NetworkImage("https://source.unsplash.com/featured/?" + job.data['jobDetails']['name']),
               width: MediaQuery.of(context).size.width,
             ),
             Container(

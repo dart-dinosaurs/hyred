@@ -40,7 +40,7 @@ class TopJob extends StatelessWidget {
       child: Container(
         child: Column(
           children: <Widget>[
-            ClipRRect(borderRadius: BorderRadius.only( topLeft: Radius.circular(20), topRight: Radius.circular(20) ),child: Image(image: new NetworkImage(job.data['jobDetails']['image']), width: MediaQuery.of(context).size.width * 0.45, height: 150, fit: BoxFit.cover, )),
+            ClipRRect(borderRadius: BorderRadius.only( topLeft: Radius.circular(20), topRight: Radius.circular(20) ),child: Image(image: new NetworkImage("https://source.unsplash.com/featured/?" + job.data['jobDetails']['name']), width: MediaQuery.of(context).size.width * 0.45, height: 150, fit: BoxFit.cover, )),
             Container(
               width: MediaQuery.of(context).size.width * 0.45,
               height: 150,

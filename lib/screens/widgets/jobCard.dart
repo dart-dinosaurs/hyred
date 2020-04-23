@@ -143,7 +143,7 @@ Container _pic(BuildContext context, DocumentSnapshot job) {
     child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(30)),
         child: Image(
-          image: NetworkImage(job.data['jobDetails']['image']),
+          image: NetworkImage("https://source.unsplash.com/featured/?" + job.data['jobDetails']['name']),
           fit: BoxFit.cover,
         )),
     margin: EdgeInsets.fromLTRB(0, 0, 0, 0),

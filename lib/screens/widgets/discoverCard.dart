@@ -28,7 +28,7 @@ class DiscoverCard extends StatelessWidget {
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
               child: Image(
-                image: NetworkImage(industry.image),
+                image: NetworkImage("https://source.unsplash.com/featured/?" + industry.image),
                 width: 150,
                 height: 100,
                 fit: BoxFit.cover,
