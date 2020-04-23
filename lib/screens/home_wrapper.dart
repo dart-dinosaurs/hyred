@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:main/models/user.dart';
+import 'package:main/screens/employer-screens/home.dart';
 import 'package:main/screens/seeker-screens/home.dart';
 import 'package:main/screens/seeker-screens/registration.dart';
 import 'package:provider/provider.dart';
@@ -17,13 +18,15 @@ class HomeWrapperState extends State<HomeWrapper> {
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
-    print(user.uid);
 
     try {
       if ((Provider.of<DocumentSnapshot>(context) == null)
-          ? false
+          ? false //TODO: Replace with Loading!
           : Provider.of<DocumentSnapshot>(context).data["registered"]) {
-        return Home();
+            if(Provider.of<DocumentSnapshot>(context).data["employer"]){
+              return EmployerHome();
+            } 
+            return SeekerHome();
       }
       return Registration(setRegister: widget.setRegister);
     } catch (err) {

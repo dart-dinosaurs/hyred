@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:main/models/user.dart';
 import 'package:main/services/auth.dart';
 import 'package:main/services/firestore.dart';
+import 'package:main/services/show_dialog.dart';
 import 'package:provider/provider.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
@@ -161,34 +162,11 @@ class _RegistrationState extends State<Registration> {
       ),
     ];
 
-    void _showDialog() {
-      // flutter defined function
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          // return object of type Dialog
-          return AlertDialog(
-            title: new Text("Error"),
-            content: new Text("Form fields musn't be empty!"),
-            actions: <Widget>[
-              // usually buttons at the bottom of the dialog
-              new FlatButton(
-                child: new Text("Close"),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
-
     next() {
       switch (currentStep) {
         case 0:
           if (fnameController.text == "" || lnameController.text == "") {
-            _showDialog();
+            ShowDialog.error(context);
             return;
           }
           _firestore.registerBasicInformation(
@@ -196,27 +174,29 @@ class _RegistrationState extends State<Registration> {
           break;
         case 1:
           if (currentIndex == 1 && businessNameController.text == "") {
-            _showDialog();
+            ShowDialog.error(context);
             return;
           }
           if (addressPostalCodeController.text == "" ||
               addressCityController.text == "" ||
               addressStreetController.text == "" ||
               addressProvinceController.text == "") {
-            _showDialog();
+            ShowDialog.error(context);
             return;
           }
-          _firestore.registerAddress(addressStreetController.text, 
-                                    addressApartmentController.text, 
-                                    addressCityController.text, 
-                                    addressProvinceController.text, 
-                                    addressPostalCodeController.text);
+          _firestore.registerAddress(
+              addressStreetController.text,
+              addressApartmentController.text,
+              addressCityController.text,
+              addressProvinceController.text,
+              addressPostalCodeController.text);
           break;
       }
       currentStep + 1 != steps.length
           ? goTo(currentStep + 1)
           : () {
               _firestore.onUserFinishRegister();
+              ShowDialog.complete(context);
               widget.setRegister();
               _auth.signOut();
             }();

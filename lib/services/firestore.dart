@@ -19,10 +19,12 @@ class FirestoreService {
   }
 
   Future registerBasicInformation(String fname, String lname, bool employer) async {
+    List<DocumentReference> listings = [];
     return await userCollection.document(uid).updateData({
       'fname': fname,
       'lname': lname,
       'employer': employer,
+      'listings': listings,
     });
   }
 

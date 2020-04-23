@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'package:main/screens/seeker-screens/history.dart';
 import 'package:main/screens/seeker-screens/historyDetails.dart';
 import 'package:main/screens/widgets/placeholder.dart';
@@ -9,14 +10,22 @@ import 'package:provider/provider.dart';
 import 'package:main/models/user.dart';
 import 'package:main/services/firestore.dart';
 
+=======
+import 'package:main/screens/widgets/loading.dart';
+import 'package:main/screens/widgets/placeholder.dart';
+import 'package:main/screens/seeker-screens/Newexplore.dart';
+import 'package:main/screens/seeker-screens/settings.dart';
+import 'package:main/screens/widgets/under_construction.dart';
+>>>>>>> 8556481fd318b366c354043e309a1f8bed7f1489
 
-class Home extends StatefulWidget {
+class SeekerHome extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _HomeState();
+    return _SeekerHomeState();
   }
 }
 
+<<<<<<< HEAD
 class ExploreWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -48,6 +57,15 @@ class _HomeState extends State<Home> {
     PlaceholderWidget(Colors.purple),
     PlaceholderWidget(Colors.purple),
     HistoryWrapper(),
+=======
+class _SeekerHomeState extends State<SeekerHome> {
+  int _currentIndex = 0;
+  final List<Widget> _children = [
+    NewExplore(),
+    Loading(),
+    Construction(),
+    PlaceholderWidget(Colors.orange),
+>>>>>>> 8556481fd318b366c354043e309a1f8bed7f1489
     Settings(),
   ];
 
