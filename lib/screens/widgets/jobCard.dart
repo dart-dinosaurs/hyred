@@ -17,8 +17,8 @@ class JobCard extends StatelessWidget {
     final regularTextStyle = baseTextStyle.copyWith(
         color: Colors.white, fontSize: 9.0, fontWeight: FontWeight.w400);
 
-    Timestamp _startDate = job.data['jobDetails']['startDate'];
-    Timestamp _endDate = job.data['jobDetails']['endDate'];
+    Timestamp _startDate = job.data['beginTime'];
+    Timestamp _endDate = job.data['endTime'];
 
     String _startDay = _startDate.toDate().day.toString();
     String _startMonth = _startDate.toDate().month.toString();
@@ -75,7 +75,7 @@ Container _info(BuildContext context, DocumentSnapshot job, String date) {
       children: <Widget>[
         Container(
           width: MediaQuery.of(context).size.width * 0.55,
-          child: Text(job.data['jobDetails']['name'],
+          child: Text(job.data['name'],
               textAlign: TextAlign.left,
               style: TextStyle(fontWeight: FontWeight.bold)),
           margin: EdgeInsets.fromLTRB(
@@ -91,13 +91,13 @@ Container _info(BuildContext context, DocumentSnapshot job, String date) {
                     Icons.attach_money,
                     size: 18,
                   ),
-                  Text(job['jobDetails']['salary'].toString() + "/hr"),
+                  Text(job['salary'].toString() + "/hr"),
                 ],
               ),
               Row(
                 children: <Widget>[
                   Icon(Icons.location_on, size: 20),
-                  Text(job['jobDetails']['location'])
+                  Text(job['name'])
                 ],
               ),
             ],
@@ -126,7 +126,7 @@ Container _info(BuildContext context, DocumentSnapshot job, String date) {
           width: MediaQuery.of(context).size.width * 0.55,
         ),
         Container(
-          child: Text("Posted By: " + job['jobDetails']['employer']),
+          child: Text("Posted By: " + job['name']),
           margin: EdgeInsets.fromLTRB(
               MediaQuery.of(context).size.width * 0.4 + 10, 0, 0, 0),
           width: MediaQuery.of(context).size.width * 0.55,
@@ -143,7 +143,7 @@ Container _pic(BuildContext context, DocumentSnapshot job) {
     child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(30)),
         child: Image(
-          image: NetworkImage("https://source.unsplash.com/featured/?" + job.data['jobDetails']['name']),
+          image: NetworkImage("https://source.unsplash.com/featured/?" + job.data['name']),
           fit: BoxFit.cover,
         )),
     margin: EdgeInsets.fromLTRB(0, 0, 0, 0),

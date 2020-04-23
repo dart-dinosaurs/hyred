@@ -35,14 +35,14 @@ class _ExploreState extends State<Explore> {
     }
 
     List<Widget> _createChildren() {
-      return new List<Widget>.generate(2, (int index) {
+      return new List<Widget>.generate(1, (int index) {
         return TopJob(jobDocs[index]);
       });
     }
 
     List<Widget> _topJobs = new List<Widget>();
 
-    for (int i = 0; i < industries.length; i++) {
+    for (int i = 0; i < 4; i++) {
       _topJobs.add(DiscoverCard(industries[i], jobs));
     }
 

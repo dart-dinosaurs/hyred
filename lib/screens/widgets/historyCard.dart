@@ -10,6 +10,7 @@ class HistoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(job['name']);
     return (GestureDetector(
         onTap: () => Navigator.of(context).push(new PageRouteBuilder(
         pageBuilder: (_, __, ___) => new HistoryDetails(job),
@@ -31,7 +32,7 @@ class HistoryCard extends StatelessWidget {
                           topRight: Radius.circular(0),
                           bottomRight: Radius.circular(0)),
                       child: Image(
-                          image: new NetworkImage("https://source.unsplash.com/featured/?" + job['jobDetails']['name']),
+                          image: new NetworkImage("https://source.unsplash.com/featured/?" + job.data['name']),
                           height: 120,
                           width: 150,
                           fit: BoxFit.cover),
@@ -42,7 +43,7 @@ class HistoryCard extends StatelessWidget {
                         children: <Widget>[
                           Container(
                               child: Text(
-                            job['jobDetails']['name'].toString(),
+                            job.data['name'].toString(),
                             textAlign: TextAlign.left,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 15),
@@ -53,7 +54,7 @@ class HistoryCard extends StatelessWidget {
                           Container(
                               child: Text(
                             "Posted by: " +
-                                job['jobDetails']['employer'].toString(),
+                                job.data['name'].toString(),
                             textAlign: TextAlign.left,
                           )),
                           Container(

@@ -20,7 +20,8 @@ class JobListings extends StatelessWidget {
       );
     }
 
-    List<DocumentSnapshot> _widgets = jobs.documents.where((doc) => doc.data['categories'].contains(category)).toList();
+    List<DocumentSnapshot> _widgets = jobs.documents.where((doc) => doc.data['categories'].contains(category.toLowerCase())).toList();
+    print(_widgets);
     List<Widget> _actual = _widgets.map((doc) => Container(child: JobCard(doc), margin: EdgeInsets.fromLTRB(15, 0, 0, 0),)).toList();
 
     return new Scaffold(

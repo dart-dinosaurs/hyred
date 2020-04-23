@@ -16,23 +16,26 @@ class HistoryDetails extends StatelessWidget {
       'Location:',
       'Language:'
     ];
-    Map _details = job.data['jobDetails'];
+    Map _details = job.data;
     List<String> _info = [
       _details['name'],
-      _details['employer'],
+      _details['name'] + 'employer',
       "\$" + _details['salary'].toString() + "/hr",
-      _details['location'],
-      _details['language']
+      _details['name'] + "address",
+      _details['name'] + "language"
     ];
 
-    return (Scaffold(
+    return (
+      Scaffold(
         body: Stack(
       children: <Widget>[
         ListView(
           children: <Widget>[
             Image(
-              image: NetworkImage("https://source.unsplash.com/featured/?" + job.data['jobDetails']['name']),
+              image: NetworkImage("https://source.unsplash.com/featured/?" + job.data['name']),
               width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height * 0.3,
+              fit: BoxFit.cover,
             ),
             Container(
               height: 10,

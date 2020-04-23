@@ -12,8 +12,8 @@ class TopJob extends StatelessWidget {
   @override
   Widget build(BuildContext context){
 
-    Timestamp _startDate = job.data['jobDetails']['startDate'];
-    Timestamp _endDate = job.data['jobDetails']['endDate'];
+    Timestamp _startDate = job.data['beginTime'];
+    Timestamp _endDate = job.data['endTime'];
 
     String _startDay = _startDate.toDate().day.toString();
     String _startMonth = _startDate.toDate().month.toString();
@@ -40,16 +40,16 @@ class TopJob extends StatelessWidget {
       child: Container(
         child: Column(
           children: <Widget>[
-            ClipRRect(borderRadius: BorderRadius.only( topLeft: Radius.circular(20), topRight: Radius.circular(20) ),child: Image(image: new NetworkImage("https://source.unsplash.com/featured/?" + job.data['jobDetails']['name']), width: MediaQuery.of(context).size.width * 0.45, height: 150, fit: BoxFit.cover, )),
+            ClipRRect(borderRadius: BorderRadius.only( topLeft: Radius.circular(20), topRight: Radius.circular(20) ),child: Image(image: new NetworkImage("https://source.unsplash.com/featured/?" + job.data['name']), width: MediaQuery.of(context).size.width * 0.45, height: 150, fit: BoxFit.cover, )),
             Container(
               width: MediaQuery.of(context).size.width * 0.45,
               height: 150,
               child: Column(children: <Widget>[
                 Container(height: 10,),
-                Container(child: Text(job.data['jobDetails']['name'], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20,), textAlign: TextAlign.left,), width: MediaQuery.of(context).size.width * 0.40, height: 30,),
+                Container(child: Text(job.data['name'], style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20,), textAlign: TextAlign.left,), width: MediaQuery.of(context).size.width * 0.40, height: 30,),
                 Container(child: Text(_date , style: TextStyle(fontWeight: FontWeight.w100,), textAlign: TextAlign.left,), width: MediaQuery.of(context).size.width * 0.40, height: 30),
-                Container(child: Text("\$" + job.data['jobDetails']['salary'].toString() + "/hr" , style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey), textAlign: TextAlign.left,), width: MediaQuery.of(context).size.width * 0.40, height: 40),
-                Container(child: Text(job.data['jobDetails']['description'], style: TextStyle( color: Colors.black), textAlign: TextAlign.left,), width: MediaQuery.of(context).size.width * 0.40,),
+                Container(child: Text("\$" + job.data['salary'].toString() + "/hr" , style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey), textAlign: TextAlign.left,), width: MediaQuery.of(context).size.width * 0.40, height: 40),
+                Container(child: Text(job.data['description'], style: TextStyle( color: Colors.black), textAlign: TextAlign.left,), width: MediaQuery.of(context).size.width * 0.40,),
               ],),
                 decoration: new BoxDecoration(
                   shape: BoxShape.rectangle,

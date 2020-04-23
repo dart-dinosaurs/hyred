@@ -53,7 +53,7 @@ class _HistoryState extends State<History> {
       } else {
         List<Widget> _cards = [];
         _jobs.forEach((doc) => {
-          _cards.add(HistoryCard(doc))
+          _cards.add(HistoryCard(doc)),
         });
         return(
           ListView(

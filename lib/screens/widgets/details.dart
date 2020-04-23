@@ -14,8 +14,8 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Timestamp _startDate = job.data['jobDetails']['startDate'];
-    Timestamp _endDate = job.data['jobDetails']['endDate'];
+    Timestamp _startDate = job.data['beginTime'];
+    Timestamp _endDate = job.data['endTime'];
 
     String _startDay = _startDate.toDate().day.toString();
     String _startMonth = _startDate.toDate().month.toString();
@@ -47,7 +47,7 @@ class DetailPage extends StatelessWidget {
   Container _getBackground() {
     return new Container(
       child: Image(
-        image: new NetworkImage("https://source.unsplash.com/featured/?" +  job['jobDetails']['name']),
+        image: new NetworkImage("https://source.unsplash.com/featured/?" +  job['name']),
         fit: BoxFit.cover,
         height: 150.0,
       ),
@@ -72,12 +72,7 @@ class DetailPage extends StatelessWidget {
 
   Container _getContent(BuildContext context, String _date) {
     final _overviewTitle = "overview".toUpperCase();
-    List myConditions = job['jobDetails']['requirements'];
 
-    List<Widget> list = new List<Widget>();
-    for (var i = 0; i < myConditions.length; i++) {
-      list.add(new Text(myConditions[i]));
-    }
     return new Container(
       child: new ListView(
         padding: new EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 32.0),
@@ -98,7 +93,7 @@ class DetailPage extends StatelessWidget {
                     ),
                     Align(
                       child: Text(
-                        job['jobDetails']['name'].toString(),
+                        job['name'].toString(),
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 23,
@@ -160,7 +155,7 @@ class DetailPage extends StatelessWidget {
                                 height: 10,
                               ),
                               Text(
-                                job['jobDetails']['activity'].toString(),
+                                job['name' + "asdfasdf"].toString(),
                                 style: TextStyle(fontSize: 18),
                               ),
                             ],
@@ -187,7 +182,7 @@ class DetailPage extends StatelessWidget {
                                 height: 10,
                               ),
                               Text(
-                                job['jobDetails']['salary'].toString(),
+                                job['salary'].toString(),
                                 style: TextStyle(fontSize: 18),
                               ),
                               Container(
@@ -210,7 +205,7 @@ class DetailPage extends StatelessWidget {
                               Container(
                                 height: 10,
                               ),
-                              Text(job['jobDetails']['language'].toString(),
+                              Text(job['name' + "language"].toString(),
                                   style: TextStyle(fontSize: 18)),
                             ],
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -251,7 +246,7 @@ class DetailPage extends StatelessWidget {
                       ),
                       Align(
                         child:
-                            Text(job['jobDetails']['description'].toString()),
+                            Text(job['description'].toString()),
                         alignment: Alignment.centerLeft,
                       ),
                       Container(
@@ -279,13 +274,9 @@ class DetailPage extends StatelessWidget {
                 ),
                 Container(
                   child: Column(
-                      children: myConditions
-                          .map((item) => Container(
-                                child: new Text("• " + item,
-                                    textAlign: TextAlign.right),
-                                margin: EdgeInsets.fromLTRB(0, 6, 0, 0),
-                              ))
-                          .toList(),
+                      children: <Widget>[
+                        Text(job.data['requirements'])
+                      ],
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start),
                   width: MediaQuery.of(context).size.width,
@@ -360,7 +351,7 @@ void inputData(DocumentSnapshot job) async {
 
   DocumentReference userReference = Firestore.instance.collection("users").document(uid);
 
-  List<dynamic> applicants = job.data['jobDetails']['applicants'];
+  List<dynamic> applicants = job.data['applicants'];
   bool doesContain = false;
   applicants.forEach((applicant) {
     if (applicant.path == userReference.path){
@@ -371,9 +362,9 @@ void inputData(DocumentSnapshot job) async {
   if (!doesContain) {
     applicants.add(userReference);
     Firestore.instance
-        .collection('jobs')
+        .collection('listings')
         .document(job.documentID)
-        .updateData({"jobDetails.applicants": applicants});
+        .updateData({"applicants": applicants});
 
     DocumentSnapshot currentUser = await Firestore.instance
         .collection("users")
@@ -383,7 +374,7 @@ void inputData(DocumentSnapshot job) async {
     dynamic currentJobs = currentUser.data['listings'];
 
     DocumentReference newJob =
-        await Firestore.instance.collection("jobs").document(job.documentID);
+        await Firestore.instance.collection("listings").document(job.documentID);
 
     currentJobs.add(newJob);
 
@@ -392,8 +383,8 @@ void inputData(DocumentSnapshot job) async {
         .document(uid.toString())
         .updateData({'listings': currentJobs});
 
-    Firestore.instance.collection("jobs").document(job.documentID).updateData(
-        {"applicants": job.data['jobDetails']['applicants'].length + 1});
+    Firestore.instance.collection("listings").document(job.documentID).updateData(
+        {"numberOfApplicants": job.data['applicants'].length + 1});
 
   }
 
