@@ -14,7 +14,10 @@ class AuthService {
     service
         .getData()
         .then((snapshot) => {
-              if(snapshot.data["registered"]) {u.setName(snapshot.data["fname"], snapshot.data["lname"])}
+              if(snapshot.data["registered"]) {
+                u.setName(snapshot.data["fname"], snapshot.data["lname"]),
+                u.setAddress(snapshot.data["street"], snapshot.data["apartment"], snapshot.data["city"], snapshot.data["province"], snapshot.data["postal"])
+                }
             })
         .catchError((err) => print(err.toString()));
     return u;
