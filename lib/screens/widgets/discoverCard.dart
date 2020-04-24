@@ -31,6 +31,7 @@ class DiscoverCard extends StatelessWidget {
                 image: NetworkImage("https://source.unsplash.com/featured/?" + industry.image),
                 width: 150,
                 height: 100,
+                
                 fit: BoxFit.cover,
               )),
           Container(

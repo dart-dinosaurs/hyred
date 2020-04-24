@@ -37,7 +37,7 @@ class TopJob extends StatelessWidget {
             builder: (context) => new Container(child: DetailPage(job))),
         ),
       
-      child: Container(
+      child: Card(
         child: Column(
           children: <Widget>[
             ClipRRect(borderRadius: BorderRadius.only( topLeft: Radius.circular(20), topRight: Radius.circular(20) ),child: Image(image: new NetworkImage("https://source.unsplash.com/featured/?" + job.data['name']), width: MediaQuery.of(context).size.width * 0.45, height: 150, fit: BoxFit.cover, )),
@@ -55,23 +55,17 @@ class TopJob extends StatelessWidget {
                   shape: BoxShape.rectangle,
                   color: Colors.white,
                   borderRadius: new BorderRadius.only(
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10)  
-                  ),
-                  boxShadow: [
-                    new BoxShadow(
-                      color: Colors.grey,
-                      offset: new Offset(1.0, 00.0),
-                      blurRadius: 5.0,
-                      spreadRadius: 1,
-                    )
-                  ]
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20)),
                 ),
               )
-          ]
-        ),
-      )
-      )
-    );
+            ]),
+            elevation: 10,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25.0),
+            )
+          )
+        )
+      );
   }
 }
