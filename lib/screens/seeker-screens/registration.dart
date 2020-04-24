@@ -198,6 +198,8 @@ class _RegistrationState extends State<Registration> {
           if (currentIndex == 1 && businessNameController.text == "") {
             _showDialog();
             return;
+          } else if (currentIndex == 1) {
+            _firestore.registerBusinessName(businessNameController.text);
           }
           if (addressPostalCodeController.text == "" ||
               addressCityController.text == "" ||
@@ -206,11 +208,12 @@ class _RegistrationState extends State<Registration> {
             _showDialog();
             return;
           }
-          _firestore.registerAddress(addressStreetController.text, 
-                                    addressApartmentController.text, 
-                                    addressCityController.text, 
-                                    addressProvinceController.text, 
-                                    addressPostalCodeController.text);
+          _firestore.registerAddress(
+              addressStreetController.text,
+              addressApartmentController.text,
+              addressCityController.text,
+              addressProvinceController.text,
+              addressPostalCodeController.text);
           break;
       }
       currentStep + 1 != steps.length
