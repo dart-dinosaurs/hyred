@@ -176,6 +176,8 @@ class _RegistrationState extends State<Registration> {
           if (currentIndex == 1 && businessNameController.text == "") {
             ShowDialog.error(context);
             return;
+          } else if (currentIndex == 1) {
+            _firestore.registerBusinessName(businessNameController.text);
           }
           if (addressPostalCodeController.text == "" ||
               addressCityController.text == "" ||
