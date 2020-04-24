@@ -22,6 +22,11 @@ class FirestoreService {
     });
   }
 
+  Future getListings() async {
+    DocumentSnapshot userData = await getData();
+    return userData.data["listings"];
+  }
+
   Future updateUserData(String fname, String lname, String background, String bio) async {
     return await userCollection.document(uid).setData({
       'registered': true,
