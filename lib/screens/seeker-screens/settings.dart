@@ -165,7 +165,7 @@ class _SettingsState extends State<Settings> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  'copyright ®',
+                  'Hyred © 2020',
                   style: TextStyle(
                       color: Colors.grey,
                       fontSize: 15.0,
