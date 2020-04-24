@@ -5,7 +5,6 @@ import 'package:main/router.dart';
 import 'package:main/screens/widgets/listing_card.dart';
 import 'package:main/screens/widgets/loading.dart';
 import 'package:main/screens/widgets/search_bar.dart';
-import 'package:main/services/auth.dart';
 import 'package:main/services/firestore.dart';
 import 'package:provider/provider.dart';
 

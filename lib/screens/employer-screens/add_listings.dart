@@ -11,6 +11,8 @@ import 'dart:math' as math;
 
 import 'package:provider/provider.dart';
 
+import '../../router.dart';
+
 var data = [
   {
     "display": "Caregiving",
@@ -132,6 +134,8 @@ class _AddListingsScreenState extends State<AddListingsScreen> {
           listing["salary"] = double.tryParse(_salaryController.text);
           print(listing);
           FirestoreService(uid: user.uid).addListing(listing);
+          ShowDialog.custom(context, "Congratulations!", "Your listing will be public once our moderators review it!");
+          Navigator.of(context).pop();
           break;
       }
       currentStep + 1 != 3
