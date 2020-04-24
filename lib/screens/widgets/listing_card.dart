@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'date_time_picker.dart';
 
 class ListingCard extends StatefulWidget {
   List<dynamic> applicants;
@@ -46,9 +47,11 @@ class _ListingCardState extends State<ListingCard> {
               children: <Widget>[
                 Container(
                   width: MediaQuery.of(context).size.width * 0.55,
-                  child: Text(widget.name,
+                  child: Text(widget.name + "sdf sdf s dfsdf fsdf",
                       textAlign: TextAlign.left,
-                      style: TextStyle(fontWeight: FontWeight.bold)),
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                      overflow: TextOverflow.ellipsis,
+                  ),
                   margin: EdgeInsets.fromLTRB(
                       MediaQuery.of(context).size.width * 0.4 + 10, 0, 0, 0),
                 ),
@@ -62,13 +65,16 @@ class _ListingCardState extends State<ListingCard> {
                             Icons.attach_money,
                             size: 18,
                           ),
-                          Text("${widget.salary} /h"),
+                          Text("${widget.salary}/hr"),
                         ],
                       ),
                       Row(
                         children: <Widget>[
                           Icon(Icons.location_on, size: 20),
-                          Text("${widget.name}")
+                          Container(
+                            width: 70,
+                            child: Text("${widget.name}", overflow: TextOverflow.ellipsis,),
+                          )
                         ],
                       ),
                     ],
@@ -81,13 +87,14 @@ class _ListingCardState extends State<ListingCard> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
-                      Row(
+                      Wrap(
+                        direction: Axis.horizontal,
                         children: <Widget>[
                           Icon(
                             Icons.calendar_today,
                             size: 20,
                           ),
-                          Text(widget.beginTime.toString()),
+                          Text(" ${months[widget.beginTime.month]} ${widget.beginTime.day} - ${months[widget.endTime.month]} ${widget.endTime.day}"),
                         ],
                       ),
                     ],
@@ -97,10 +104,10 @@ class _ListingCardState extends State<ListingCard> {
                   width: MediaQuery.of(context).size.width * 0.55,
                 ),
                 Container(
-                  child: Text("Posted By: ME"),
+                  child: Text("Posted By: Me", overflow: TextOverflow.ellipsis,),
                   margin: EdgeInsets.fromLTRB(
                       MediaQuery.of(context).size.width * 0.4 + 10, 0, 0, 0),
-                  width: MediaQuery.of(context).size.width * 0.55,
+                  width: MediaQuery.of(context).size.width * 0.65,
                 )
               ],
             ),
