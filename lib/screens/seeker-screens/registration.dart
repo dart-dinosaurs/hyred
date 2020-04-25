@@ -23,7 +23,6 @@ class _RegistrationState extends State<Registration> {
     setState(() {
       currentIndex = index;
     });
-    print(currentIndex);
   }
 
   cancel() {

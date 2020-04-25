@@ -13,10 +13,10 @@ class FirestoreService {
     listing["user"] = userCollection.document(uid);
     listing["filledBy"] = "";
     listing["numberOfApplicants"] = 0;
+    listing["postTime"] = DateTime.now();
     DocumentReference listingReference = await listingCollection.add(listing);
     DocumentSnapshot listingsSnapshot = await userCollection.document(uid).get();
     List<dynamic> listings = listingsSnapshot.data["listings"];
-    print([listingReference, ...listings]);
     await userCollection.document(uid).updateData({
       "listings": [listingReference, ...listings]
     });
@@ -25,6 +25,12 @@ class FirestoreService {
   Future getListings() async {
     DocumentSnapshot userData = await getData();
     return userData.data["listings"];
+  }
+
+  Future selectCandidate(DocumentReference listingReference, DocumentReference userReference) async {
+   await listingReference.updateData({
+      "filledBy": userReference,
+    });
   }
 
   Future updateUserData(String fname, String lname, String background, String bio) async {

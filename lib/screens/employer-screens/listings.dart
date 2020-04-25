@@ -37,21 +37,21 @@ class _ListingsScreenState extends State<ListingsScreen> {
 
     Future setup() async {
       List references = await firestoreService.getListings();
-      List<Future<DocumentSnapshot>> list = [];
+      List list = [];
       references.forEach((reference) {
-        list.add(reference.get());
+        list.add({"snapshot": reference, "ref": reference});
       });
-      return await Future.wait(list);
+      return await Future.wait(list.map((obj) => obj["snapshot"].get()));
     }
 
     void setData() async {
-      List<DocumentSnapshot> snapshots = await setup();
+      List snapshots = await setup();
       List data = [];
       snapshots.forEach((snapshot) {
         dynamic object = snapshot.data;
         object["beginTime"] = object["beginTime"].toDate();
         object["endTime"] = object["endTime"].toDate();
-        print(object);
+        object["ref"] = snapshot.reference;
         data.add(object);
       });
       this.setState(() {
@@ -89,12 +89,14 @@ class _ListingsScreenState extends State<ListingsScreen> {
                 requirements: obj["requirements"],
                 numberOfApplicants: obj["numberOfApplicants"],
                 salary: obj["salary"],
+                reference: obj["ref"],
+                filledBy: obj["filledBy"],
               ),
             ))
         .toList();
 
-    print(widgets);
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add, color: Colors.white),
         onPressed: () {
@@ -104,7 +106,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
       body: SafeArea(
         child: this.loading
             ? Loading()
-            : Column(
+            : ListView(
                 children: [
                   SearchBar(
                     controller: _controller,

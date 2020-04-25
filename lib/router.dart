@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:main/screens/employer-screens/add_listings.dart';
 import 'package:flutter/material.dart';
 import 'package:main/screens/employer-screens/home.dart';
@@ -31,10 +32,20 @@ class Router {
       SailorRoute(
         name: '/employer/listing_detail',
         builder: (context, args, params) {
-          return ListingDetail(name: params.param<String>("name"));
+          return ListingDetail(
+            name: params.param("name"),
+            categories: params.param("categories"),
+            applicants: params.param("applicants"),
+            salary: params.param("salary"),
+            reference: params.param("reference"),
+          );
         },
         params: [
           SailorParam(name: 'name', isRequired: true),
+          SailorParam(name: 'categories', isRequired: true),
+          SailorParam(name: 'applicants', isRequired: true),
+          SailorParam(name: 'salary', isRequired: true),
+          SailorParam(name: 'reference', isRequired: true)
         ],
       ),
       SailorRoute(
