@@ -111,7 +111,8 @@ class _ListingsScreenState extends State<ListingsScreen> {
                     onChange: this.changeSearch,
                   ),
                   SizedBox(height: 10),
-                  Expanded(child: Center(child: ListView(children: widgets)), flex: 1),
+                  Column(children: [widgets[0], widgets[0], widgets[0], widgets[0], widgets[0], widgets[0] ])
+                 ,
                 ],
               ),
       ),
