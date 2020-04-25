@@ -7,8 +7,6 @@ import 'package:main/screens/seeker-screens/settings.dart';
 import 'package:provider/provider.dart';
 import 'package:main/models/user.dart';
 import 'package:main/services/firestore.dart';
-import 'package:main/screens/widgets/loading.dart';
-import 'package:main/screens/widgets/under_construction.dart';
 
 class SeekerHome extends StatefulWidget {
   @override

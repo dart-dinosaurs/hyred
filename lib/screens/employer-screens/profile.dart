@@ -2,6 +2,7 @@ import 'dart:ffi';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:main/models/user.dart';
+import 'package:main/screens/seeker-screens/settings.dart';
 import 'package:provider/provider.dart';
 // import 'package:main/services/auth.dart';
 
@@ -13,9 +14,14 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  bool _showProfile = true;
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
+    if (!_showProfile) {
+      return Settings();
+    }
     return new Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
@@ -23,30 +29,70 @@ class _ProfileState extends State<Profile> {
         Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 12.0, right: 12.0),
-                child: IconButton(
-                  iconSize: 33.0,
-                  icon: Icon(Icons.edit),
-                  onPressed: () {}
+            Row(
+              children: <Widget>[
+                SizedBox(width: 15.0,),
+                Container(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 12.0, right: 12.0),
+                    child: IconButton(
+                      iconSize: 33.0,
+                      icon: Icon(Icons.arrow_back),
+                      onPressed: () {setState(() {
+                          _showProfile = false;
+                        });
+                      }
+                    ),
+                  ),
                 ),
-              ),
-            ),
+                Spacer(),
+                Container(
+                  alignment: Alignment.topLeft,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 12.0, left: 12.0),
+                      child: IconButton(
+                        iconSize: 33.0,
+                        icon: Icon(Icons.edit),
+                        onPressed: () {}
+                      ),
+                  ),
+                ),
+                SizedBox(width: 12.0,),
+            ],),
             SizedBox(height: 20.0),
             Row(
               children: <Widget>[
-                SizedBox(width: 30.0),
+                SizedBox(width: 60.0),
                 Column(
                   children: <Widget>[
-                  Text(
-                    'Richard Hong',
-                    style: TextStyle(
-                      fontSize: 32.0,
-                      color: Colors.black,
-                    )
-                  ),
+                    SizedBox(
+                    width: 160.0,
+                      child: FittedBox(fit:BoxFit.fitWidth, 
+                      child: Text(
+                        user.fname + " " + user.lname,
+                        style: TextStyle(
+                          fontSize: 25.0,
+                          color: Colors.black,
+                        )
+                      ),
+                      ),
+                    ),
+                  SizedBox(height: 4.0),
+                  SizedBox(
+                    width: 160.0,
+                      child: FittedBox(fit:BoxFit.fitWidth, 
+                      child: Text(
+                        user.businessName,
+                        style: TextStyle(
+                          fontSize: 17.0,
+                          fontStyle: FontStyle.italic,
+                          color: Colors.grey.shade800,
+                        )
+                      ),
+                      ),
+                    ),
+
                   SizedBox(height: 8.0),
                   Text(
                     'Joined March 2020',
@@ -56,15 +102,15 @@ class _ProfileState extends State<Profile> {
                     )
                   )],
                 ),
-                SizedBox(width: 50.0),
+                SizedBox(width: 75.0),
                 Container(
-                  height: 80.0,
-                  width: 80.0,
+                  height: 70.0,
+                  width: 70.0,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(45.0),
                       image: DecorationImage(
                         image: NetworkImage(
-                      'https://avatars2.githubusercontent.com/u/44233784?s=400&v=4'
+                      'https://source.unsplash.com/random/100x100'
                         ),
                       )
                     ),
@@ -76,31 +122,48 @@ class _ProfileState extends State<Profile> {
               SizedBox(width: 40.0),
               Icon(
                 Icons.verified_user,
-                size: 40.0,
+                size: 29.0,
                 color: Colors.green,
               ),
               SizedBox(width: 35.0),
               Text(
                 'Verified',
                 style: TextStyle(
-                      fontSize: 22.0,
+                      fontSize: 16.5,
                       color: Colors.black,
                     )
               )
             ],),
-            SizedBox(height: 28.0),
+            SizedBox(height: 25.0),
             Row(children: <Widget>[
               SizedBox(width: 40.0),
               Icon(
                 Icons.rate_review,
-                size: 40.0,
+                size: 29.0,
                 color: Colors.yellow.shade700,
               ),
               SizedBox(width: 35.0),
               Text(
                 '3 References',
                 style: TextStyle(
-                      fontSize: 22.0,
+                      fontSize: 16.5,
+                      color: Colors.black,
+                    )
+              )
+            ],),
+            SizedBox(height: 25.0),
+            Row(children: <Widget>[
+              SizedBox(width: 40.0),
+              Icon(
+                Icons.home,
+                size: 29.0,
+                color: Colors.grey.shade800,
+              ),
+              SizedBox(width: 35.0),
+              Text(
+                "Lives in " + user.city + ", " + user.province,
+                style: TextStyle(
+                      fontSize: 16.5,
                       color: Colors.black,
                     )
               )
@@ -117,47 +180,14 @@ class _ProfileState extends State<Profile> {
           Padding(
             padding: const EdgeInsets.only(left: 35.0),
             child: Text(
-              'Reviews',
+              '1 Review',
               style: TextStyle(
-                fontSize: 23.0,
+                fontSize: 20.0,
                 fontWeight: FontWeight.bold),
             ),
           ),
-          SizedBox(height: 15.0),
-          Padding(
-            padding: EdgeInsets.only(left: 25.0),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Transform.rotate(
-                angle: 180 * pi / 180,
-                child: Icon(
-                  Icons.format_quote,
-                  color: Colors.grey.shade400,
-                  size: 60.0
-                ),
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: Text(
-              'Check out his notes on Github',
-              style: TextStyle(
-                fontSize: 21.0,
-                ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(right: 25.0),
-            child: Align(
-              alignment: Alignment.bottomRight,
-              child: Icon(
-                Icons.format_quote,
-                color: Colors.grey.shade400,
-                size: 60.0,
-              ),
-            ),
-          ),
+          SizedBox(height: 18,),
+          reviewCard("Nice Boss", "Tom Grey"),
           SizedBox(height: 20.0,),
           Divider(
             color: Colors.grey.shade300,
@@ -169,76 +199,136 @@ class _ProfileState extends State<Profile> {
           Padding(
             padding: const EdgeInsets.only(left: 35.0),
             child: Text(
-              'Richard provided',
+              user.fname + ' provided:',
               style: TextStyle(
-                fontSize: 23.0,
+                fontSize: 20.0,
                 fontWeight: FontWeight.bold),
             ),
           ),
-          SizedBox(height: 22.0),
-            Row(children: <Widget>[
-              SizedBox(width: 40.0),
-              Icon(
-                Icons.check_circle_outline,
-                size: 30.0,
-                color: Colors.green,
-              ),
-              SizedBox(width: 13.0),
-              Text(
-                'Government ID',
-                style: TextStyle(
-                      fontSize: 22.0,
-                      color: Colors.black,
-                    )
-              ),
-              SizedBox(width: 13.0),
-              Icon(
-                Icons.check_circle_outline,
-                size: 30.0,
-                color: Colors.green,
-              ),
-              SizedBox(width: 13.0),
-              Text(
-                'Photo',
-                style: TextStyle(
-                      fontSize: 22.0,
-                      color: Colors.black,
-                    )
-              )
+          SizedBox(height: 18.0),
+            Column(children: <Widget>[
+              Row(children: <Widget>[
+                SizedBox(width: 55,),
+                Icon(
+                  Icons.check_circle_outline,
+                  size: 25.0,
+                  color: Colors.green,
+                ),
+                SizedBox(width: 30),
+                Text(
+                  'Government ID',
+                  style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.black,
+                      )
+                ),
+              ]),
+              Row(children: <Widget>[
+                SizedBox(width: 55,),
+                Icon(
+                  Icons.check_circle_outline,
+                  size: 25.0,
+                  color: Colors.green,
+                ),
+                SizedBox(width: 30,),
+                Text(
+                  'Photo',
+                  style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.black,
+                      )
+                ),
+              ]),
             ],),
-            Row(children: <Widget>[
-              SizedBox(width: 40.0),
-              Icon(
-                Icons.remove_circle_outline,
-                size: 30.0,
-                color: Colors.red,
-              ),
-              SizedBox(width: 13.0),
-              Text(
-                'Email address ',
-                style: TextStyle(
-                      fontSize: 22.0,
-                      color: Colors.black,
-                    )
-              ),
-              SizedBox(width: 13.0),
-              Icon(
-                Icons.check_circle_outline,
-                size: 30.0,
-                color: Colors.green,
-              ),
-              SizedBox(width: 13.0),
-              Text(
-                'Resume',
-                style: TextStyle(
-                      fontSize: 22.0,
-                      color: Colors.black,
-                    )
-              )
+            Column(children: <Widget>[
+              Row(children: <Widget>[
+                SizedBox(width: 55,),
+                Icon(
+                  Icons.remove_circle_outline,
+                  size: 25.0,
+                  color: Colors.red,
+                ),
+                SizedBox(width: 30,),
+                Text(
+                  'Resume',
+                  style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.black,
+                      )
+                ),
+              ],),
+              Row(children: <Widget>[
+                SizedBox(width: 55,),
+                Icon(
+                  Icons.check_circle_outline,
+                  size: 25.0,
+                  color: Colors.green,
+                ),
+                SizedBox(width: 30,),
+                Text(
+                  'Email address',
+                  style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.black,
+                      )
+                ),
+              ]),
             ],),
-          SizedBox(height: 30.0,)
+          SizedBox(height: 30.0,),
+          Divider(
+            color: Colors.grey.shade300,
+            thickness: 1.5,
+            indent: 20.0,
+            endIndent: 20.0,
+          ),
+          SizedBox(height: 30.0,),
         ],
       )
+    );
+  }
+
+
+
+  Widget reviewCard(String review, String reviewerName) {
+    return Column(
+      children: <Widget>[
+        Card(
+            elevation: 2.0,
+            margin: const EdgeInsets.fromLTRB(18.0, 3.0, 18.0, 3.0),
+            child: Padding(
+              padding: const EdgeInsets.all(13.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      Row(children: <Widget>[
+                        Text(
+                          '"' + review + '"',
+                          style: TextStyle(
+                            fontSize: 18.0,
+                            color: Colors.black,
+                          ),
+                        ),
+                        Spacer(),
+                      ],),
+                      SizedBox(height: 2,),
+                      Row(children: <Widget>[
+                        Spacer(),
+                        Text(
+                          "- " + reviewerName,
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],)
+                    ],
+                  ),
+                ],
+              ),
+            )),
+      ],
     );
   }
 }
