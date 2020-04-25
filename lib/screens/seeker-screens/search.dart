@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:main/screens/widgets/job_card.dart';
+import 'package:main/screens/widgets/loading.dart';
 import 'package:provider/provider.dart';
 
 class Search extends StatefulWidget {
@@ -15,6 +16,7 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
+
   List<DocumentSnapshot> _jobs;
   bool _loading;
 
@@ -32,6 +34,7 @@ class _SearchState extends State<Search> {
       }
     );
   }
+
   List<DocumentSnapshot> hits = [];
 
   @override
@@ -39,29 +42,36 @@ class _SearchState extends State<Search> {
 
     Future<List<DocumentSnapshot>> setup() async {
       List<Future<DocumentSnapshot>> list = [];
-      Provider.of<DocumentSnapshot>(context).data["listings"].forEach((ref) async {
-        list.add(ref.get());
+      widget.allJobs.forEach((job) async {
+        list.add(job.data['user'].get());
       });
       return await Future.wait(list);
     }
 
-    print(widget.allJobs);
-
-    for (int i = 0; i < widget.allJobs.length; i++) {
-      if (widget.allJobs[i].data['name'].contains(widget.searchValue) || widget.allJobs[i].data['categories'].contains(widget.searchValue)) {
-        hits.add(widget.allJobs[i]);
-      } 
+    hits = [];
+    if (Provider.of<DocumentSnapshot>(context) == null) {
+      return (Loading());
+    } else {
+      if(_loading){
+        setup().then((list){
+        setData(list);
+      });
+        return Loading();
+      } else {
+          for (int i = 0; i < widget.allJobs.length; i++) {
+            if (widget.allJobs[i].data['name'].contains(widget.searchValue) || widget.allJobs[i].data['categories'].contains(widget.searchValue) || _jobs[i].data['businessName'].contains(widget.searchValue)) {
+              hits.add(widget.allJobs[i]);
+            }
+          }
+          return (
+              Column(
+            children: hits
+                .map((item) => Container(
+                      child: JobCard(item),
+                    ))
+                .toList(),
+          ));
+        }
     }
-
-
-    return (
-        Column(
-      children: hits
-          .map((item) => Container(
-                child: new JobCard(item),
-              ))
-          .toList(),
-    ));
   }
-
 }
