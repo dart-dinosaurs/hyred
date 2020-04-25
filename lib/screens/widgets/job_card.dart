@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:main/screens/widgets/months.dart';
-import 'package:main/screens/widgets/separator.dart';
-import './data.dart';
+import 'package:intl/intl.dart';
 import './details.dart';
 
 class JobCard extends StatefulWidget {
@@ -36,21 +35,10 @@ class _JobCardState extends State<JobCard> {
 
   @override
   Widget build(BuildContext context) {
-    Timestamp _startDate = widget.job.data['beginTime'];
-    Timestamp _endDate = widget.job.data['endTime'];
-
-    String _startDay = _startDate.toDate().day.toString();
-    String _startMonth = _startDate.toDate().month.toString();
-    String _startYear = _startDate.toDate().year.toString();
-
-    String _endDay = _endDate.toDate().day.toString();
-    String _endMonth = _endDate.toDate().month.toString();
-    String _endYear = _endDate.toDate().year.toString();
-
-    String _strStart = _startDay + "/" + _startMonth + "/" + _startYear;
-    String _strEnd = _endDay + "/" + _endMonth + "/" + _endYear;
-
-    String _date = _strStart + " - " + _strEnd;
+    
+    String date = DateFormat.MMMMd().format(widget.job.data['beginTime'].toDate());
+    String startTime = DateFormat.jm().format(widget.job.data['beginTime'].toDate());
+    String endTime = DateFormat.jm().format(widget.job.data['endTime'].toDate());
 
     return new GestureDetector(
         onTap: () => Navigator.of(context).push(new PageRouteBuilder(
@@ -118,12 +106,7 @@ class _JobCardState extends State<JobCard> {
                                 Icons.calendar_today,
                                 size: 20,
                               ),
-                              Text(
-                                  " ${months[widget.job.data['beginTime'].toDate().month]} " +
-                                      widget.job.data['beginTime']
-                                          .toDate()
-                                          .day
-                                          .toString()),
+                              Text(" " + date)
                             ],
                           ),
                         ],
@@ -142,7 +125,7 @@ class _JobCardState extends State<JobCard> {
                             Icons.timer,
                             size: 20,
                           ),
-                          Text(widget.job.data['beginTime'].toDate().hour.toString() + ":" + widget.job.data['beginTime'].toDate().minute.toString() + " - " + widget.job.data['endTime'].toDate().hour.toString() + ":" + widget.job.data['endTime'].toDate().minute.toString())
+                          Text(" " +  startTime + " - " + endTime)
                         ],
                       ),
                       margin: EdgeInsets.fromLTRB(

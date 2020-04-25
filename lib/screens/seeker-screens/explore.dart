@@ -4,7 +4,7 @@ import 'package:main/screens/seeker-screens/search.dart';
 import 'package:main/screens/widgets/loading.dart';
 import 'package:main/screens/widgets/search_bar.dart';
 import 'package:main/screens/widgets/topJob.dart';
-import 'package:main/screens/widgets/discoverCard.dart';
+import 'package:main/screens/widgets/discover_card.dart';
 import 'package:main/screens/widgets/data.dart';
 import 'package:provider/provider.dart';
 
@@ -46,12 +46,14 @@ class _ExploreState extends State<Explore> {
       _topJobs.add(DiscoverCard(industries[i], jobs));
     }
 
-    return ListView(children: <Widget>[
+    return Column(children: <Widget>[
       SearchBar(controller: myController, onChange: (value) => {setSearch(value)}),
       Container(height: 10,),
       searchValue != ""
           ? Search(searchValue, jobDocs)
-          : Column(
+          : Container(
+            height: MediaQuery.of(context).size.height * 0.82,
+            child: ListView(
               children: <Widget>[
                 Container(
                     child: Text("Explore Jobs",
@@ -118,6 +120,7 @@ class _ExploreState extends State<Explore> {
                 ),
               ],
             )
+          )
     ]);
   }
 }

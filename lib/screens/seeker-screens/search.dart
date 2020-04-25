@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:main/screens/widgets/jobCard.dart';
+import 'package:main/screens/widgets/job_card.dart';
 
 class Search extends StatelessWidget {
   final String searchValue;
@@ -20,7 +20,7 @@ class Search extends StatelessWidget {
 
 
     return (
-        Column(
+        ListView(
       children: hits
           .map((item) => Container(
                 child: new JobCard(item),

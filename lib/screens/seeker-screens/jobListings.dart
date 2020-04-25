@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:main/screens/widgets/jobCard.dart';
+import 'package:main/screens/widgets/job_card.dart';
 import 'package:main/screens/widgets/loading.dart';
 
 class JobListings extends StatelessWidget {

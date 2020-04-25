@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:main/screens/widgets/historyCard.dart';
+import 'package:main/screens/widgets/history_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:main/screens/widgets/history_card.dart';
 import 'package:main/screens/widgets/loading.dart';
 import 'package:provider/provider.dart';
 
@@ -55,9 +56,10 @@ class _HistoryState extends State<History> {
         _jobs.forEach((doc) => {
           _cards.add(HistoryCard(doc)),
         });
+        print(_cards);
         return(
           ListView(
-            children: _cards
+            children: [_cards[0], _cards[0], _cards[0], _cards[0], _cards[0], _cards[0], _cards[0]]
           )
         );
       }
