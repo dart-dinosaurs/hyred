@@ -30,7 +30,7 @@ class ListingCard extends StatefulWidget {
 class _ListingCardState extends State<ListingCard> {
   @override
   Widget build(BuildContext context) {
-    return new GestureDetector(
+    return GestureDetector(
         child: Stack(
       children: <Widget>[
         Card(

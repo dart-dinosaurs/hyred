@@ -76,6 +76,24 @@ class _ListingsScreenState extends State<ListingsScreen> {
       setData();
       return Loading();
     }
+
+    List<Widget> widgets = filteredData
+        .map((obj) => Container(
+              child: ListingCard(
+                applicants: obj["applicants"],
+                beginTime: obj["beginTime"],
+                endTime: obj["endTime"],
+                categories: obj["categories"],
+                description: obj["description"],
+                name: obj["name"],
+                requirements: obj["requirements"],
+                numberOfApplicants: obj["numberOfApplicants"],
+                salary: obj["salary"],
+              ),
+            ))
+        .toList();
+
+    print(widgets);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add, color: Colors.white),
@@ -92,21 +110,8 @@ class _ListingsScreenState extends State<ListingsScreen> {
                     controller: _controller,
                     onChange: this.changeSearch,
                   ),
-                  ...(filteredData.map(
-                    (obj) {
-                      return ListingCard(
-                        applicants: obj["applicants"],
-                        beginTime: obj["beginTime"],
-                        endTime: obj["endTime"],
-                        categories: obj["categories"],
-                        description: obj["description"],
-                        name: obj["name"],
-                        requirements: obj["requirements"],
-                        numberOfApplicants: obj["numberOfApplicants"],
-                        salary: obj["salary"],
-                      );
-                    },
-                  )),
+                  SizedBox(height: 10),
+                  Expanded(child: Center(child: ListView(children: widgets)), flex: 1),
                 ],
               ),
       ),

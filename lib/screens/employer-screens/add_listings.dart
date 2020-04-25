@@ -132,10 +132,13 @@ class _AddListingsScreenState extends State<AddListingsScreen> {
                 context, "Invalid", "Salary must be greater than 14.25!");
           }
           listing["salary"] = double.tryParse(_salaryController.text);
-          print(listing);
-          FirestoreService(uid: user.uid).addListing(listing);
-          ShowDialog.custom(context, "Congratulations!", "Your listing will be public once our moderators review it!");
-          Navigator.of(context).pop();
+          FirestoreService(uid: user.uid).addListing(listing).then((ref){
+            Navigator.of(context).pop();
+            ShowDialog.custom(context, "Congratulations!",
+                "Your listing will be public once our moderators review it!");
+            
+          });
+
           break;
       }
       currentStep + 1 != 3
@@ -338,20 +341,20 @@ class _AddListingsScreenState extends State<AddListingsScreen> {
                           child: RaisedButton(
                             child: Text('Next Step'),
                             onPressed: () {
+                              DateTime now = DateTime.now();
                               if (_listingCategories.length > 0 &&
                                   _nameController.text != '' &&
                                   _date != null &&
                                   _begin != null &&
                                   _end != null) {
-                                if ((_date.month == DateTime.now().month &&
-                                            _date.year == DateTime.now().year &&
-                                            _date.day == DateTime.now().day) &&
-                                        (_begin.hour == TimeOfDay.now().hour &&
-                                            _begin.minute <
-                                                TimeOfDay.now().minute) ||
-                                    (_begin.hour < TimeOfDay.now().hour)) {
+                                if ((_date.month == now.month &&
+                                        _date.day == now.day &&
+                                        _date.year == now.year) &&
+                                    ((_begin.hour == now.hour &&
+                                            _begin.minute < now.minute) ||
+                                        (_begin.hour < now.hour))) {
                                   ShowDialog.custom(context, "Error",
-                                      "Begin time must be in the future!");
+                                      "Start time must be in the future!");
                                 } else if (_begin.hour == _end.hour &&
                                     _begin.minute < _end.minute) {
                                   ShowDialog.custom(context, "Error",
