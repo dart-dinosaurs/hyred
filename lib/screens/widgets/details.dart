@@ -2,22 +2,59 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:main/screens/widgets/loading.dart';
 import '../widgets/data.dart';
 import '../widgets/separator.dart';
 
-class DetailPage extends StatelessWidget {
-  final DocumentSnapshot job;
-  final bool horizontal;
+class DetailPage extends StatefulWidget {
+  @override
+  _DetailPageState createState() => _DetailPageState();
 
-  DetailPage(this.job, {this.horizontal = true});
+  DocumentSnapshot job;
+  DetailPage(this.job);
+}
 
-  DetailPage.vertical(this.job) : horizontal = false;
+class _DetailPageState extends State<DetailPage> {
+
+  bool isClicked;
+  bool loading;
+  @override
+  void initState(){
+    isClicked = false;
+    loading = true;
+    checkApplication().then((boolean) {
+      setState(() {
+        isClicked = boolean;
+        loading = false;
+      });
+    });
+  }
+
+  Future<bool> checkApplication() async{
+    bool applied = false;
+    final FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    final uid = user.uid;
+
+    DocumentReference userReference = Firestore.instance.collection("users").document(uid);
+    List<dynamic> currentApplicants = widget.job.data['applicants'];
+
+    currentApplicants.forEach((applicant) {
+      if (applicant.path == userReference.path){
+        applied = true;
+      }
+    });
+    return applied;
+  }
 
   @override
   Widget build(BuildContext context) {
 
-    String date = DateFormat.MMMMd().format(job.data['beginTime'].toDate());
-    String time = DateFormat.jm().format(job.data['beginTime'].toDate()) + " - " + DateFormat.jm().format(job.data['endTime'].toDate());
+    String date = DateFormat.MMMMd().format(widget.job.data['beginTime'].toDate());
+    String time = DateFormat.jm().format(widget.job.data['beginTime'].toDate()) + " - " + DateFormat.jm().format(widget.job.data['endTime'].toDate());
+    if (loading){
+      return Loading();
+    }
+    else {
     return new Scaffold(
       body: new Container(
         constraints: new BoxConstraints.expand(),
@@ -31,11 +68,12 @@ class DetailPage extends StatelessWidget {
       ),
     );
   }
+  }
 
   Container _getBackground() {
     return new Container(
       child: Image(
-        image: new NetworkImage("https://source.unsplash.com/featured/?" +  job['name']),
+        image: new NetworkImage("https://source.unsplash.com/featured/?" +  widget.job['name']),
         fit: BoxFit.cover,
         height: 150.0,
       ),
@@ -49,9 +87,6 @@ class DetailPage extends StatelessWidget {
       child: new ListView(
         padding: new EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 32.0),
         children: <Widget>[
-          // new JobCard(job,
-          //   horizontal: false,
-          // ),
           _getBackground(),
           new Container(
             padding: new EdgeInsets.symmetric(horizontal: 10.0),
@@ -65,7 +100,7 @@ class DetailPage extends StatelessWidget {
                     ),
                     Align(
                       child: Text(
-                        job['name'].toString(),
+                        widget.job['name'].toString(),
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 23,
@@ -154,7 +189,7 @@ class DetailPage extends StatelessWidget {
                                 height: 10,
                               ),
                               Text(
-                                job['salary'].toString() + " /hr",
+                                widget.job['salary'].toString() + " /hr",
                                 style: TextStyle(fontSize: 18),
                               ),
                               Container(
@@ -218,7 +253,7 @@ class DetailPage extends StatelessWidget {
                       ),
                       Align(
                         child:
-                            Text(job['description'].toString()),
+                            Text(widget.job['description'].toString()),
                         alignment: Alignment.centerLeft,
                       ),
                       Container(
@@ -247,7 +282,7 @@ class DetailPage extends StatelessWidget {
                 Container(
                   child: Column(
                       children: <Widget>[
-                        Text(job.data['requirements'])
+                        Text(widget.job.data['requirements'])
                       ],
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start),
@@ -263,14 +298,14 @@ class DetailPage extends StatelessWidget {
                   margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
                   child: RaisedButton(
                     child: Text(
-                      "Apply Now",
+                      isClicked ? "Applied" : "Apply Now",
                       style: TextStyle(color: Colors.white),
                     ),
+
                     elevation: 6.0,
                     color: Colors.green,
                     onPressed: () {
-                      applyNow(context);
-                      inputData(job);
+                      isClicked ? null : applyNow(context);
                     },
                   ),
                 )
@@ -307,6 +342,8 @@ class DetailPage extends StatelessWidget {
         builder: (BuildContext context) {
           return alertDialog;
         });
+
+        inputData(widget.job);
   }
 
   Container _getToolbar(BuildContext context) {
@@ -315,23 +352,19 @@ class DetailPage extends StatelessWidget {
       child: new BackButton(color: Colors.white),
     );
   }
-}
 
-void inputData(DocumentSnapshot job) async {
+  void inputData(DocumentSnapshot job) async {
   final FirebaseUser user = await FirebaseAuth.instance.currentUser();
   final uid = user.uid;
 
   DocumentReference userReference = Firestore.instance.collection("users").document(uid);
 
   List<dynamic> applicants = job.data['applicants'];
-  bool doesContain = false;
-  applicants.forEach((applicant) {
-    if (applicant.path == userReference.path){
-      doesContain = true;
-    }
-  });
 
-  if (!doesContain) {
+  setState(() {
+      isClicked = true;
+    });
+
     applicants.add(userReference);
     Firestore.instance
         .collection('listings')
@@ -356,9 +389,11 @@ void inputData(DocumentSnapshot job) async {
         .updateData({'listings': currentJobs});
 
     Firestore.instance.collection("listings").document(job.documentID).updateData(
-        {"numberOfApplicants": job.data['applicants'].length + 1});
-
-  }
-
+        {"numberOfApplicants": job.data['applicants'].length + 1});}
 
 }
+
+
+  
+
+

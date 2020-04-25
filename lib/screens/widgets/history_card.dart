@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:main/screens/seeker-screens/historyDetails.dart';
+import 'package:main/screens/widgets/loading.dart';
 import 'package:main/screens/widgets/months.dart';
 import 'package:intl/intl.dart';
 import './details.dart';
@@ -16,31 +18,55 @@ class HistoryCard extends StatefulWidget {
 
 class _HistoryCardState extends State<HistoryCard> {
   bool loading;
+  bool isAccepted;
   dynamic userData;
   @override
   void initState() {
     super.initState();
     loading = true;
     userData = "";
+    isAccepted = false;
     getUserData().then((snapshot) {
       setState(() {
         userData = snapshot.data;
+      });
+    });
+    checkUserReference().then((boolean) {
+      setState(() {
+        isAccepted = boolean;
         loading = false;
       });
     });
   }
 
   Future<DocumentSnapshot> getUserData() async {
-    return await widget.job['user'].get();
+    return await widget.job.data['user'].get();
+  }
+
+  Future<bool> checkUserReference() async{
+    final FirebaseUser user = await FirebaseAuth.instance.currentUser();
+    final uid = user.uid;
+
+    DocumentReference userReference = Firestore.instance.collection("users").document(uid);
+    if (widget.job.data['filledBy'] == ""){return false;}
+    if (widget.job.data['filledBy'].path == userReference.path){
+      return true;
+    }
+    return false;
   }
 
   @override
   Widget build(BuildContext context) {
-    
+
+   
+
     String date = DateFormat.MMMMd().format(widget.job.data['beginTime'].toDate());
     String startTime = DateFormat.jm().format(widget.job.data['beginTime'].toDate());
     String endTime = DateFormat.jm().format(widget.job.data['endTime'].toDate());
-
+    if (loading){
+      return(Loading());
+    }
+    else{
     return new GestureDetector(
         onTap: () => Navigator.of(context).push(new PageRouteBuilder(
               pageBuilder: (_, __, ___) => new HistoryPage(widget.job),
@@ -49,7 +75,7 @@ class _HistoryCardState extends State<HistoryCard> {
           children: <Widget>[
             Card(
               child: Container(
-                height: MediaQuery.of(context).size.height * 0.15,
+                height: 160,
                 width: MediaQuery.of(context).size.width * 0.9,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(100)),
@@ -119,6 +145,15 @@ class _HistoryCardState extends State<HistoryCard> {
                           0,
                           0),
                       width: MediaQuery.of(context).size.width * 0.55,
+                    ),
+                    Container(
+                      child: Text("Status: " + (isAccepted ? "Accepted" : "Pending"), maxLines: 1, overflow: TextOverflow.ellipsis,),
+                      margin: EdgeInsets.fromLTRB(
+                          MediaQuery.of(context).size.width * 0.4 + 10,
+                          10,
+                          0,
+                          0),
+                      width: MediaQuery.of(context).size.width * 0.55,
                     )
                   ],
                 ),
@@ -155,4 +190,5 @@ Container _pic(BuildContext context, DocumentSnapshot job) {
     margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
     )
   );
+}
 }
