@@ -18,7 +18,7 @@ class DiscoverCard extends StatelessWidget {
       ),
       
       child: Card(
-        elevation: 10,
+        elevation: 5,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: Column(children: <Widget>[
           ClipRRect(
@@ -28,6 +28,7 @@ class DiscoverCard extends StatelessWidget {
                 image: new AssetImage(image),
                 width: 150,
                 height: 100,
+                
                 fit: BoxFit.cover,
               )),
           Container(
