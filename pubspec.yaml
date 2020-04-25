@@ -34,6 +34,7 @@ dependencies:
   toggle_switch: "^0.1.4"
   sailor: ^0.7.1
   multiselect_formfield: ^0.1.2
+  intl: ^0.16.1
 
 
 dependency_overrides:

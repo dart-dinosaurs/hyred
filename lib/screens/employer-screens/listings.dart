@@ -113,7 +113,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
                   SizedBox(height: 10),
                   Container(
                     height: MediaQuery.of(context).size.height - 150,
-                    child: ListView(children: [widgets[0], widgets[0], widgets[0], widgets[0], widgets[0], widgets[0] ]),
+                    child: ListView(children: widgets),
                     margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.05, 0, 0, 0),
                   )
                  ,
