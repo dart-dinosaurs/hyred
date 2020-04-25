@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:main/router.dart';
 import 'date_time_picker.dart';
 
 class ListingCard extends StatefulWidget {
@@ -32,6 +33,11 @@ class _ListingCardState extends State<ListingCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: (){
+        Router.sailor.navigate("/employer/listing_detail", params: {
+          "name": widget.name,
+        });
+      },
         child: Stack(
       children: <Widget>[
         Card(
