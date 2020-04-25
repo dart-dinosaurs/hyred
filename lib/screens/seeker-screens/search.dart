@@ -15,12 +15,18 @@ class Search extends StatelessWidget {
     for (int i = 0; i < allJobs.length; i++) {
       if (allJobs[i].data['name'].contains(searchValue) || allJobs[i].data['categories'].contains(searchValue)) {
         hits.add(allJobs[i]);
+      } else{
+        allJobs[i].data['user'].get().then((snapshot) => {
+          print(snapshot)
+        });
       }
     }
 
+    print(hits);
+
 
     return (
-        ListView(
+        Column(
       children: hits
           .map((item) => Container(
                 child: new JobCard(item),

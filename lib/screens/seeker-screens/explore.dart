@@ -35,7 +35,7 @@ class _ExploreState extends State<Explore> {
     }
 
     List<Widget> _createChildren() {
-      return new List<Widget>.generate(1, (int index) {
+      return new List<Widget>.generate(4, (int index) {
         return TopJob(jobDocs[index]);
       });
     }
@@ -46,14 +46,14 @@ class _ExploreState extends State<Explore> {
       _topJobs.add(DiscoverCard(industries[i], jobs));
     }
 
-    return Column(children: <Widget>[
+    return ListView(children: <Widget>[
       SearchBar(controller: myController, onChange: (value) => {setSearch(value)}),
       Container(height: 10,),
       searchValue != ""
           ? Search(searchValue, jobDocs)
           : Container(
-            height: MediaQuery.of(context).size.height * 0.82,
-            child: ListView(
+            //height: MediaQuery.of(context).size.height * 0.80,
+            child: Column(
               children: <Widget>[
                 Container(
                     child: Text("Explore Jobs",
@@ -114,8 +114,8 @@ class _ExploreState extends State<Explore> {
                   child: Wrap(
                   children: _createChildren(),
                   direction: Axis.horizontal,
-                  alignment: WrapAlignment.spaceAround,
-                  runAlignment: WrapAlignment.spaceAround,
+                  alignment: WrapAlignment.spaceEvenly,
+                  runAlignment: WrapAlignment.spaceEvenly,
                 ),
                 ),
               ],

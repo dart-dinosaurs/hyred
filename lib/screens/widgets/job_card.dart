@@ -136,7 +136,7 @@ class _JobCardState extends State<JobCard> {
                       width: MediaQuery.of(context).size.width * 0.55,
                     ),
                     Container(
-                      child: Text("Posted By: " + widget.job['name']),
+                      child: Text(loading ? "Postedd by: Loading" : "Posted By: " + userData['businessName']),
                       margin: EdgeInsets.fromLTRB(
                           MediaQuery.of(context).size.width * 0.4 + 10,
                           0,

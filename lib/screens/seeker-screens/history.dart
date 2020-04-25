@@ -23,7 +23,6 @@ class _HistoryState extends State<History> {
   }
 
   void setData(List<DocumentSnapshot> newData){
-    print(newData);
     this.setState(
       (){
         _jobs = newData;
@@ -42,6 +41,7 @@ class _HistoryState extends State<History> {
       return await Future.wait(list);
     }
     
+    print(_jobs);
 
     if (Provider.of<DocumentSnapshot>(context) == null) {
       return (Loading());
@@ -58,8 +58,11 @@ class _HistoryState extends State<History> {
         });
         print(_cards);
         return(
-          ListView(
-            children: [_cards[0], _cards[0], _cards[0], _cards[0], _cards[0], _cards[0], _cards[0]]
+          Container(
+            child: ListView(
+            children: _cards
+          ),
+          margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.05, 0, 0, 0),
           )
         );
       }

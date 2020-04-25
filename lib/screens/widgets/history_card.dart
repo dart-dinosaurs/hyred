@@ -1,91 +1,156 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:main/screens/seeker-screens/historyDetails.dart';
-import 'data.dart';
+import 'package:main/screens/widgets/months.dart';
+import 'package:intl/intl.dart';
+import './details.dart';
 
-class HistoryCard extends StatelessWidget {
-  final DocumentSnapshot job;
+class HistoryCard extends StatefulWidget {
+  @override
+  _HistoryCardState createState() => _HistoryCardState();
+
+  DocumentSnapshot job;
 
   HistoryCard(this.job);
+}
+
+class _HistoryCardState extends State<HistoryCard> {
+  bool loading;
+  dynamic userData;
+  @override
+  void initState() {
+    super.initState();
+    loading = true;
+    userData = "";
+    getUserData().then((snapshot) {
+      setState(() {
+        userData = snapshot.data;
+        loading = false;
+      });
+    });
+  }
+
+  Future<DocumentSnapshot> getUserData() async {
+    return await widget.job['user'].get();
+  }
 
   @override
   Widget build(BuildContext context) {
-    print(job['name']);
-    return (GestureDetector(
+    
+    String date = DateFormat.MMMMd().format(widget.job.data['beginTime'].toDate());
+    String startTime = DateFormat.jm().format(widget.job.data['beginTime'].toDate());
+    String endTime = DateFormat.jm().format(widget.job.data['endTime'].toDate());
+
+    return new GestureDetector(
         onTap: () => Navigator.of(context).push(new PageRouteBuilder(
-        pageBuilder: (_, __, ___) => new HistoryDetails(job),
-        )),
-        child: Container(
-            height: 120,
-            margin: EdgeInsets.fromLTRB(10, 5, 10, 5),
-            decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.2),
-                borderRadius: BorderRadius.circular(15)),
-            child: Column(
-              children: <Widget>[
-                Row(
+              pageBuilder: (_, __, ___) => new DetailPage(widget.job),
+            )),
+        child: Stack(
+          children: <Widget>[
+            Card(
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.15,
+                width: MediaQuery.of(context).size.width * 0.9,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(100)),
+                    color: Colors.white70),
+                margin: EdgeInsets.fromLTRB(
+                    0, MediaQuery.of(context).size.height * 0.01, 0, 0),
+                child: Column(
                   children: <Widget>[
-                    ClipRRect(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(20),
-                          bottomLeft: Radius.circular(20),
-                          topRight: Radius.circular(0),
-                          bottomRight: Radius.circular(0)),
-                      child: Image(
-                          image: new NetworkImage("https://source.unsplash.com/featured/?" + job.data['name']),
-                          height: 120,
-                          width: 150,
-                          fit: BoxFit.cover),
-                    ),
                     Container(
-                      padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                      child: Column(
+                      width: MediaQuery.of(context).size.width * 0.55,
+                      child: Text(widget.job.data['name'],
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                          textAlign: TextAlign.left,
+                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      margin: EdgeInsets.fromLTRB(
+                          MediaQuery.of(context).size.width * 0.4 + 10,
+                          0,
+                          0,
+                          0),
+                    ),
+                    Container(height: 5,),
+                    Container(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Container(
-                              child: Text(
-                            job.data['name'].toString(),
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 15),
-                          )),
-                          Container(
-                            height: 10,
-                          ),
-                          Container(
-                              child: Text(
-                            "Posted by: " +
-                                job.data['name'].toString(),
-                            textAlign: TextAlign.left,
-                          )),
-                          Container(
-                            height: 10,
-                          ),
-                          //Container(child: Text(DateFormat.yMd().format(job['jobDetails']['startDate']))),
-                          Container(
-                            height: 10,
-                          ),
                           Row(
                             children: <Widget>[
-                              Text(
-                                "Status: ",
-                                style: TextStyle(
-                                    color: Colors.grey,
-                                    fontWeight: FontWeight.bold),
-                              ),
                               Icon(
-                                Icons.done,
-                                color: Colors.green,
+                                Icons.calendar_today,
                                 size: 20,
-                              )
+                              ),
+                              Text(" " + date)
                             ],
                           ),
                         ],
-                        crossAxisAlignment: CrossAxisAlignment.start,
                       ),
+                      margin: EdgeInsets.fromLTRB(
+                          MediaQuery.of(context).size.width * 0.4 + 10,
+                          0,
+                          10,
+                          10),
+                      width: MediaQuery.of(context).size.width * 0.55,
+                    ),
+                    Container(
+                      child: Row(
+                        children: <Widget>[
+                          Icon(
+                            Icons.timer,
+                            size: 20,
+                          ),
+                          Text(" " +  startTime + " - " + endTime)
+                        ],
+                      ),
+                      margin: EdgeInsets.fromLTRB(
+                          MediaQuery.of(context).size.width * 0.4 + 10,
+                          0,
+                          10,
+                          10),
+                      width: MediaQuery.of(context).size.width * 0.55,
+                    ),
+                    Container(
+                      child: Text(loading ? "Posted by: Loading..." : "Posted By: " + userData['businessName'], maxLines: 1, overflow: TextOverflow.ellipsis,),
+                      margin: EdgeInsets.fromLTRB(
+                          MediaQuery.of(context).size.width * 0.4 + 10,
+                          0,
+                          0,
+                          0),
+                      width: MediaQuery.of(context).size.width * 0.55,
                     )
                   ],
-                )
-              ],
-            ))));
+                ),
+              ),
+              elevation: 10,
+              margin: EdgeInsets.fromLTRB(0, 25, 0, 0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+            ),
+            Card(
+                child: _pic(context, widget.job),
+                elevation: 5,
+                margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                )),
+          ],
+        ));
   }
+}
+
+Container _pic(BuildContext context, DocumentSnapshot job) {
+  return (Container(
+    height: MediaQuery.of(context).size.height * 0.20,
+    width: MediaQuery.of(context).size.width * 0.4,
+    child: ClipRRect(
+        borderRadius: BorderRadius.all(Radius.circular(30)),
+        child: Image(
+          image: NetworkImage(
+              "https://source.unsplash.com/featured/?" + job.data['name']),
+          fit: BoxFit.cover,
+        )),
+    margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+  ));
 }
