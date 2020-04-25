@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:main/screens/seeker-screens/historyDetails.dart';
 import 'package:main/screens/widgets/months.dart';
 import 'package:intl/intl.dart';
 import './details.dart';
@@ -42,7 +43,7 @@ class _HistoryCardState extends State<HistoryCard> {
 
     return new GestureDetector(
         onTap: () => Navigator.of(context).push(new PageRouteBuilder(
-              pageBuilder: (_, __, ___) => new DetailPage(widget.job),
+              pageBuilder: (_, __, ___) => new HistoryPage(widget.job),
             )),
         child: Stack(
           children: <Widget>[
@@ -152,5 +153,6 @@ Container _pic(BuildContext context, DocumentSnapshot job) {
           fit: BoxFit.cover,
         )),
     margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-  ));
+    )
+  );
 }

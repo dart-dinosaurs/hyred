@@ -154,7 +154,7 @@ class DetailPage extends StatelessWidget {
                                 height: 10,
                               ),
                               Text(
-                                job['salary'].toString(),
+                                job['salary'].toString() + " /hr",
                                 style: TextStyle(fontSize: 18),
                               ),
                               Container(
