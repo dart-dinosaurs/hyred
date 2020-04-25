@@ -280,7 +280,6 @@ class _ProfileState extends State<Profile> {
         Card(
             elevation: 2.0,
             margin: const EdgeInsets.fromLTRB(18.0, 3.0, 18.0, 3.0),
-            // color: Colors.cyan,
             child: Padding(
               padding: const EdgeInsets.all(13.0),
               child: Column(

@@ -2,6 +2,7 @@ import 'dart:ffi';
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:main/models/user.dart';
+import 'package:main/screens/seeker-screens/settings.dart';
 import 'package:provider/provider.dart';
 // import 'package:main/services/auth.dart';
 
@@ -13,9 +14,14 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+  bool _showProfile = true;
+
   @override
   Widget build(BuildContext context) {
     final user = Provider.of<User>(context);
+    if (!_showProfile) {
+      return Settings();
+    }
     return new Scaffold(
       backgroundColor: Colors.white,
       body: ListView(
@@ -26,20 +32,20 @@ class _ProfileState extends State<Profile> {
             Row(
               children: <Widget>[
                 SizedBox(width: 15.0,),
-                // Container(
-                //   alignment: Alignment.topRight,
-                //   child: Padding(
-                //     padding: const EdgeInsets.only(top: 12.0, right: 12.0),
-                //     child: IconButton(
-                //       iconSize: 33.0,
-                //       icon: Icon(Icons.arrow_back),
-                //       onPressed: () {setState(() {
-                //           _showProfile = false;
-                //         });
-                //       }
-                //     ),
-                //   ),
-                // ),
+                Container(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 12.0, right: 12.0),
+                    child: IconButton(
+                      iconSize: 33.0,
+                      icon: Icon(Icons.arrow_back),
+                      onPressed: () {setState(() {
+                          _showProfile = false;
+                        });
+                      }
+                    ),
+                  ),
+                ),
                 Spacer(),
                 Container(
                   alignment: Alignment.topLeft,
@@ -66,7 +72,7 @@ class _ProfileState extends State<Profile> {
                       child: Text(
                         user.fname + " " + user.lname,
                         style: TextStyle(
-                          fontSize: 20.0,
+                          fontSize: 25.0,
                           color: Colors.black,
                         )
                       ),
@@ -77,14 +83,16 @@ class _ProfileState extends State<Profile> {
                     width: 160.0,
                       child: FittedBox(fit:BoxFit.fitWidth, 
                       child: Text(
-                        "Business Name",
+                        user.businessName,
                         style: TextStyle(
-                          fontSize: 20.0,
-                          color: Colors.black,
+                          fontSize: 17.0,
+                          fontStyle: FontStyle.italic,
+                          color: Colors.grey.shade800,
                         )
                       ),
                       ),
                     ),
+
                   SizedBox(height: 8.0),
                   Text(
                     'Joined March 2020',
@@ -153,7 +161,7 @@ class _ProfileState extends State<Profile> {
               ),
               SizedBox(width: 35.0),
               Text(
-                "Located in " + user.city + ", " + user.province,
+                "Lives in " + user.city + ", " + user.province,
                 style: TextStyle(
                       fontSize: 16.5,
                       color: Colors.black,
@@ -179,7 +187,7 @@ class _ProfileState extends State<Profile> {
             ),
           ),
           SizedBox(height: 18,),
-          reviewCard("Nice boss", "Tom Grey"),
+          reviewCard("Nice Boss", "Tom Grey"),
           SizedBox(height: 20.0,),
           Divider(
             color: Colors.grey.shade300,
@@ -242,7 +250,7 @@ class _ProfileState extends State<Profile> {
                 ),
                 SizedBox(width: 30,),
                 Text(
-                  'Business ID',
+                  'Resume',
                   style: TextStyle(
                         fontSize: 18.0,
                         color: Colors.black,
@@ -287,7 +295,6 @@ class _ProfileState extends State<Profile> {
         Card(
             elevation: 2.0,
             margin: const EdgeInsets.fromLTRB(18.0, 3.0, 18.0, 3.0),
-            // color: Colors.cyan,
             child: Padding(
               padding: const EdgeInsets.all(13.0),
               child: Column(

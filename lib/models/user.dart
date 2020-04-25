@@ -9,6 +9,7 @@ class User {
   String city;
   String province;
   String postal;
+  String businessName;
 
   User({ this.uid, this.fname, this.lname, this.street, this.city, this.registered, this.apartment, this.postal, this.province});
 
@@ -27,5 +28,9 @@ class User {
     this.city = city;
     this.province = province;
     this.postal = postal;
+  }
+
+  void setBusinessName(String businessName){
+    this.businessName = businessName;
   }
 }
