@@ -10,11 +10,11 @@ class Category{
 List<Category> industries = [
   const Category(
     heading: "Caregiving",
-    image: "caregiving"
+    image: "care"
   ),
   const Category(
     heading: "Janitorial",
-    image: "cleaning"
+    image: "janitor"
   ),
   const Category(
     heading: "Retail",
@@ -22,7 +22,7 @@ List<Category> industries = [
   ),
   const Category(
     heading: "Labour",
-    image: "labour"
+    image: "manual work"
   ),
   const Category(
     heading: "Construction",

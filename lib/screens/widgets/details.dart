@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import '../widgets/data.dart';
 import '../widgets/separator.dart';
 
@@ -14,29 +15,16 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Timestamp _startDate = job.data['beginTime'];
-    Timestamp _endDate = job.data['endTime'];
 
-    String _startDay = _startDate.toDate().day.toString();
-    String _startMonth = _startDate.toDate().month.toString();
-    String _startYear = _startDate.toDate().year.toString();
-
-    String _endDay = _endDate.toDate().day.toString();
-    String _endMonth = _endDate.toDate().month.toString();
-    String _endYear = _endDate.toDate().year.toString();
-
-    String _strStart = _startDay + "/" + _startMonth + "/" + _startYear;
-    String _strEnd = _endDay + "/" + _endMonth + "/" + _endYear;
-
-    String _date = _strStart + " - " + _strEnd;
-
+    String date = DateFormat.MMMMd().format(job.data['beginTime'].toDate());
+    String time = DateFormat.jm().format(job.data['beginTime'].toDate()) + " - " + DateFormat.jm().format(job.data['endTime'].toDate());
     return new Scaffold(
       body: new Container(
         constraints: new BoxConstraints.expand(),
         color: Colors.white,
         child: new Stack(
           children: <Widget>[
-            _getContent(context, _date),
+            _getContent(context, date, time),
             _getToolbar(context),
           ],
         ),
@@ -55,23 +43,7 @@ class DetailPage extends StatelessWidget {
     );
   }
 
-  Container _getGradient() {
-    return new Container(
-      margin: new EdgeInsets.only(top: 190.0),
-      height: 110.0,
-      decoration: new BoxDecoration(
-        gradient: new LinearGradient(
-          colors: <Color>[new Color(0x00736AB7), new Color(0xFF736AB7)],
-          stops: [0.0, 0.9],
-          begin: const FractionalOffset(0.0, 0.0),
-          end: const FractionalOffset(0.0, 1.0),
-        ),
-      ),
-    );
-  }
-
-  Container _getContent(BuildContext context, String _date) {
-    final _overviewTitle = "overview".toUpperCase();
+  Container _getContent(BuildContext context, String date, String time) {
 
     return new Container(
       child: new ListView(
@@ -114,14 +86,14 @@ class DetailPage extends StatelessWidget {
                           child: Column(
                             children: <Widget>[
                               Icon(
-                                Icons.timer,
+                                Icons.calendar_today,
                                 color: Colors.grey,
                               ),
                               Container(
                                 height: 10,
                               ),
                               Text(
-                                "Duration",
+                                "Date",
                                 style: TextStyle(
                                     color: Colors.grey,
                                     fontSize: 15,
@@ -131,13 +103,13 @@ class DetailPage extends StatelessWidget {
                                 height: 10,
                               ),
                               Text(
-                                _date,
+                                date,
                                 style: TextStyle(
                                   fontSize: 18,
                                 ),
                               ),
                               Container(
-                                height: 10,
+                                height: 30,
                               ),
                               Icon(
                                 Icons.local_activity,
@@ -146,7 +118,7 @@ class DetailPage extends StatelessWidget {
                               Container(
                                 height: 10,
                               ),
-                              Text("Activity Level",
+                              Text("Time",
                                   style: TextStyle(
                                       color: Colors.grey,
                                       fontSize: 15,
@@ -155,8 +127,8 @@ class DetailPage extends StatelessWidget {
                                 height: 10,
                               ),
                               Text(
-                                job['name' + "asdfasdf"].toString(),
-                                style: TextStyle(fontSize: 18),
+                                time,
+                                style: TextStyle(fontSize: 16),
                               ),
                             ],
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -205,7 +177,7 @@ class DetailPage extends StatelessWidget {
                               Container(
                                 height: 10,
                               ),
-                              Text(job['name' + "language"].toString(),
+                              Text("English",
                                   style: TextStyle(fontSize: 18)),
                             ],
                             mainAxisAlignment: MainAxisAlignment.start,

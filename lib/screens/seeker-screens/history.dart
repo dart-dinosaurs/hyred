@@ -1,9 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:main/screens/seeker-screens/search.dart';
 import 'package:main/screens/widgets/history_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:main/screens/widgets/history_card.dart';
 import 'package:main/screens/widgets/loading.dart';
+import 'package:main/screens/widgets/search_bar.dart';
 import 'package:provider/provider.dart';
 
 class History extends StatefulWidget {
@@ -12,9 +14,9 @@ class History extends StatefulWidget {
 }
 
 class _HistoryState extends State<History> {
-
   List<DocumentSnapshot> _jobs;
   bool _loading;
+  String searchValue = "";
 
   @override
   void initState(){
@@ -30,6 +32,15 @@ class _HistoryState extends State<History> {
       }
     );
   }
+
+  void setSearch(String value) {
+    setState(() {
+      searchValue = value;
+    });
+  }
+
+  TextEditingController myController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -51,19 +62,21 @@ class _HistoryState extends State<History> {
         return Loading();
       } else {
         List<Widget> _cards = [];
-        _jobs.forEach((doc) => {
+        _jobs.reversed.forEach((doc) => {
           _cards.add(HistoryCard(doc)),
         });
         print(_cards);
         return(
-          Container(
-            child: ListView(
-            children: _cards
-          ),
-          margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.05, 0, 0, 0),
+          ListView(children: <Widget>[
+              SearchBar(controller: myController, onChange: (value) => {setSearch(value)}),
+              searchValue != "" 
+                ? Search(searchValue, _jobs)
+                : Column(children: _cards)
+          ,
+          ]
           )
         );
-      }
+    }
     }
   }
 }

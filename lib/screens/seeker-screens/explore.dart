@@ -22,7 +22,7 @@ class _ExploreState extends State<Explore> {
     });
   }
 
-  final myController = TextEditingController();
+  TextEditingController myController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class _ExploreState extends State<Explore> {
 
     List<Widget> _topJobs = new List<Widget>();
 
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < industries.length; i++) {
       _topJobs.add(DiscoverCard(industries[i], jobs));
     }
 
@@ -81,7 +81,8 @@ class _ExploreState extends State<Explore> {
                     height: 160,
                     margin: EdgeInsets.fromLTRB(10, 10, 10, 10),
                     child: ListView(
-                        scrollDirection: Axis.horizontal, children: _topJobs)
+                      children: _topJobs,
+                        scrollDirection: Axis.horizontal, )
                 ),
                 Container(
                   child: Text(
