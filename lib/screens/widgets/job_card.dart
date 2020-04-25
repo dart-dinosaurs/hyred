@@ -48,13 +48,13 @@ class _JobCardState extends State<JobCard> {
           children: <Widget>[
             Card(
               child: Container(
-                height: MediaQuery.of(context).size.height * 0.2,
+                height: 150,
                 width: MediaQuery.of(context).size.width * 0.9,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(100)),
                     color: Colors.white70),
                 margin: EdgeInsets.fromLTRB(
-                    0, MediaQuery.of(context).size.height * 0.01, 0, 0),
+                    0, 5, 0, 0),
                 child: Column(
                   children: <Widget>[
                     Container(
@@ -136,13 +136,13 @@ class _JobCardState extends State<JobCard> {
                       width: MediaQuery.of(context).size.width * 0.55,
                     ),
                     Container(
-                      child: Text(loading ? "Postedd by: Loading" : "Posted By: " + userData['businessName']),
+                      width: MediaQuery.of(context).size.width * 0.55,
+                      child: Text(loading ? "Posted by: Loading" : "Posted By: " + userData['businessName'], overflow: TextOverflow.clip, maxLines: 1,),
                       margin: EdgeInsets.fromLTRB(
                           MediaQuery.of(context).size.width * 0.4 + 10,
                           0,
                           0,
                           0),
-                      width: MediaQuery.of(context).size.width * 0.55,
                     )
                   ],
                 ),
@@ -167,7 +167,7 @@ class _JobCardState extends State<JobCard> {
 
 Container _pic(BuildContext context, DocumentSnapshot job) {
   return (Container(
-    height: MediaQuery.of(context).size.height * 0.25,
+    height: 190,
     width: MediaQuery.of(context).size.width * 0.4,
     child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(30)),

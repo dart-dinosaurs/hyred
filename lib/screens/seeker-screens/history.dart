@@ -41,8 +41,6 @@ class _HistoryState extends State<History> {
       return await Future.wait(list);
     }
     
-    print(_jobs);
-
     if (Provider.of<DocumentSnapshot>(context) == null) {
       return (Loading());
     } else {
