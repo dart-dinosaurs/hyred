@@ -17,6 +17,9 @@ class AuthService {
               if(snapshot.data["registered"]) {
                 u.setName(snapshot.data["fname"], snapshot.data["lname"]),
                 u.setAddress(snapshot.data["street"], snapshot.data["apartment"], snapshot.data["city"], snapshot.data["province"], snapshot.data["postal"])
+                },
+              if(snapshot.data["employer"]) {
+                u.setBusinessName(snapshot.data["businessName"]),
                 }
             })
         .catchError((err) => print(err.toString()));

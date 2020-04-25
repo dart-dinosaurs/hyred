@@ -3,6 +3,7 @@ import 'package:main/screens/widgets/loading.dart';
 import 'package:main/screens/widgets/placeholder.dart';
 import 'package:main/screens/seeker-screens/Newexplore.dart';
 import 'package:main/screens/seeker-screens/settings.dart';
+import 'package:main/screens/widgets/terms.dart';
 import 'package:main/screens/widgets/under_construction.dart';
 
 class SeekerHome extends StatefulWidget {
@@ -18,7 +19,7 @@ class _SeekerHomeState extends State<SeekerHome> {
     NewExplore(),
     Loading(),
     Construction(),
-    PlaceholderWidget(Colors.orange),
+    Placeholder(color: Colors.orange,),
     Settings(),
   ];
 
