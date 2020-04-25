@@ -17,12 +17,15 @@ class Search extends StatelessWidget {
         hits.add(allJobs[i]);
       } else{
         allJobs[i].data['user'].get().then((snapshot) => {
-          print(snapshot)
+          if (searchValue.contains(snapshot.data['businessName'])){
+            print(snapshot.data),
+            hits.add(allJobs[i])
+          }
         });
       }
     }
 
-    print(hits);
+    //print(hits);
 
 
     return (
