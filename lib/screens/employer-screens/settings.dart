@@ -118,7 +118,7 @@ class _SettingsState extends State<Settings> {
                   children: <Widget>[
                     SizedBox(height: 15.0),
                     Text(
-                      'Employee Information',
+                      'Business Information',
                       style: TextStyle(
                           fontFamily: 'Montserrat',
                           fontSize: 20.0,
@@ -126,8 +126,8 @@ class _SettingsState extends State<Settings> {
                           color: Colors.grey.shade800),
                     ),
                   ])),
-          infoCard("References", Icons.attach_file, (){Router.sailor.navigate("/construction");}),
-          infoCard("Past Jobs", Icons.group, (){Router.sailor.navigate("/construction");}),
+          infoCard("Past Listings", Icons.attach_file, (){Router.sailor.navigate("/construction");}),
+          infoCard("Past Employees", Icons.group, (){Router.sailor.navigate("/construction");}),
           Padding(
               padding: const EdgeInsets.all(17.0),
               child: Column(
