@@ -76,7 +76,7 @@ class _JobCardState extends State<JobCard> {
                             children: <Widget>[
                               Icon(
                                 Icons.attach_money,
-                                size: 18,
+                                size: 25,
                               ),
                               Text(widget.job['salary'].toString() + "/hr"),
                             ],
