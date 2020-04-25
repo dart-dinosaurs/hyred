@@ -111,7 +111,11 @@ class _ListingsScreenState extends State<ListingsScreen> {
                     onChange: this.changeSearch,
                   ),
                   SizedBox(height: 10),
-                  Column(children: [widgets[0], widgets[0], widgets[0], widgets[0], widgets[0], widgets[0] ])
+                  Container(
+                    height: MediaQuery.of(context).size.height - 150,
+                    child: ListView(children: [widgets[0], widgets[0], widgets[0], widgets[0], widgets[0], widgets[0] ]),
+                    margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.05, 0, 0, 0),
+                  )
                  ,
                 ],
               ),
