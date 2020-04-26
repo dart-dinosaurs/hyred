@@ -51,13 +51,31 @@ class Router {
       SailorRoute(
         name: '/construction',
         builder: (context, args, params) {
-          return Scaffold(body: Construction());
+          return Scaffold(
+            appBar: AppBar(
+              leading: IconButton(
+                icon: Icon(Icons.close),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              backgroundColor: Colors.white,
+            ),
+            body: Construction(),
+          );
         },
       ),
       SailorRoute(
         name: '/terms',
         builder: (context, args, params) {
-          return Scaffold(body: Terms());
+          return Scaffold(
+            appBar: AppBar(
+              leading: IconButton(
+                icon: Icon(Icons.close),
+                onPressed: () => Navigator.of(context).pop(),
+              ),
+              backgroundColor: Colors.white,
+            ),
+            body: Terms(),
+          );
         },
       ),
     ]);

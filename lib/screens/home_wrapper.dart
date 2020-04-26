@@ -18,8 +18,6 @@ class HomeWrapper extends StatefulWidget {
 class HomeWrapperState extends State<HomeWrapper> {
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<User>(context);
-
     try {
       if(Provider.of<DocumentSnapshot>(context) == null){
         return Loading();
