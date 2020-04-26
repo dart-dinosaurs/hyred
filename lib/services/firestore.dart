@@ -4,11 +4,7 @@ class FirestoreService {
 
   final String uid;
   final CollectionReference userCollection = Firestore.instance.collection('users');
-<<<<<<< HEAD
   final CollectionReference listingCollection = Firestore.instance.collection('listings');
-=======
-  final CollectionReference jobCollection = Firestore.instance.collection('listings');
->>>>>>> e8fd4de9e028d09f6e1dda1802c78e225c8125bf
 
   FirestoreService({ this.uid });
 
@@ -94,7 +90,6 @@ class FirestoreService {
   }
 
   Stream<QuerySnapshot> get jobData{
-    return jobCollection.orderBy("numberOfApplicants").snapshots();
+    return listingCollection.orderBy("numberOfApplicants").snapshots();
   }
-
 }
