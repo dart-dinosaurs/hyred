@@ -60,7 +60,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
       });
     }
 
-    List filteredData = _search == null
+    List filteredData = _search == ""
         ? data
         : data.where((obj) {
             return obj["description"]
