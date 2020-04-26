@@ -32,6 +32,8 @@ class AuthService {
         .map((FirebaseUser user) => _userCreation(user));
   }
 
+  
+
   // anonymous sign-in
   Future anonSignIn() async {
     try {

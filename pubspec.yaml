@@ -19,8 +19,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flappy_search_bar: 1.4.1
-  stream_chat_flutter: ^0.1.2
+
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -35,6 +34,7 @@ dependencies:
   toggle_switch: "^0.1.4"
   sailor: ^0.7.1
   multiselect_formfield: ^0.1.2
+  intl: 0.16.1
 
 
 dependency_overrides:

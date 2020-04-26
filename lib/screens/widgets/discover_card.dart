@@ -1,12 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:main/screens/seeker-screens/explore.dart';
+import 'package:main/screens/seeker-screens/jobListings.dart';
+import 'package:main/screens/widgets/data.dart';
+import './data.dart';
 
 class DiscoverCard extends StatelessWidget {
-  final String image;
-  final String heading;
-  final List job;
+  
+  Category industry;
+  QuerySnapshot jobs;
 
-  DiscoverCard(this.image, this.heading, this.job);
+  DiscoverCard(this.industry, this.jobs);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +17,7 @@ class DiscoverCard extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => new Container(child: Explore(job))),
+            builder: (context) => new Container(child: JobListings(industry.heading, jobs))),
       ),
       
       child: Card(
@@ -25,7 +28,7 @@ class DiscoverCard extends StatelessWidget {
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
               child: Image(
-                image: new AssetImage(image),
+                image: NetworkImage("https://source.unsplash.com/featured/?" + industry.image),
                 width: 150,
                 height: 100,
                 
@@ -33,13 +36,13 @@ class DiscoverCard extends StatelessWidget {
               )),
           Container(
             width: 150,
-            height: 50,
+            height:50,
             child: Column(
               children: <Widget>[
                 Container(
                   height: 10,
                 ),
-                Text(heading,
+                Text(industry.heading,
                     textAlign: TextAlign.center, style: TextStyle(fontSize: 20))
               ],
             ),
