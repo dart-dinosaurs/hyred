@@ -8,6 +8,7 @@ Hyred is a mobile app built for users to be able to find temporary jobs very qui
 
 1. [Motivation](#motivation)
 2. [Technology](#technology)
+3. [Screenshots](#screenshots)
 4. [Team](#team)
 
 ---
