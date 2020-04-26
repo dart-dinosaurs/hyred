@@ -2,6 +2,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:main/services/auth.dart';
 
+import '../../router.dart';
+
 class Register extends StatefulWidget {
   final Function toggleRegister;
   Register({this.toggleRegister});
@@ -188,23 +190,26 @@ class _RegisterState extends State<Register> {
                       SizedBox(
                         height: 40,
                       ),
-                      RichText(
-                        text: TextSpan(
-                          style: TextStyle(color: Colors.black, fontSize: 10),
-                          children: <TextSpan>[
-                            TextSpan(
-                                text: "By Signing up, you agree with our "),
-                            TextSpan(
-                                text: "terms and conditions ",
-                                style: TextStyle(
-                                    color: Theme.of(context).accentColor,
-                                    decoration: TextDecoration.underline)),
-                            TextSpan(
-                                text:
-                                    "and consent to Hyres' data usage policies.")
-                          ],
-                        ),
-                      )
+                      GestureDetector(
+                        child: RichText(
+                          text: TextSpan(
+                            style: TextStyle(color: Colors.black, fontSize: 10),
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: "By Signing up, you agree with our "),
+                              TextSpan(
+                                  text: "terms and conditions ",
+                                  style: TextStyle(
+                                      color: Theme.of(context).accentColor,
+                                      decoration: TextDecoration.underline)),
+                              TextSpan(
+                                  text:
+                                      "and consent to Hyres' data usage policies.")
+                            ],
+                          ),
+                        ), 
+                        onTap: (){Router.sailor.navigate("/terms");},
+                      ),
                     ],
                   ),
                 ),

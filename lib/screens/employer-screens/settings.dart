@@ -143,7 +143,7 @@ class _SettingsState extends State<Settings> {
                           color: Colors.grey.shade800),
                     ),
                   ])),
-          infoCard("Terms and Conditions", Icons.assignment, (){}),
+          infoCard("Terms and Conditions", Icons.assignment, (){Router.sailor.navigate("/construction");}),
           
           infoCard("Log out", Icons.exit_to_app, () => _auth.signOut()),
             
