@@ -4,6 +4,7 @@ import 'package:main/screens/seeker-screens/history.dart';
 import 'package:main/screens/widgets/placeholder.dart';
 import 'package:main/screens/seeker-screens/explore.dart';
 import 'package:main/screens/seeker-screens/settings.dart';
+import 'package:main/screens/widgets/under_construction.dart';
 import 'package:provider/provider.dart';
 import 'package:main/models/user.dart';
 import 'package:main/services/firestore.dart';
@@ -41,8 +42,7 @@ class _SeekerHomeState extends State<SeekerHome> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     ExploreWrapper(),
-    PlaceholderWidget(Colors.purple),
-    PlaceholderWidget(Colors.purple),
+    Construction(),
     HistoryWrapper(),
     Settings(),
   ];
@@ -77,11 +77,9 @@ class _SeekerHomeState extends State<SeekerHome> {
                   title: new Text("Explore"),
                 ),
                 BottomNavigationBarItem(
-                  icon: new Icon(Icons.search),
-                  title: new Text("Search"),
+                  icon: new Icon(Icons.message),
+                  title: new Text("Messages"),
                 ),
-                BottomNavigationBarItem(
-                    icon: new Icon(Icons.message), title: new Text("Messages")),
                 BottomNavigationBarItem(
                     icon: new Icon(Icons.library_books),
                     title: new Text("History")),
