@@ -35,9 +35,11 @@ class _ExploreState extends State<Explore> {
     }
 
     List<Widget> _createChildren() {
-      return new List<Widget>.generate(4, (int index) {
-        return TopJob(jobDocs[index]);
-      });
+      List<Widget> topJobs = [];
+      for (int i = 0; i < (jobDocs.length >= 4 ? 4 : jobDocs.length); i++){
+        topJobs.add(TopJob(jobDocs[i]));
+      }
+      return topJobs;
     }
 
     List<Widget> _topJobs = new List<Widget>();
