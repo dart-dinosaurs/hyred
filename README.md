@@ -24,7 +24,7 @@ We built the app using `flutter` and `firebase`. In the future we want to incorp
 
 ## Team
 
- - [Richard Hong](h-richard.com)
- - [Keshavaa Shaiskandan](https://github.com/skeshavaa)
- - [Amy Han](https://github.com/Amyh102)
- - [Queenie Liang]()
+ - [Richard Hong](h-richard.com), Project Lead
+ - [Keshavaa Shaiskandan](https://github.com/skeshavaa), Developer
+ - [Amy Han](https://github.com/Amyh102), Developer
+ - [Queenie Liang](), Business Analyst
