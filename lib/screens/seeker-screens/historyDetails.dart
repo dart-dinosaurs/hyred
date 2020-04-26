@@ -2,59 +2,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:main/screens/widgets/loading.dart';
 import '../widgets/data.dart';
 import '../widgets/separator.dart';
 
-class DetailPage extends StatefulWidget {
-  @override
-  _DetailPageState createState() => _DetailPageState();
-
+class HistoryPage extends StatelessWidget {
   DocumentSnapshot job;
-  DetailPage(this.job);
-}
 
-class _DetailPageState extends State<DetailPage> {
-
-  bool isClicked;
-  bool loading;
-  @override
-  void initState(){
-    isClicked = false;
-    loading = true;
-    checkApplication().then((boolean) {
-      setState(() {
-        isClicked = boolean;
-        loading = false;
-      });
-    });
-  }
-
-  Future<bool> checkApplication() async{
-    bool applied = false;
-    final FirebaseUser user = await FirebaseAuth.instance.currentUser();
-    final uid = user.uid;
-
-    DocumentReference userReference = Firestore.instance.collection("users").document(uid);
-    List<dynamic> currentApplicants = widget.job.data['applicants'];
-
-    currentApplicants.forEach((applicant) {
-      if (applicant.path == userReference.path){
-        applied = true;
-      }
-    });
-    return applied;
-  }
+  HistoryPage(this.job);
 
   @override
   Widget build(BuildContext context) {
 
-    String date = DateFormat.MMMMd().format(widget.job.data['beginTime'].toDate());
-    String time = DateFormat.jm().format(widget.job.data['beginTime'].toDate()) + " - " + DateFormat.jm().format(widget.job.data['endTime'].toDate());
-    if (loading){
-      return Loading();
-    }
-    else {
+    String date = DateFormat.MMMMd().format(job.data['beginTime'].toDate());
+    String time = DateFormat.jm().format(job.data['beginTime'].toDate()) + " - " + DateFormat.jm().format(job.data['endTime'].toDate());
     return new Scaffold(
       body: new Container(
         constraints: new BoxConstraints.expand(),
@@ -68,12 +28,11 @@ class _DetailPageState extends State<DetailPage> {
       ),
     );
   }
-  }
 
   Container _getBackground() {
     return new Container(
       child: Image(
-        image: new NetworkImage("https://source.unsplash.com/featured/?" +  widget.job['name']),
+        image: new NetworkImage("https://source.unsplash.com/featured/?" +  job['name']),
         fit: BoxFit.cover,
         height: 150.0,
       ),
@@ -100,7 +59,7 @@ class _DetailPageState extends State<DetailPage> {
                     ),
                     Align(
                       child: Text(
-                        widget.job['name'].toString(),
+                        job['name'].toString(),
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 23,
@@ -189,7 +148,7 @@ class _DetailPageState extends State<DetailPage> {
                                 height: 10,
                               ),
                               Text(
-                                widget.job['salary'].toString() + " /hr",
+                                job['salary'].toString()  + " /hr",
                                 style: TextStyle(fontSize: 18),
                               ),
                               Container(
@@ -253,7 +212,7 @@ class _DetailPageState extends State<DetailPage> {
                       ),
                       Align(
                         child:
-                            Text(widget.job['description'].toString()),
+                            Text(job['description'].toString()),
                         alignment: Alignment.centerLeft,
                       ),
                       Container(
@@ -282,7 +241,7 @@ class _DetailPageState extends State<DetailPage> {
                 Container(
                   child: Column(
                       children: <Widget>[
-                        Text(widget.job.data['requirements'])
+                        Text(job.data['requirements'])
                       ],
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start),
@@ -293,22 +252,6 @@ class _DetailPageState extends State<DetailPage> {
                       MediaQuery.of(context).size.width * 0.05,
                       0),
                 ),
-                Container(
-                  alignment: Alignment(0.0, 0.0),
-                  margin: EdgeInsets.fromLTRB(0, 20, 0, 0),
-                  child: RaisedButton(
-                    child: Text(
-                      isClicked ? "Applied" : "Apply Now",
-                      style: TextStyle(color: Colors.white),
-                    ),
-
-                    elevation: 6.0,
-                    color: Colors.green,
-                    onPressed: () {
-                      isClicked ? null : applyNow(context);
-                    },
-                  ),
-                )
               ],
             ),
           ),
@@ -317,83 +260,11 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 
-  void applyNow(BuildContext context) {
-    var alertDialog = AlertDialog(
-      content: Container(
-          height: 50,
-          width: 100,
-          child: Column(
-            children: <Widget>[
-              Text(
-                "Applied",
-                style:
-                    TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
-              ),
-              Icon(
-                Icons.check,
-                color: Colors.green,
-              )
-            ],
-          )),
-    );
-
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return alertDialog;
-        });
-
-        inputData(widget.job);
-  }
-
   Container _getToolbar(BuildContext context) {
     return new Container(
       margin: new EdgeInsets.only(top: MediaQuery.of(context).padding.top),
       child: new BackButton(color: Colors.white),
     );
   }
-
-  void inputData(DocumentSnapshot job) async {
-  final FirebaseUser user = await FirebaseAuth.instance.currentUser();
-  final uid = user.uid;
-
-  DocumentReference userReference = Firestore.instance.collection("users").document(uid);
-
-  List<dynamic> applicants = job.data['applicants'];
-
-  setState(() {
-      isClicked = true;
-    });
-
-    applicants.add(userReference);
-    Firestore.instance
-        .collection('listings')
-        .document(job.documentID)
-        .updateData({"applicants": applicants});
-
-    DocumentSnapshot currentUser = await Firestore.instance
-        .collection("users")
-        .document(uid.toString())
-        .get();
-
-    dynamic currentJobs = currentUser.data['listings'];
-
-    DocumentReference newJob =
-        await Firestore.instance.collection("listings").document(job.documentID);
-
-    currentJobs.add(newJob);
-
-    Firestore.instance
-        .collection("users")
-        .document(uid.toString())
-        .updateData({'listings': currentJobs});
-
-    Firestore.instance.collection("listings").document(job.documentID).updateData(
-        {"numberOfApplicants": job.data['applicants'].length + 1});}
-
 }
-
-
-  
-
 

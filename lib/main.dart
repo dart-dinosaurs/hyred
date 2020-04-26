@@ -3,6 +3,14 @@ import 'package:main/router.dart';
 import 'package:main/screens/wrapper.dart';
 import 'package:main/services/auth.dart';
 import 'package:provider/provider.dart';
+<<<<<<< HEAD
+=======
+import 'package:sailor/sailor.dart';
+import 'package:main/models/user.dart';
+import 'package:main/screens/wrapper.dart';
+import 'package:main/services/auth.dart';
+import 'package:provider/provider.dart';
+>>>>>>> e8fd4de9e028d09f6e1dda1802c78e225c8125bf
 
 import 'models/user.dart';
 
