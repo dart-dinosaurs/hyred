@@ -1,4 +1,6 @@
-<img src="https://i.imgur.com/jVvqRsZ.jpg" title="FVCproductions" alt="FVCproductions">
+<p align="center">
+ <img src="https://i.imgur.com/jVvqRsZ.jpg">
+</p>
 
 # Hyred
 
@@ -24,7 +26,7 @@ We built the app using `flutter` and `firebase`. In the future we want to incorp
 
 ## Team
 
- - [Richard Hong](h-richard.com), Project Lead
- - [Keshavaa Shaiskandan](https://github.com/skeshavaa), Developer
- - [Amy Han](https://github.com/Amyh102), Developer
- - [Queenie Liang](), Business Analyst
+ - Project Lead: [Richard Hong](h-richard.com)
+ - Developer: [Keshavaa Shaiskandan](https://github.com/skeshavaa)
+ - Developer: [Amy Han](https://github.com/Amyh102)
+ - Business Analyst: [Queenie Liang]()
