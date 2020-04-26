@@ -91,6 +91,7 @@ class _ListingsScreenState extends State<ListingsScreen> {
                 salary: obj["salary"],
                 reference: obj["ref"],
                 filledBy: obj["filledBy"],
+                postDate: DateTime.parse(obj["postTime"].toDate().toString()),
               ),
             ))
         .toList();
@@ -106,21 +107,33 @@ class _ListingsScreenState extends State<ListingsScreen> {
       body: SafeArea(
         child: this.loading
             ? Loading()
-            : ListView(
-                children: [
-                  SearchBar(
-                    controller: _controller,
-                    onChange: this.changeSearch,
+            : widgets.length == 0
+                ? Center(
+                    child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+                    child: Text(
+                      "You have no active listings, press the '+' button to add one now!",
+                      style: TextStyle(
+                          fontSize: 34,
+                          fontWeight: FontWeight.w600,
+                          color: Theme.of(context).accentColor),
+                    ),
+                  ))
+                : ListView(
+                    children: [
+                      SearchBar(
+                        controller: _controller,
+                        onChange: this.changeSearch,
+                      ),
+                      SizedBox(height: 10),
+                      Container(
+                        height: MediaQuery.of(context).size.height - 150,
+                        child: ListView(children: widgets),
+                        margin: EdgeInsets.fromLTRB(
+                            MediaQuery.of(context).size.width * 0.05, 0, 0, 0),
+                      ),
+                    ],
                   ),
-                  SizedBox(height: 10),
-                  Container(
-                    height: MediaQuery.of(context).size.height - 150,
-                    child: ListView(children: widgets),
-                    margin: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.05, 0, 0, 0),
-                  )
-                 ,
-                ],
-              ),
       ),
     );
   }

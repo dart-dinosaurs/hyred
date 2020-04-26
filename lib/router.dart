@@ -38,6 +38,7 @@ class Router {
             applicants: params.param("applicants"),
             salary: params.param("salary"),
             reference: params.param("reference"),
+            postDate: params.param("postDate"),
           );
         },
         params: [
@@ -45,7 +46,8 @@ class Router {
           SailorParam(name: 'categories', isRequired: true),
           SailorParam(name: 'applicants', isRequired: true),
           SailorParam(name: 'salary', isRequired: true),
-          SailorParam(name: 'reference', isRequired: true)
+          SailorParam(name: 'reference', isRequired: true),
+          SailorParam(name: 'postDate', isRequired: true)
         ],
       ),
       SailorRoute(

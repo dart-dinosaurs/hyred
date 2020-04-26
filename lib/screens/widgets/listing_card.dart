@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:main/models/user.dart';
 import 'package:main/router.dart';
+import 'package:provider/provider.dart';
 import 'date_time_picker.dart';
 
 class ListingCard extends StatefulWidget {
@@ -16,6 +18,7 @@ class ListingCard extends StatefulWidget {
   final double salary;
   final dynamic filledBy;
   final DocumentReference reference;
+  final DateTime postDate;
 
   ListingCard({
     @required this.applicants,
@@ -29,6 +32,7 @@ class ListingCard extends StatefulWidget {
     @required this.salary,
     this.filledBy,
     @required this.reference,
+    @required this.postDate
   });
 
   @override
@@ -49,7 +53,8 @@ class _ListingCardState extends State<ListingCard> {
             "applicants": widget.applicants,
             "categories": widget.categories,
             "salary": widget.salary,
-            "reference": widget.reference
+            "reference": widget.reference,
+            "postDate": widget.postDate
           });
         },
         child: Stack(
@@ -102,7 +107,7 @@ class _ListingCardState extends State<ListingCard> {
                               Container(
                                 width: 70,
                                 child: Text(
-                                  "${widget.name}",
+                                  "${Provider.of<User>(context).city}",
                                   overflow: TextOverflow.ellipsis,
                                 ),
                               )
@@ -170,18 +175,25 @@ class _ListingCardState extends State<ListingCard> {
                         children: <Widget>[
                           Wrap(
                             direction: Axis.horizontal,
-                            children: widget.filledBy.runtimeType == DocumentReference ? [Text("Applicant Selected", style: TextStyle(fontWeight: FontWeight.bold))] : [
-                              Icon(
-                                Icons.person,
-                                size: 20,
-                              ),
-                              Text(
-                                "Applicants: " +
-                                    ((widget.numberOfApplicants == 0)
-                                        ? "None"
-                                        : "${widget.numberOfApplicants}"),
-                              ),
-                            ],
+                            children:
+                                widget.filledBy.runtimeType == DocumentReference
+                                    ? [
+                                        Text("Applicant Selected",
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold))
+                                      ]
+                                    : [
+                                        Icon(
+                                          Icons.person,
+                                          size: 20,
+                                        ),
+                                        Text(
+                                          "Applicants: " +
+                                              ((widget.numberOfApplicants == 0)
+                                                  ? "None"
+                                                  : "${widget.numberOfApplicants}"),
+                                        ),
+                                      ],
                           ),
                         ],
                       ),

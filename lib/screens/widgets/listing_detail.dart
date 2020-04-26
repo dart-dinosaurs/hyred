@@ -6,12 +6,28 @@ import 'package:main/models/user.dart';
 import 'package:main/services/firestore.dart';
 import 'package:provider/provider.dart';
 
+var months = {
+  1: "Jan",
+  2: "Feb",
+  3: "Mar",
+  4: "Apr",
+  5: "May",
+  6: "June",
+  7: "July",
+  8: "Aug",
+  9: "Sept",
+  10: "Oct",
+  11: "Nov",
+  12: "Dec",
+};
+
 class ListingDetail extends StatefulWidget {
   final String name;
   final List categories;
   final List applicants;
   final double salary;
   final DocumentReference reference;
+  final DateTime postDate;
 
   ListingDetail({
     @required this.name,
@@ -19,6 +35,7 @@ class ListingDetail extends StatefulWidget {
     @required this.applicants,
     @required this.salary,
     @required this.reference,
+    @required this.postDate,
   });
 
   @override
@@ -111,7 +128,7 @@ class _ListingDetailtate extends State<ListingDetail> {
                                 Text("Salary: ${widget.salary} /hr"),
                               ],
                             ),
-                            Text("Posted On: ")
+                            Text("Posted On: ${months[widget.postDate.month]}, ${widget.postDate.day}")
                           ],
                         ),
                       ),
