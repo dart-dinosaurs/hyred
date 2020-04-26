@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:main/screens/employer-screens/add-listings.dart';
 import 'package:main/screens/employer-screens/home.dart';
+import 'package:main/screens/widgets/terms.dart';
 import 'package:main/screens/widgets/under_construction.dart';
 import 'package:sailor/sailor.dart';
 
@@ -31,6 +32,12 @@ class Router {
         name: '/construction',
         builder: (context, args, params) {
           return Scaffold(body: Construction());
+        },
+      ),
+      SailorRoute(
+        name: '/terms',
+        builder: (context, args, params) {
+          return Scaffold(body: Terms());
         },
       ),
     ]);
