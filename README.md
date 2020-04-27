@@ -1,16 +1,33 @@
-# main
+<p align="center">
+ <img src="https://i.imgur.com/jVvqRsZ.jpg">
+</p>
 
-A new Flutter project.
+# Hyred
 
-## Getting Started
+Hyred is a mobile app built for users to be able to find temporary jobs very quickly. The project is still in development and is a submission to Google's 2020 DSC Solution Challenge. You can view our submission video [here!]()
 
-This project is a starting point for a Flutter application.
+1. [Motivation](#motivation)
+2. [Technology](#technology)
+3. [Screenshots](#screenshots)
+4. [Team](#team)
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Motivation
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Our team noticed that immigrants and refugees in Canada have a significantly higher unemployment rate compared to Canadian citizens. Employers usually prefer citizens because they value Canadian working experience. Our app provides newcomers to Canada with the perfect platform to find a source income quickly as well as gain some basic working experience in the country.
+
+---
+
+## Technology
+
+We built the app using `flutter` and `firebase`. In the future we want to incorporate more gcp services to improve and build new features. Flutter allowed us to build for `ios` and `android` with a single code base. Using Firebase as a `backend-service` allowed us to get the app up and running quickly.  
+
+---
+
+## Team
+
+ - Project Lead: [Richard Hong](h-richard.com)
+ - Developer: [Keshavaa Shaiskandan](https://github.com/skeshavaa)
+ - Developer: [Amy Han](https://github.com/Amyh102)
+ - Business Analyst: [Queenie Liang]()
