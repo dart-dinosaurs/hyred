@@ -8,7 +8,7 @@ class JobCard extends StatefulWidget {
   @override
   _JobCardState createState() => _JobCardState();
 
-  DocumentSnapshot job;
+  final DocumentSnapshot job;
 
   JobCard(this.job);
 }
@@ -35,10 +35,12 @@ class _JobCardState extends State<JobCard> {
 
   @override
   Widget build(BuildContext context) {
-    
-    String date = DateFormat.MMMMd().format(widget.job.data['beginTime'].toDate());
-    String startTime = DateFormat.jm().format(widget.job.data['beginTime'].toDate());
-    String endTime = DateFormat.jm().format(widget.job.data['endTime'].toDate());
+    String date =
+        DateFormat.MMMMd().format(widget.job.data['beginTime'].toDate());
+    String startTime =
+        DateFormat.jm().format(widget.job.data['beginTime'].toDate());
+    String endTime =
+        DateFormat.jm().format(widget.job.data['endTime'].toDate());
 
     return new GestureDetector(
         onTap: () => Navigator.of(context).push(new PageRouteBuilder(
@@ -53,15 +55,18 @@ class _JobCardState extends State<JobCard> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(100)),
                     color: Colors.white70),
-                margin: EdgeInsets.fromLTRB(
-                    0, 5, 0, 0),
+                margin: EdgeInsets.fromLTRB(0, 5, 0, 0),
                 child: Column(
                   children: <Widget>[
                     Container(
                       width: MediaQuery.of(context).size.width * 0.55,
-                      child: Text(widget.job.data['name'],
-                          textAlign: TextAlign.left,
-                          style: TextStyle(fontWeight: FontWeight.bold)),
+                      child: Text(
+                        widget.job.data['name'],
+                        textAlign: TextAlign.left,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
                       margin: EdgeInsets.fromLTRB(
                           MediaQuery.of(context).size.width * 0.4 + 10,
                           0,
@@ -125,7 +130,7 @@ class _JobCardState extends State<JobCard> {
                             Icons.timer,
                             size: 20,
                           ),
-                          Text(" " +  startTime + " - " + endTime)
+                          Text(" " + startTime + " - " + endTime)
                         ],
                       ),
                       margin: EdgeInsets.fromLTRB(
@@ -137,7 +142,13 @@ class _JobCardState extends State<JobCard> {
                     ),
                     Container(
                       width: MediaQuery.of(context).size.width * 0.55,
-                      child: Text(loading ? "Posted by: Loading" : "Posted By: " + userData['businessName'], overflow: TextOverflow.clip, maxLines: 1,),
+                      child: Text(
+                        loading
+                            ? "Posted by: Loading"
+                            : "Posted By: " + userData['businessName'],
+                        overflow: TextOverflow.clip,
+                        maxLines: 1,
+                      ),
                       margin: EdgeInsets.fromLTRB(
                           MediaQuery.of(context).size.width * 0.4 + 10,
                           0,
@@ -167,7 +178,7 @@ class _JobCardState extends State<JobCard> {
 
 Container _pic(BuildContext context, DocumentSnapshot job) {
   return (Container(
-    height: 190,
+    height: 180,
     width: MediaQuery.of(context).size.width * 0.4,
     child: ClipRRect(
         borderRadius: BorderRadius.all(Radius.circular(30)),

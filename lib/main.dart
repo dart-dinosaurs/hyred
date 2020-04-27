@@ -18,6 +18,7 @@ class App extends StatelessWidget {
     return StreamProvider<User>.value(
       value: AuthService().user,
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: 'Montserrat',
           accentColor: Color(0xFF45CFCF),
