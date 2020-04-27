@@ -29,11 +29,6 @@ class _HistoryCardState extends State<HistoryCard> {
     getUserData().then((snapshot) {
       setState(() {
         userData = snapshot.data;
-      });
-    });
-    checkUserReference().then((boolean) {
-      setState(() {
-        isAccepted = boolean;
         loading = false;
       });
     });
@@ -43,17 +38,6 @@ class _HistoryCardState extends State<HistoryCard> {
     return await widget.job.data['user'].get();
   }
 
-  Future<bool> checkUserReference() async{
-    final FirebaseUser user = await FirebaseAuth.instance.currentUser();
-    final uid = user.uid;
-
-    DocumentReference userReference = Firestore.instance.collection("users").document(uid);
-    if (widget.job.data['filledBy'] == ""){return false;}
-    if (widget.job.data['filledBy'].path == userReference.path){
-      return true;
-    }
-    return false;
-  }
 
   @override
   Widget build(BuildContext context) {

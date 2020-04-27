@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:main/screens/seeker-screens/search.dart';
+import 'package:main/screens/widgets/job_card.dart';
 import 'package:main/screens/widgets/loading.dart';
 import 'package:main/screens/widgets/search_bar.dart';
 import 'package:main/screens/widgets/topJob.dart';
@@ -15,11 +15,29 @@ class Explore extends StatefulWidget {
 
 class _ExploreState extends State<Explore> {
   String searchValue = "";
+  List<DocumentSnapshot> _employerData;
+  bool _loading;
+
+  @override
+  void initState(){
+    _loading = true;
+    super.initState();
+  }
+  void setData(List<DocumentSnapshot> newData){
+    this.setState(
+      (){
+        _employerData = newData;
+        _loading = false;
+      }
+    );
+  }
 
   void setSearch(String value) {
     setState(() {
       searchValue = value;
     });
+  
+    
   }
 
   TextEditingController myController = TextEditingController();
@@ -48,11 +66,38 @@ class _ExploreState extends State<Explore> {
       _topJobs.add(DiscoverCard(industries[i], jobs));
     }
 
+    Future<List<DocumentSnapshot>> setup() async {
+      List<Future<DocumentSnapshot>> list = [];
+      jobDocs.forEach((job) async {
+        list.add(job.data['user'].get());
+      });
+      return await Future.wait(list);
+    }
+
+    if(_loading){
+        setup().then((list){
+        setData(list);
+      });
+      return Loading();
+    } 
+
+    List<Widget> hits = [];
+
+    for (int i = 0; i < jobDocs.length; i++){
+      if (jobDocs[i].data['name'].toLowerCase().contains(searchValue.toLowerCase())
+          || jobDocs[i].data['categories'].contains(searchValue.toLowerCase())
+          || _employerData[i].data['businessName'].toLowerCase().contains(searchValue.toLowerCase())
+          || _employerData[i].data['city'].toLowerCase().contains(searchValue.toLowerCase())
+          ){
+        hits.add(JobCard(jobDocs[i]));
+      }
+    }
+
     return ListView(children: <Widget>[
       SearchBar(controller: myController, onChange: (value) => {setSearch(value)}),
       Container(height: 10,),
       searchValue != ""
-          ? Search(searchValue, jobDocs)
+          ? Column(children: hits)
           : Container(
             //height: MediaQuery.of(context).size.height * 0.80,
             child: Column(
