@@ -18,20 +18,18 @@ class _HistoryState extends State<History> {
   String searchValue = "";
 
   @override
-  void initState(){
+  void initState() {
     _loading = true;
     _jobs = [];
     searchValue = "";
     super.initState();
   }
 
-  void setData(List<DocumentSnapshot> newData){
-    this.setState(
-      (){
-        _jobs = newData;
-        _loading = false;
-      }
-    );
+  void setData(List<DocumentSnapshot> newData) {
+    this.setState(() {
+      _jobs = newData;
+      _loading = false;
+    });
   }
 
   void setSearch(String value) {
@@ -42,57 +40,61 @@ class _HistoryState extends State<History> {
 
   TextEditingController myController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
-
     List<Widget> _cards = [];
 
     Future<List<DocumentSnapshot>> setup() async {
       List<Future<DocumentSnapshot>> list = [];
-      Provider.of<DocumentSnapshot>(context).data["listings"].forEach((ref) async {
+      Provider.of<DocumentSnapshot>(context)
+          .data["listings"]
+          .forEach((ref) async {
         list.add(ref.get());
       });
       return await Future.wait(list);
     }
-    
+
     if (Provider.of<DocumentSnapshot>(context) == null) {
       return (Loading());
     } else {
-      if(_loading){
-        setup().then((list){
+      if (_loading) {
+        setup().then((list) {
           setData(list);
         });
-        
+
         return Loading();
       } else {
-        
         _jobs.reversed.forEach((doc) => {
-          _cards.add(HistoryCard(doc)),
-        });
+              _cards.add(HistoryCard(doc)),
+            });
 
         List<Widget> hits = [];
 
-        for (int i = 0; i < _jobs.length; i++){
-          if (_jobs[i].data['name'].toLowerCase().contains(searchValue.toLowerCase()) || _jobs[i].data['categories'].contains(searchValue.toLowerCase())){
+        for (int i = 0; i < _jobs.length; i++) {
+          if (_jobs[i]
+                  .data['name']
+                  .toLowerCase()
+                  .contains(searchValue.toLowerCase()) ||
+              _jobs[i].data['categories'].contains(searchValue.toLowerCase())) {
             hits.add(HistoryCard(_jobs[i]));
           }
         }
 
-        return(
-          ListView(children: <Widget>[
-              SearchBar(controller: myController, onChange: (value) => {setSearch(value)}),
-              Container(
-                height: MediaQuery.of(context).size.height,
+        return (ListView(
+          children: <Widget>[
+            SearchBar(
+                controller: myController,
+                onChange: (value) => {setSearch(value)}),
+            Container(
                 child: searchValue != "" && _loading == false
-                ? Column(mainAxisSize: MainAxisSize.max, children: hits)
-                : Column(mainAxisSize: MainAxisSize.min, children: _cards)
-              ),
-              Container(height: 10,)
-          ]
-          )
-        );
-    }
+                    ? Column(children: hits)
+                    : Column(children: _cards)),
+            Container(
+              height: 10,
+            ),
+          ],
+        ));
+      }
     }
   }
 }
