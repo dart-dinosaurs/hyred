@@ -8,6 +8,7 @@ Hyred is a mobile app built for users to be able to find temporary jobs very qui
 
 1. [Motivation](#motivation)
 2. [Technology](#technology)
+2. [Download](#download)
 3. [Screenshots](#screenshots)
 4. [Team](#team)
 
@@ -22,6 +23,14 @@ Our team noticed that immigrants and refugees in Canada have a significantly hig
 ## Technology
 
 We built the app using `flutter` and `firebase`. In the future we want to incorporate more gcp services to improve and build new features. Flutter allowed us to build for `ios` and `android` with a single code base. Using Firebase as a `backend-service` allowed us to get the app up and running quickly.  
+
+---
+
+## Download
+
+If you have an android device, you are in luck! you can download the binaries from our [Alpha Release](https://github.com/dart-dinosaurs/hyred/releases/tag/v0.0.1-alpha). 
+
+We have not packaged the application for IOS, sorry!
 
 ---
 
