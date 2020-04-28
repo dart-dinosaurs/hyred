@@ -4,6 +4,7 @@ import 'package:main/screens/seeker-screens/history.dart';
 import 'package:main/screens/widgets/placeholder.dart';
 import 'package:main/screens/seeker-screens/explore.dart';
 import 'package:main/screens/seeker-screens/settings.dart';
+import 'package:main/screens/widgets/under_construction.dart';
 import 'package:provider/provider.dart';
 import 'package:main/models/user.dart';
 import 'package:main/services/firestore.dart';
@@ -37,13 +38,11 @@ class HistoryWrapper extends StatelessWidget {
   }
 }
 
-
 class _SeekerHomeState extends State<SeekerHome> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     ExploreWrapper(),
-    PlaceholderWidget(Colors.purple),
-    PlaceholderWidget(Colors.purple),
+    Construction(),
     HistoryWrapper(),
     Settings(),
   ];
@@ -65,25 +64,29 @@ class _SeekerHomeState extends State<SeekerHome> {
     return Scaffold(
         body: getWidget(_currentIndex),
         bottomNavigationBar: new Theme(
-          data: Theme.of(context)
-              .copyWith(canvasColor: Colors.white, primaryColor: Theme.of(context).accentColor),
+          data: Theme.of(context).copyWith(
+              canvasColor: Colors.white,
+              primaryColor: Theme.of(context).accentColor),
           child: BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
               onTap: onTabTapped,
               currentIndex: _currentIndex,
               items: [
                 BottomNavigationBarItem(
-                    icon: new Icon(Icons.assignment),
-                    title: new Text("Explore")),
+                  icon: new Icon(Icons.assignment),
+                  title: new Text("Explore"),
+                ),
                 BottomNavigationBarItem(
-                    icon: new Icon(Icons.search), title: new Text("Search")),
-                BottomNavigationBarItem(
-                    icon: new Icon(Icons.message), title: new Text("Messages")),
+                  icon: new Icon(Icons.message),
+                  title: new Text("Messages"),
+                ),
                 BottomNavigationBarItem(
                     icon: new Icon(Icons.library_books),
                     title: new Text("History")),
                 BottomNavigationBarItem(
-                    icon: new Icon(Icons.person), title: new Text("Profile")),
+                  icon: new Icon(Icons.person),
+                  title: new Text("Profile"),
+                ),
               ]),
         ));
   }

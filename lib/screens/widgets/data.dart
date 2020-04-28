@@ -10,31 +10,31 @@ class Category{
 List<Category> industries = [
   const Category(
     heading: "Caregiving",
-    image: "care"
+    image: "0nkFvdcM-X4"
   ),
   const Category(
     heading: "Janitorial",
-    image: "janitor"
+    image: "Iu6parQAO-U"
   ),
   const Category(
     heading: "Retail",
-    image: "retail"
+    image: "tE6th1h6Bfk"
   ),
   const Category(
     heading: "Labour",
-    image: "manual work"
+    image: "t_rxW1yGpSU"
   ),
   const Category(
     heading: "Construction",
-    image: "construction"
+    image: "Za9oagRJNLM"
   ),
   const Category(
     heading: "Handyman",
-    image: "handyman"
+    image: "WEWTGkPUVT0"
   ),
   const Category(
     heading: "Freelance",
-    image: "freelance"
+    image: "hfk6xOjQlFk"
   ),
 
 ];

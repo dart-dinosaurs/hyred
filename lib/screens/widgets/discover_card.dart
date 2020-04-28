@@ -5,9 +5,8 @@ import 'package:main/screens/widgets/data.dart';
 import './data.dart';
 
 class DiscoverCard extends StatelessWidget {
-  
-  Category industry;
-  QuerySnapshot jobs;
+  final Category industry;
+  final QuerySnapshot jobs;
 
   DiscoverCard(this.industry, this.jobs);
 
@@ -17,9 +16,9 @@ class DiscoverCard extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => new Container(child: JobListings(industry.heading, jobs))),
+            builder: (context) =>
+                new Container(child: JobListings(industry.heading, jobs))),
       ),
-      
       child: Card(
         elevation: 5,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -28,15 +27,16 @@ class DiscoverCard extends StatelessWidget {
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(20), topRight: Radius.circular(20)),
               child: Image(
-                image: NetworkImage("https://source.unsplash.com/featured/?" + industry.image),
+                image: NetworkImage("https://source.unsplash.com/" +
+                    industry.image +
+                    "/400x300"),
                 width: 150,
                 height: 100,
-                
                 fit: BoxFit.cover,
               )),
           Container(
             width: 150,
-            height:50,
+            height: 50,
             child: Column(
               children: <Widget>[
                 Container(
@@ -50,8 +50,9 @@ class DiscoverCard extends StatelessWidget {
               shape: BoxShape.rectangle,
               color: Colors.white,
               borderRadius: new BorderRadius.only(
-                  bottomLeft: Radius.circular(20),
-                  bottomRight: Radius.circular(20)),
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+              ),
             ),
           )
         ]),

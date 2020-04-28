@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:main/screens/seeker-screens/search.dart';
 import 'package:main/screens/widgets/history_card.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:main/screens/widgets/history_card.dart';
@@ -19,18 +18,18 @@ class _HistoryState extends State<History> {
   String searchValue = "";
 
   @override
-  void initState(){
+  void initState() {
     _loading = true;
+    _jobs = [];
+    searchValue = "";
     super.initState();
   }
 
-  void setData(List<DocumentSnapshot> newData){
-    this.setState(
-      (){
-        _jobs = newData;
-        _loading = false;
-      }
-    );
+  void setData(List<DocumentSnapshot> newData) {
+    this.setState(() {
+      _jobs = newData;
+      _loading = false;
+    });
   }
 
   void setSearch(String value) {
@@ -41,42 +40,61 @@ class _HistoryState extends State<History> {
 
   TextEditingController myController = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
+    List<Widget> _cards = [];
+
     Future<List<DocumentSnapshot>> setup() async {
       List<Future<DocumentSnapshot>> list = [];
-      Provider.of<DocumentSnapshot>(context).data["listings"].forEach((ref) async {
+      Provider.of<DocumentSnapshot>(context)
+          .data["listings"]
+          .forEach((ref) async {
         list.add(ref.get());
       });
       return await Future.wait(list);
     }
-    
+
     if (Provider.of<DocumentSnapshot>(context) == null) {
       return (Loading());
     } else {
-      if(_loading){
-        setup().then((list){
-        setData(list);
-      });
+      if (_loading) {
+        setup().then((list) {
+          setData(list);
+        });
+
         return Loading();
       } else {
-        List<Widget> _cards = [];
         _jobs.reversed.forEach((doc) => {
-          _cards.add(HistoryCard(doc)),
-        });
-        print(_cards);
-        return(
-          ListView(children: <Widget>[
-              SearchBar(controller: myController, onChange: (value) => {setSearch(value)}),
-              searchValue != "" 
-                ? Search(searchValue, _jobs)
-                : Column(children: _cards)
-          ,
-          ]
-          )
-        );
-    }
+              _cards.add(HistoryCard(doc)),
+            });
+
+        List<Widget> hits = [];
+
+        for (int i = 0; i < _jobs.length; i++) {
+          if (_jobs[i]
+                  .data['name']
+                  .toLowerCase()
+                  .contains(searchValue.toLowerCase()) ||
+              _jobs[i].data['categories'].contains(searchValue.toLowerCase())) {
+            hits.add(HistoryCard(_jobs[i]));
+          }
+        }
+
+        return (ListView(
+          children: <Widget>[
+            SearchBar(
+                controller: myController,
+                onChange: (value) => {setSearch(value)}),
+            Container(
+                child: searchValue != "" && _loading == false
+                    ? Column(children: hits)
+                    : Column(children: _cards)),
+            Container(
+              height: 10,
+            ),
+          ],
+        ));
+      }
     }
   }
 }
