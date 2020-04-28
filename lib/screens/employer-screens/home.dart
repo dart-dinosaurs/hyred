@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:main/screens/employer-screens/listings.dart';
 import 'package:main/screens/employer-screens/profile.dart';
-import 'package:main/screens/widgets/placeholder.dart';
+import 'package:main/screens/widgets/under_construction.dart';
 import 'profile.dart';
 
 class EmployerHome extends StatefulWidget {
@@ -15,9 +15,7 @@ class _EmployerHomeState extends State<EmployerHome> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     ListingsScreen(),
-    PlaceholderWidget(Colors.pink),
-    PlaceholderWidget(Colors.purple),
-    PlaceholderWidget(Colors.orange),
+    Construction(),
     Profile(),
   ];
 
@@ -38,25 +36,26 @@ class _EmployerHomeState extends State<EmployerHome> {
     return Scaffold(
         body: getWidget(_currentIndex),
         bottomNavigationBar: new Theme(
-          data: Theme.of(context)
-              .copyWith(canvasColor: Colors.white, primaryColor: Theme.of(context).accentColor),
+          data: Theme.of(context).copyWith(
+              canvasColor: Colors.white,
+              primaryColor: Theme.of(context).accentColor),
           child: BottomNavigationBar(
               type: BottomNavigationBarType.fixed,
               onTap: onTabTapped,
               currentIndex: _currentIndex,
               items: [
                 BottomNavigationBarItem(
-                    icon: new Icon(Icons.assignment),
-                    title: new Text("Listings")),
+                  icon: new Icon(Icons.assignment),
+                  title: new Text("Listings"),
+                ),
                 BottomNavigationBarItem(
-                    icon: new Icon(Icons.search), title: new Text("Search")),
+                  icon: new Icon(Icons.message),
+                  title: new Text("Messages"),
+                ),
                 BottomNavigationBarItem(
-                    icon: new Icon(Icons.message), title: new Text("Messages")),
-                BottomNavigationBarItem(
-                    icon: new Icon(Icons.library_books),
-                    title: new Text("History")),
-                BottomNavigationBarItem(
-                    icon: new Icon(Icons.person), title: new Text("Profile")),
+                  icon: new Icon(Icons.person),
+                  title: new Text("Profile"),
+                ),
               ]),
         ));
   }
