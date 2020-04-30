@@ -35,9 +35,51 @@ We have not packaged the application for IOS, sorry!
 
 ---
 
+## Instructions
+
+### Mac OS
+
+`Flutter SDK` https://flutter.dev/docs/get-started/install/macos
+
+`Xcode` https://developer.apple.com/download/more/?=xcode
+
+After you have installed both, clone the repo and run
+
+```
+git clone https://github.com/dart-dinosaurs/hyred && cd hyred && flutter run
+```
+
+Make sure `flutter` is in your `PATH`!
+
+### Windows & Linux
+
+Windows `Flutter SDK` https://flutter.dev/docs/get-started/install/windows
+
+Linux `Flutter SDK` https://flutter.dev/docs/get-started/install/linux
+
+`Android Studio` https://developer.android.com/studio
+
+`Setting up an AVD` https://developer.android.com/studio/run/emulator
+
+After you have done all three, clone the repo and run 
+
+```
+git clone https://github.com/dart-dinosaurs/hyred && cd hyred && flutter config --android-sdk ANDROID_SDK_PATH && flutter run 
+```
+
+Replace the `ANDROID_SDK_PATH` to the actual path!
+
+---
+
+## Screenshots
+
+<img src="https://i.imgur.com/v5VFSHh.png" width="30%"></img> <img src="https://i.imgur.com/KcK3djX.png" width="30%"></img> <img src="https://i.imgur.com/R3ABpc7.png" width="30%"></img> <img src="https://i.imgur.com/KdMKBep.png" width="30%"></img> <img src="https://i.imgur.com/XOrnhiC.png" width="30%"></img> <img src="https://i.imgur.com/QwTzn7H.png" width="30%"></img> 
+
+---
+
 ## Team
 
  - Project Lead: [Richard Hong](h-richard.com)
  - Developer: [Keshavaa Shaiskandan](https://github.com/skeshavaa)
  - Developer: [Amy Han](https://github.com/Amyh102)
- - Business Analyst: [Queenie Liang]()
+ - Business Analyst: [Queenie Liang](https://www.linkedin.com/in/queenie-liang-ba91a11a8/)
