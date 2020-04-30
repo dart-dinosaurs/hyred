@@ -7,11 +7,18 @@
 Hyred is a mobile app built for users to be able to find temporary jobs very quickly. The project is still in development and is a submission to Google's 2020 DSC Solution Challenge. You can view our submission video [here!]()
 
 1. [Motivation](#motivation)
-2. [Technology](#technology)
-3. [Download](#download)
-6. [Desktop Instructions](#instructions)
-4. [Screenshots](#screenshots)
-5. [Team](#team)
+2. [Screenshots](#screenshots)
+3. [Technology](#technology)
+4. [Download](#download)
+5. [Desktop Instructions](#instructions)
+6. [Team](#team)
+
+---
+
+## Screenshots
+
+<img src="https://i.imgur.com/v5VFSHh.png" width="30%"></img> <img src="https://i.imgur.com/KcK3djX.png" width="30%"></img> <img src="https://i.imgur.com/R3ABpc7.png" width="30%"></img> <img src="https://i.imgur.com/KdMKBep.png" width="30%"></img> <img src="https://i.imgur.com/XOrnhiC.png" width="30%"></img> <img src="https://i.imgur.com/QwTzn7H.png" width="30%"></img> 
+
 
 ---
 
@@ -68,12 +75,6 @@ git clone https://github.com/dart-dinosaurs/hyred && cd hyred && flutter config 
 ```
 
 Replace the `ANDROID_SDK_PATH` to the actual path!
-
----
-
-## Screenshots
-
-<img src="https://i.imgur.com/v5VFSHh.png" width="30%"></img> <img src="https://i.imgur.com/KcK3djX.png" width="30%"></img> <img src="https://i.imgur.com/R3ABpc7.png" width="30%"></img> <img src="https://i.imgur.com/KdMKBep.png" width="30%"></img> <img src="https://i.imgur.com/XOrnhiC.png" width="30%"></img> <img src="https://i.imgur.com/QwTzn7H.png" width="30%"></img> 
 
 ---
 
