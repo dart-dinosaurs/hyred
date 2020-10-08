@@ -4,7 +4,7 @@
 
 # Hyred
 
-Hyred is a mobile app built for users to be able to find temporary jobs very quickly. The project is still in development and is a submission to Google's 2020 DSC Solution Challenge. You can view our submission video [here!]()
+Hyred is a mobile app built for users to be able to find temporary jobs very quickly. The project is still in development and is a submission to Google's 2020 DSC Solution Challenge. You can view our submission video [here!](https://www.youtube.com/watch?v=vw_pRcdN08k)
 
 1. [Motivation](#motivation)
 2. [Screenshots](#screenshots)
